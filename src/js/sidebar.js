@@ -16,7 +16,6 @@ class Sidebar {
 		this.SCREEN_SIZE = null
 		this.SCREEN_DESKTOP = null
 		this.UPDATE_SCREEN_DEBOUNCE = 30
-
 		this.BREAKPOINTS = {
 			320: ['xs', 'xs-up'],
 			480: ['xs', 'xs-up'],
@@ -40,6 +39,11 @@ class Sidebar {
 		this._updateScreenDebounce = null
 	}
 
+	/**
+	 * Get the sidebar options for a sidebar element
+	 * @param  {String|jQuery} sidebar A sidebar jQuery element or String DOM selector
+	 * @return {Object}
+	 */
 	_options (sidebar) {
 		sidebar = this._sidebar(sidebar)
 		const position = sidebar.data('position') || 'left'
@@ -56,6 +60,10 @@ class Sidebar {
 		}
 	}
 
+	/**
+	 * Initialize screen size breakpoints
+	 * @param  {Boolean} reset 	Remove the breakpoints
+	 */
 	_breakpoints (reset) {
 		const _values = Object.keys(this.BREAKPOINTS).map((v) => parseInt(v, 10))
 
@@ -93,10 +101,20 @@ class Sidebar {
 		})
 	}
 
+	/**
+	 * Join a classes Array into a String
+	 * @param  {Array} classes
+	 * @return {String}
+	 */
 	_classString (classes) {
 		return classes.join(' ')
 	}
 
+	/**
+	 * Get the layout classes for a sidebar element
+	 * @param  {String|jQuery} sidebar A sidebar jQuery element or String DOM selector
+	 * @return {Array}
+	 */
 	_layoutClasses (sidebar) {
 		const options = this._options(sidebar)
 		let classes = []
@@ -119,6 +137,11 @@ class Sidebar {
 		return unique(classes)
 	}
 
+	/**
+	 * Get the sidebar classes for a sidebar element
+	 * @param  {String|jQuery} sidebar A sidebar jQuery element or String DOM selector
+	 * @return {Array}
+	 */
 	_sidebarClasses (sidebar) {
 		const options = this._options(sidebar)
 		const classes = [
@@ -128,11 +151,21 @@ class Sidebar {
 		return classes.concat(sizeClasses)
 	}
 
+	/**
+	 * Get a size options Array for a sidebar
+	 * @param  {String|jQuery} sidebar A sidebar jQuery element or String DOM selector
+	 * @return {Array}
+	 */
 	_sizeOptions (sidebar) {
 		const options = this._options(sidebar)
 		return options.size.split(' ')
 	}
 
+	/**
+	 * Get a visible options Array for a sidebar
+	 * @param  {String|jQuery} sidebar A sidebar jQuery element or String DOM selector
+	 * @return {Array}
+	 */
 	_visibleOptions (sidebar) {
 		const options = this._options(sidebar)
 		if (options.visible === 'none') {
@@ -141,6 +174,11 @@ class Sidebar {
 		return options.visible.split(' ')
 	}
 
+	/**
+	 * Get the closest layout container element for a sidebar
+	 * @param  {String|jQuery} sidebar 	A sidebar jQuery element or String DOM selector
+	 * @return {jQuery}         		A jQuery element
+	 */
 	_layout (sidebar) {
 		sidebar = this._sidebar(sidebar)
 		return sidebar.closest(this.LAYOUT_CONTAINER_SELECTOR)
