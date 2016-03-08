@@ -1,7 +1,7 @@
 {
   "name": "bootstrap-layout",
   "version": "1.0.0-alpha.1",
-  "description": "Bootstrap layout with sidebar navigation and extras.",
+  "description": "Bootstrap layout with sidebar navigation, sidebar skins, sidebar transition, custom scrollbars, sidebar menus and other advanced features and utilities",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --config src/build/webpack.config.dev.js --progress --watch",
@@ -41,10 +41,20 @@
     "simplebar": "github:grsmto/simplebar"
   },
   "keywords": [
-    "adminplus",
     "bootstrap",
     "bootstrap4",
     "layout",
-    "sidebar"
-  ]
+    "sidebar",
+    "layouts",
+    "sidebars",
+    "navigation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/themekit/bootstrap-layout.git"
+  },
+  "bugs": {
+    "url": "https://github.com/themekit/bootstrap-layout/issues"
+  },
+  "homepage": "https://github.com/themekit/bootstrap-layout#readme"
 }
