@@ -1,0 +1,82 @@
+@mixin sidebar-sizes($breakpoint: '') {
+	@if $breakpoint != '' {
+		$breakpoint: -#{$breakpoint};
+	}
+	@each $index in map-keys($sidebar-sizes) {
+		$size: map-get($sidebar-sizes, $index);
+		.si-si-#{$index}#{$breakpoint} {
+			width: $size;
+		}
+	}
+}
+@mixin sidebar-layout($breakpoint: '') {
+	@if $breakpoint != '' {
+		$breakpoint: -#{$breakpoint};
+	}
+	@each $index in map-keys($sidebar-sizes) {
+		$size: map-get($sidebar-sizes, $index);
+		@each $d, $direction in (l: left, r: right) {
+			.layout-content,
+			.st-container > .st-pusher > .st-content > .layout-content {
+				.si-#{$d}#{$index}#{$breakpoint} > & {
+					margin-#{$direction}: $size;
+				}
+			}
+		}
+	}
+}
+@mixin sidebar-sum-sizes($breakpoint: '') {
+	@if $breakpoint != '' {
+		$breakpoint: -#{$breakpoint};
+	}
+	@each $index in map-keys($sidebar-sizes) {
+		$size: map-get($sidebar-sizes, $index);
+		@each $d, $direction in (l: left, r: right) {
+			@each $sIndex in map-keys($sidebar-sizes) {
+				$sValue: map-get($sidebar-sizes, $sIndex);
+				.layout-content,
+				.st-container > .st-pusher > .st-content > .layout-content {
+					.si-#{$d}-sum-#{$index}#{$sIndex}#{$breakpoint} > & {
+						margin-#{$direction}: ($size + $sValue);
+					}
+				}
+			}
+		}
+	}
+}
+@mixin sidebar-percent($breakpoint: '') {
+	@if $breakpoint != '' {
+		$breakpoint: -#{$breakpoint};
+	}
+	// percentage
+	@for $percent from $sidebar-percent-from through $sidebar-percent-through {
+		$percent: $percent * $sidebar-percent-step;
+		.si-si-#{$percent}pc#{$breakpoint} {
+			width: round(percentage($percent / 100));
+		}
+		@each $d, $direction in (l: left, r: right) {
+			.layout-content,
+			.st-container > .st-pusher > .st-content > .layout-content {
+				.si-#{$d}-#{$percent}pc#{$breakpoint} > & {
+					margin-#{$direction}: round(percentage($percent / 100));
+				}
+			}
+		}
+	}
+}
+@mixin sidebar-offset($breakpoint: '') {
+	@if $breakpoint != '' {
+		$breakpoint: -#{$breakpoint};
+	}
+	@each $d, $direction in (l: left, r: right) {
+		.sidebar.sidebar-#{$direction}.si-of-0#{$breakpoint} {
+			#{$direction}: 0;
+		}
+		@each $index in map-keys($sidebar-sizes) {
+			$size: map-get($sidebar-sizes, $index);
+			.sidebar.sidebar-#{$direction}.si-of-#{$index}#{$breakpoint} {
+				#{$direction}: $size;
+			}
+		}
+	}
+}

@@ -1,0 +1,19 @@
+.sidebar-block {
+	padding: 0 $sidebar-spacing-horizontal $sidebar-spacing-horizontal;
+	border-bottom: 1px solid transparent;
+	&.sidebar-block-full {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.sidebar-heading, 
+	.sidebar-text {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	> *:last-child {
+		margin-bottom: 0;
+	}
+	&:first-child {
+		padding-top: $sidebar-spacing-horizontal;
+	}
+}

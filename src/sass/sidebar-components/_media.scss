@@ -1,0 +1,9 @@
+.sidebar .media {
+	margin-bottom: $sidebar-spacing-horizontal;
+	> .media-left {
+		margin-right: $sidebar-spacing-horizontal;
+	}
+	> .media-right {
+		margin-left: $sidebar-spacing-horizontal;
+	}
+}
