@@ -1,6 +1,8 @@
 # bootstrap-layout
 
-Bootstrap layout with sidebar navigation, skins, transitions, custom scrollbars, sidebar menu utilities and other advanced features.
+[![npm version](https://badge.fury.io/js/bootstrap-layout.svg)](https://badge.fury.io/js/bootstrap-layout)
+
+Bootstrap layout with sidebar navigation, sidebar skins, sidebar transition, custom scrollbars, sidebar menus and other advanced features and utilities.
 
 ## Usage
 
