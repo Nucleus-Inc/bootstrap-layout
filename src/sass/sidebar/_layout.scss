@@ -53,12 +53,26 @@
 	transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+// visibility
+.sidebar {
+	// default
+	@include sidebar-visible();
+	// BREAKPOINTS
+	@each $breakpoint in map-keys($grid-breakpoints) {
+		// specific
+		@include media-breakpoint-only($breakpoint) {
+			@include sidebar-visible($breakpoint);
+		}
+		// larger
+		@include media-breakpoint-up($breakpoint) {
+			$breakpoint: #{$breakpoint}-up;
+			@include sidebar-visible($breakpoint);
+		}
+	}
+}
+
 // positions
 .sidebar {
-	// visibility
-	&.si-vi {
-		display: block;
-	}
 	@each $direction in (left, right) {
 		&.sidebar-#{$direction} {
 			// default
@@ -67,7 +81,7 @@
 			&.sidebar-transition {
 				#{$direction}: -$sidebar-width;
 				transition-property: #{$direction};
-				&.si-vi {
+				&.sidebar-visible {
 					#{$direction}: 0;
 				}
 			}
