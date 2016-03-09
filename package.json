@@ -34,7 +34,7 @@
     "webpack": "^1.12.11"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.2",
+    "bootstrap": "4.0.0-alpha.2",
     "breakpoints": "github:lazabogdan/breakpoints",
     "mout": "^0.11.1",
     "sass-md-colors": "^1.0.0",
