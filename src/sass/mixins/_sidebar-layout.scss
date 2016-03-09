@@ -80,3 +80,11 @@
 		}
 	}
 }
+@mixin sidebar-visible($breakpoint: '') {
+	@if $breakpoint != '' {
+		$breakpoint: -#{$breakpoint};
+	}
+	&.sidebar-visible#{$breakpoint} {
+		display: block;
+	}
+}
