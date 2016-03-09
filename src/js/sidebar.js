@@ -291,6 +291,7 @@ class Sidebar {
 	hide (sidebar) {
 		sidebar = this._sidebar(sidebar)
 		const visibleClass = this.VISIBLE_CLASS
+		const visibleClasses = sidebar.attr('class').match(new RegExp(`${ visibleClass }([a-z-]+)?`, 'ig'))
 		const options = this._options(sidebar)
 
 		// layout classes
@@ -302,7 +303,7 @@ class Sidebar {
 			this._emit('hide', options)
 
 			// sidebar visibility
-			sidebar.removeClass(visibleClass)
+			sidebar.removeClass(this._classString(visibleClasses))
 
 			// transition
 			if (sidebar.hasClass('sidebar-transition')) {
