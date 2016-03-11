@@ -8,8 +8,11 @@
 	bottom: 0;
 	z-index: $zindex-sidebar;
 	font-size: $sidebar-font-size;
-	overflow: scroll;
-	-webkit-overflow-scrolling: touch;
+
+	&:not(.simplebar) {
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;
+	}
 	
 	&, 
 	.simplebar-scroll-content {

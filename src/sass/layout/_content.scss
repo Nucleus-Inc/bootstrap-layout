@@ -11,8 +11,10 @@ html.bootstrap-layout {
 	}
 	&.layout-content,
 	.layout-content {
-		overflow: scroll;
-		-webkit-overflow-scrolling: touch;
+		&:not(.simplebar) {
+			overflow: auto;
+			-webkit-overflow-scrolling: touch;
+		}
 	}
 	.layout-container, 
 	.layout-content {

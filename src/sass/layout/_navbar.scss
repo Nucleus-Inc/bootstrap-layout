@@ -1,10 +1,16 @@
 .top-navbar > .layout-content, 
 .top-navbar.layout-content {
 	padding-top: $navbar-height;
+	> .simplebar-scroll-content {
+		top: $navbar-height;
+	}
 }
 .ls-top-navbar > .layout-content,
 .ls-top-navbar.layout-content {
 	padding-top: $navbar-height + ($font-size-root * strip-unit($grid-gutter-width));
+	> .simplebar-scroll-content {
+		top: $navbar-height + ($font-size-root * strip-unit($grid-gutter-width));
+	}
 }
 
 // BREAKPOINTS
