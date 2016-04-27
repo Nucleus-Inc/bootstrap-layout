@@ -1,67 +1,9 @@
 @import "../mixins/sidebar-mini";
 
+// SMALL and LARGER
 @include media-breakpoint-up(sm) {
 	.sidebar-mini {
 		@include sidebar-mini();
-	}
-	.no-csstransforms3d .sidebar-mini-reveal {
-		@include sidebar-mini();
-	}
-	.csstransforms3d .sidebar-mini-reveal {
-		z-index: 1031; // > navbar
-		transition: transform 0.5s;
-		.sidebar-menu > .sidebar-menu-item > .sidebar-menu-button span {
-			opacity: 0;
-			transition: opacity 0.3s;
-		}
-		// @TODO: SKIP SIZE 1
-		@each $index in map-keys($sidebar-sizes) {
-			$size: map-get($sidebar-sizes, $index);
-			&.sidebar-mini-reveal-size-#{$index} {
-				&, .dropdown-container, .dropdown-container > ul {
-					width: $size;
-				}
-				@each $direction in (left, right) {
-					&.#{$direction} {
-						@if $direction == 'left' {
-							transform: translate3d(-($size - $sidebar-mini-width), 0, 0) !important;
-						} @else {
-							transform: translate3d(($size - $sidebar-mini-width), 0, 0) !important;
-						}
-					}
-				}
-			}
-		}
-		.sidebar-category, 
-		.sidebar-heading,
-		.sidebar-block,
-		.sidebar-brand,
-		.sidebar-text {
-			display: block;
-			opacity: 0;
-			transition-delay: 0.2s;
-			transition-timing-function: ease-in-out;
-			transition-property: opacity;
-			transition-duration: 0.3s;
-		}
-		&:hover {
-			&, 
-			&.sidebar-mini-reveal-size-2, 
-			&.sidebar-mini-reveal-size-3 {
-				transform: translate3d(0, 0, 0) !important;
-			}
-			.sidebar-category, 
-			.sidebar-heading,
-			.sidebar-block,
-			.sidebar-brand,
-			.sidebar-text {
-				opacity: 1;
-			}
-			.sidebar-menu > .sidebar-menu-item > .sidebar-menu-button span {
-				opacity: 1;
-				display: inline-block;
-			}
-		}
 	}
 }
 

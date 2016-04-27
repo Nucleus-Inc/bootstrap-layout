@@ -21,6 +21,15 @@ html.bootstrap-layout {
 		height: 100%;
 		position: relative;
 	}
+	.container,
+	.container-fluid {
+		padding-left: $grid-gutter-width;
+		padding-right: $grid-gutter-width;
+	}
+	.ls-top > .layout-content,
+	.ls-top.layout-content {
+		padding-top: $font-size-root * strip-unit($grid-gutter-width);
+	}
 	@media print {
 		.layout-print .layout-content {
 			margin-left: 0 !important;

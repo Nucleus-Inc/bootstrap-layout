@@ -132,7 +132,7 @@
 	// reset content margins for .si-si-1
 	// override .si-[l|r]1-xs
 	@each $d, $direction in (l: left, r: right) {
-		.si-#{$d}1-xs & {
+		.si-#{$d}1-xs {
 			margin-#{$direction}: 0;
 		}
 	}
