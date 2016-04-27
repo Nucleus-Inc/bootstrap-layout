@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "4.0.0-alpha.2",
-    "bootstrap-layout": "1.0.0-alpha.4",
+    "bootstrap-layout": "1.0.0-alpha.5",
     "highlight.js": "^9.3.0",
     "jquery": "^2.2.0",
     "sass-md-colors": "^1.0.0",
