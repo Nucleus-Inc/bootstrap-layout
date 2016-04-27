@@ -1,8 +1,9 @@
-import 'simplebar/src/simplebar'
+import 'simplebar/src/simplebar.js'
 
 export default function () {
 
 	$.fn.blScrollable = function () {
+
 		if (!this.length) return
 		if (this.length > 1) {
 			this.each(function () {
@@ -16,6 +17,11 @@ export default function () {
 
 		if (el.data('horizontal')) {
 			el.addClass('horizontal')
+		}
+
+		if ($.fn.simplebar === undefined) {
+			el.css('overflow-y', 'scroll')
+			return
 		}
 
 		el.simplebar()
