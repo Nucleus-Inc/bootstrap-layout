@@ -62,11 +62,19 @@ class Sidebar {
 	}
 
 	/**
+	 * Get all breakpoint values
+	 * @return {Array}
+	 */
+	_breakpoints () {
+		return Object.keys(this.BREAKPOINTS).map((v) => parseInt(v, 10))
+	}
+
+	/**
 	 * Get the visible breakpoint sizes for a sidebar
 	 * @param  {jQuery|String} sidebar 	A sidebar jQuery element or DOM selector String
 	 * @return {Array}
 	 */
-	_visibleBreakpoints (sidebar) {
+	_visibleBreakpointsFor (sidebar) {
 		const breakpoints = []
 		this._visibleOptions(sidebar).map((v) => {
 			forOwn(this.BREAKPOINTS, (values, key) => {
@@ -80,71 +88,101 @@ class Sidebar {
 
 	/**
 	 * Initialize breakpoint
-	 * @param  {Boolean}   off        	Remove the breakpoint
-	 * @param  {Number}   breakpoint 	The breakpoint size
-	 * @param  {Function} cb         	The callback
+	 * @param  {Boolean}   	off        	Remove the breakpoint
+	 * @param  {Number}   	breakpoint 	The breakpoint size
+	 * @param  {Function} 	cb         	The callback
 	 */
-	_breakpoint (off, breakpoint, cb) {
+	_setBreakpoint (off, breakpoint, cb) {
 		$(window)[off ? 'off' : 'on'](`enterBreakpoint${ breakpoint }`, cb.bind(this))
 	}
 
 	/**
-	 * Initialize screen size breakpoints
-	 * @param  {Boolean} off 	Remove the breakpoints
+	 * Set breakpoints for a sidebar element
+	 * @param  {jQuery|String} 	sidebar 	A sidebar jQuery element or DOM selector String
+	 * @param  {Boolean}   		off        	Remove the breakpoint
 	 */
-	_breakpoints (off) {
-		const _values = Object.keys(this.BREAKPOINTS).map((v) => parseInt(v, 10))
+	_setBreakpointsFor (sidebar, off) {
+		sidebar = this._sidebar(sidebar)
 
-		if (typeof $.fn.setBreakpoints !== 'undefined') {
-			$(window).setBreakpoints({ breakpoints: _values })
-		}
+		const breakpoints = this._breakpoints()
+		const visibleBreakpoints = this._visibleBreakpointsFor(sidebar)
 
-		this._each((sidebar) => {
-			const visibleBreakpoints = this._visibleBreakpoints(sidebar)
+		forOwn(this.BREAKPOINTS, (values, key, object) => {
+			this._visibleOptions(sidebar).forEach((visible) => {
+				if (values.indexOf(visible) !== -1) {
 
-			forOwn(this.BREAKPOINTS, (values, key, object) => {
-				this._visibleOptions(sidebar).forEach((visible) => {
-					if (values.indexOf(visible) !== -1) {
+					let isUp = visible.indexOf('up') !== -1
+					let up = breakpoints.filter((v) => v > key)
+					let keyInt = parseInt(key, 10)
 
-						let isUp = visible.indexOf('up') !== -1
-						let up = _values.filter((v) => v > key)
-						let keyInt = parseInt(key, 10)
-
-						if (keyInt === Math.max.apply(null, visibleBreakpoints)) {
-							let down = _values.filter((v) => v < key)
-							down.filter((d) => {
-								// exclude visibile breakpoints
-								return visibleBreakpoints.indexOf(d) === -1
-							})
-							.forEach((breakpoint) => {
-								this._breakpoint(off, breakpoint, () => this.hide(sidebar))
-							})
-						}
-
-						if (isUp) {
-							up.unshift(key)
-							up.filter((u) => {
-								// exclude visibile breakpoints
-								return visibleBreakpoints.indexOf(u) === -1
-							})
-							.forEach((breakpoint) => {
-								this._breakpoint(off, breakpoint, () => this.show(sidebar, false))
-							})
-						}
-						else {
-							this._breakpoint(off, key, () => this.show(sidebar, false))
-							up.filter((u) => {
-								// exclude visibile breakpoints
-								return visibleBreakpoints.indexOf(u) === -1
-							})
-							.forEach((breakpoint) => {
-								this._breakpoint(off, breakpoint, () => this.hide(sidebar))
-							})
-						}
+					if (keyInt === Math.max.apply(null, visibleBreakpoints)) {
+						let down = breakpoints.filter((v) => v < key)
+						down.filter((d) => {
+							// exclude visibile breakpoints
+							return visibleBreakpoints.indexOf(d) === -1
+						})
+						.forEach((breakpoint) => {
+							this._setBreakpoint(off, breakpoint, () => this.hide(sidebar))
+						})
 					}
-				})
+
+					if (isUp) {
+						up.unshift(key)
+						up.filter((u) => {
+							// exclude visibile breakpoints
+							return visibleBreakpoints.indexOf(u) === -1
+						})
+						.forEach((breakpoint) => {
+							this._setBreakpoint(off, breakpoint, () => this.show(sidebar, false))
+						})
+					}
+					else {
+						this._setBreakpoint(off, key, () => this.show(sidebar, false))
+						up.filter((u) => {
+							// exclude visibile breakpoints
+							return visibleBreakpoints.indexOf(u) === -1
+						})
+						.forEach((breakpoint) => {
+							this._setBreakpoint(off, breakpoint, () => this.hide(sidebar))
+						})
+					}
+				}
 			})
 		})
+	}
+
+	/**
+	 * Trigger visible breakpoints for a sidebar element
+	 * @param  {jQuery|String} sidebar 	A sidebar jQuery element or DOM selector String
+	 * @return {Promise}
+	 */
+	_triggerBreakpointsFor (sidebar) {
+		sidebar = this._sidebar(sidebar)
+		return new Promise((resolve) => {
+			this._updateScreen(() => {
+				const breakpoints = this._visibleBreakpointsFor(sidebar).sort((a, b) => b - a)
+				for (var i = 0; i < breakpoints.length; i++) {
+					const b = breakpoints[i]
+					if (this.SCREEN_SIZE >= b) {
+						$(window).trigger(`enterBreakpoint${ b }`)
+						resolve()
+						break
+					}
+				}
+			})
+		})
+	} 
+
+	/**
+	 * Initialize breakpoints for all sidebars
+	 * @param  {Boolean} off 	Remove the breakpoints
+	 */
+	_initBreakpoints (off) {
+		if (typeof $.fn.setBreakpoints !== 'undefined' && !off) {
+			$(window).setBreakpoints({ breakpoints: this._breakpoints() })
+		}
+
+		this._each((sidebar) => this._setBreakpointsFor(sidebar, off))
 	}
 
 	/**
@@ -164,22 +202,35 @@ class Sidebar {
 	_layoutClasses (sidebar) {
 		const options = this._options(sidebar)
 		let classes = []
+
+		let breakpoints = []
+		this._sizeOptions(sidebar).map((s) => {
+			let breakpoint = s.match(/([a-zA-Z-]+)/ig)
+			if (breakpoint) {
+				breakpoint = breakpoint.pop().replace(/^\-/, '')
+				breakpoints.push(breakpoint)
+			}
+		})
+
 		this._visibleOptions(sidebar).map((v) => {
 			this._sizeOptions(sidebar).map((s) => {
 				let className = `si-${ options.direction }${ s }`
-				let matchVisible = s.match(/([a-zA-Z-]+)/ig)
-				if (matchVisible) {
-					matchVisible = matchVisible.pop().replace(/^\-/, '')
+				let breakpoint = s.match(/([a-zA-Z-]+)/ig)
+				if (breakpoint) {
+					breakpoint = breakpoint.pop().replace(/^\-/, '')
 				}
-				if (s.indexOf(v) === -1 && !matchVisible) {
+				if (s.indexOf(v) === -1 && !breakpoint) {
 					className = `${ className }-${ v }`
 				}
-				else if (matchVisible && v.indexOf(matchVisible) === -1) {
-
+				if (breakpoints.indexOf(v) !== -1) {
+					className = null
 				}
-				classes.push(className)
+				if (className) {
+					classes.push(className)
+				}
 			})
 		})
+
 		return unique(classes)
 	}
 
@@ -343,11 +394,14 @@ class Sidebar {
 	/**
 	 * Internal method to keep track of the screen size
 	 */
-	_updateScreen () {
+	_updateScreen (cb) {
 		clearTimeout(this._updateScreenDebounce)
 		this._updateScreenDebounce = setTimeout(() => {
 			this.SCREEN_SIZE = $(window).width()
 			this.SCREEN_MD_UP = $(window).width() >= 768
+			if (typeof cb === 'function') {
+				cb()
+			}
 		}, this.UPDATE_SCREEN_DEBOUNCE)
 	}
 
@@ -356,7 +410,7 @@ class Sidebar {
 	 */
 	init () {
 
-		this._breakpoints()
+		this._initBreakpoints()
 
 		// active toggle button
 		$(this.EVENTS_CONTAINER).on('show.bl.sidebar', (e, options) => {
