@@ -1,0 +1,27 @@
+---
+title: Nested layout demo
+path: ../
+---
+{% extends "layouts/demo.html" %}
+	
+{% block page %}
+
+	<div class="layout-container si-l2-md-up">
+		<div class="layout-content">
+			<div class="layout-container si-l3-md-up ls-top">
+				<div class="layout-content" data-scrollable>
+					<div class="container-fluid">
+						<button class="btn btn-primary" data-target="#sidebar-blank-1" data-toggle="sidebar">Toggle Sidebar #1</button>
+						<button class="btn btn-primary" data-target="#sidebar-blank-2" data-toggle="sidebar">Toggle Sidebar #2</button>
+						<hr>
+						<h1 class="h3">{{ title }}</h1>
+						<p>A nested layout example using a separate sidebar element on each layout and toggle buttons.</p>
+					</div>
+				</div>
+				{% include 'layouts/sidebars/blank.html' { id: '2' } %}
+			</div>
+		</div>
+		{% include 'layouts/sidebars/blank.html' { size: '2' } %}
+	</div>
+
+{% endblock %}

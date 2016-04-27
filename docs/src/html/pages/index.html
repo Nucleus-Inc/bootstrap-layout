@@ -1,0 +1,93 @@
+---
+title: Getting started
+slug: home
+---
+{% extends "layouts/default.html" %}
+	
+{% block page %}
+{% markdown %}
+# bootstrap-layout
+
+[![npm version](https://badge.fury.io/js/bootstrap-layout.svg)](https://badge.fury.io/js/bootstrap-layout)
+
+Bootstrap layout with sidebar navigation, sidebar skins, sidebar transition, custom scrollbars, sidebar menus and other advanced features and utilities.
+
+## Installation
+> Simple install via npm:
+
+```bash
+npm install bootstrap-layout
+```
+{% endmarkdown %}
+
+<h2>Styling</h2>
+<div class="card card-block">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a href="#css" data-toggle="pill" class="nav-link active">CSS</a>
+    </li>
+    <li class="nav-item">
+      <a href="#sass" data-toggle="pill" class="nav-link">Sass</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="css">
+      {% include 'code/css.html' %}
+    </div>
+    <div class="tab-pane" id="sass">
+      {% include 'code/sass.html' %}
+    </div>
+  </div>
+</div>
+
+<h2>JavaScript</h2>
+<div class="card card-block">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a href="#js-static" data-toggle="pill" class="nav-link active">Static</a>
+    </li>
+    <li class="nav-item">
+      <a href="#js-es6" data-toggle="pill" class="nav-link">ES6</a>
+    </li>
+    <li class="nav-item">
+      <a href="#js-browserify" data-toggle="pill" class="nav-link">Browserify</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="js-static">
+      {% include 'code/js-static.html' %}
+    </div>
+    <div class="tab-pane" id="js-es6">
+      {% include 'code/js-es6.html' %}
+    </div>
+    <div class="tab-pane" id="js-browserify">
+      {% include 'code/js-browserify.html' %}
+    </div>
+  </div>
+</div>
+
+<!-- <h2>Boilerplates</h2>
+{% markdown %}
+Bootstrap Layout provides a variety of starter boilerplates for commonly used workflows and tooling such as npm, gulp, browserify and webpack so you can start using Bootstrap Layout as easy as possible.
+
+**Basic usage (npm)**<br/>
+[boilerplate code](https://github.com/themekit/adminplus-boilerplate-npm) | 
+[boilerplate demo](http://npm.adminplus-boilerplate.themekit.io/) | 
+[guide](basic-usage.md)
+
+**Simple gulp workflow**<br/>
+[boilerplate code](https://github.com/themekit/adminplus-boilerplate-gulp) | 
+[boilerplate demo](http://gulp.adminplus-boilerplate.themekit.io/) | 
+[guide](gulp-simple-workflow.md)
+
+**Advanced gulp workflow**<br/>
+[boilerplate code](https://github.com/themekit/adminplus-boilerplate-gulp-advanced) | 
+[boilerplate demo](http://gulp-advanced.adminplus-boilerplate.themekit.io/) | 
+[guide](gulp-advanced-workflow.md)
+
+**Laravel app**<br/>
+[boilerplate code](https://github.com/themekit/adminplus-boilerplate-laravel) | 
+[boilerplate demo](http://polar-fjord-74422.herokuapp.com) | 
+[guide](laravel.md)
+{% endmarkdown %} -->
+{% endblock %}

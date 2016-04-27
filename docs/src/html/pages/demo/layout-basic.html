@@ -1,0 +1,21 @@
+---
+title: Basic layout demo
+path: ../
+---
+{% extends "layouts/demo.html" %}
+	
+{% block page %}
+
+	<div class="layout-container si-l3-md-up ls-top">
+		<div class="layout-content" data-scrollable>
+			<div class="container-fluid">
+				<button class="btn btn-primary" data-target="#sidebar-blank-1" data-toggle="sidebar">Toggle Sidebar</button>
+				<hr>
+				<h1 class="h3">{{ title }}</h1>
+				<p>A basic layout with a sidebar element and a sidebar toggle button.</p>
+			</div>
+		</div>
+		{% include 'layouts/sidebars/blank.html' %}
+	</div>
+
+{% endblock %}

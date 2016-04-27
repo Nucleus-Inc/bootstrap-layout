@@ -1,0 +1,50 @@
+// Variables (default and custom)
+@import './variables';
+
+// Docs
+pre {
+	background: rgba(0, 0, 0, 0.03);
+	padding: 10px;
+}
+blockquote {
+	color: #888;
+}
+h1 {
+	margin-bottom: $grid-gutter-width;
+}
+h2 {
+	margin-top: 30px;
+}
+h3 {
+	color: #555;
+	font-weight: normal;
+	font-size: 1.5rem;
+}
+h4 {
+	font-size: 1.2rem;
+}
+img {
+	max-width: 100%;
+}
+.card-block {
+	position: relative;
+	overflow: hidden;
+}
+hr {
+	margin: $grid-gutter-width * 1.5 0;
+}
+hr + * {
+	margin-top: 0;
+}
+.nav-pills {
+	margin-bottom: $grid-gutter-width/2;
+}
+.card-block *:last-child {
+	margin-bottom: 0;
+}
+.card-block hr {
+	margin: $grid-gutter-width/2 0;
+}
+.hljs-selector-tag {
+	color: $body-color;
+}

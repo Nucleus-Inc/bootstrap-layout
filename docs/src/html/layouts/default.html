@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html class="bootstrap-layout">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>{{ title }} | Bootstrap Layout</title>
+
+	{% include 'layouts/_header.html' %}
+
+</head>
+<body class="layout-container ls-top si-l3-md-up">
+
+	<div class="layout-content" data-scrollable>
+
+		<!-- Sidebar toggle -->
+		<button class="navbar-toggler hidden-lg-up" type="button" data-toggle="sidebar" data-target="#sidebar"><span class="material-icons">menu</span></button>
+
+		<div class="container-fluid">
+			{% block page %}{% endblock %}
+		</div>
+	</div>
+
+	<!-- Sidebar -->
+	<div class="sidebar sidebar-left sidebar-visible-md-up si-si-3 sidebar-dark bg-primary" id="sidebar" data-scrollable>
+
+		<!-- Brand -->
+		<a href="{{ path or '' }}index.html" class="sidebar-brand">Bootstrap Layout</a>
+
+		<div class="sidebar-heading">Getting started</div>
+
+		<ul class="sidebar-menu sm-active-button-bg sm-condensed">
+			<li class="sidebar-menu-item{% if slug === 'home' %} active{% endif %}">
+				<a class="sidebar-menu-button" href="{{ path or '' }}index.html">Installation</a>
+			</li>
+			<li class="sidebar-menu-item{% if slug === 'layout/index' %} active{% endif %}">
+				<a href="{{ path or '' }}layout/index.html" class="sidebar-menu-button">Layout</a>
+			</li>
+			<li class="sidebar-menu-item{% if slug === 'sidebar/index' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/index.html" class="sidebar-menu-button">Sidebar</a>
+			</li>
+		</ul>
+
+		<div class="sidebar-heading">Sidebar</div>
+		<ul class="sidebar-menu sm-active-button-bg sm-condensed">
+			<li class="sidebar-menu-item{% if slug === 'sidebar/position' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/position.html" class="sidebar-menu-button">Sidebar position</a>
+			</li>
+			<li class="sidebar-menu-item{% if slug === 'sidebar/size' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/size.html" class="sidebar-menu-button">Sidebar size</a>
+			</li>
+			<li class="sidebar-menu-item{% if slug === 'sidebar/visibility' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/visibility.html" class="sidebar-menu-button">Sidebar visibility</a>
+			</li>
+			<!-- <li class="sidebar-menu-item{% if slug === 'sidebar/transitions' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/transitions.html" class="sidebar-menu-button">Sidebar transitions</a>
+			</li>
+			<li class="sidebar-menu-item{% if slug === 'sidebar/skins' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/skins.html" class="sidebar-menu-button">Sidebar skins</a>
+			</li>
+			<li class="sidebar-menu-item{% if slug === 'sidebar/menus' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/menus.html" class="sidebar-menu-button">Sidebar menus</a>
+			</li>
+			<li class="sidebar-menu-item{% if slug === 'sidebar/elements' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/elements.html" class="sidebar-menu-button">Sidebar elements</a>
+			</li> -->
+		</ul>
+
+		<div class="sidebar-heading">Layout</div>
+		<ul class="sidebar-menu sm-active-button-bg sm-condensed">
+			<!-- <li class="sidebar-menu-item{% if slug === 'layout/spacings' %} active{% endif %}">
+				<a href="{{ path or '' }}layout/spacings.html" class="sidebar-menu-button">Layout spacings</a>
+			</li> -->
+			<li class="sidebar-menu-item{% if slug === 'layout/nested' %} active{% endif %}">
+				<a href="{{ path or '' }}layout/nested.html" class="sidebar-menu-button">Nested layouts</a>
+			</li>
+		</ul>
+
+		<!-- <div class="sidebar-heading">Navbar</div>
+		<ul class="sidebar-menu sm-active-button-bg sm-condensed">
+			<li class="sidebar-menu-item{% if slug === 'navbar/positions' %} active{% endif %}">
+				<a href="{{ path or '' }}navbar/positions.html" class="sidebar-menu-button">Positions</a>
+			</li>
+			<li class="sidebar-menu-item{% if slug === 'navbar/skins' %} active{% endif %}">
+				<a href="{{ path or '' }}navbar/skins.html" class="sidebar-menu-button">Skins</a>
+			</li>
+			<li class="sidebar-menu-item{% if slug === 'navbar/elements' %} active{% endif %}">
+				<a href="{{ path or '' }}navbar/elements.html" class="sidebar-menu-button">Elements</a>
+			</li>
+		</ul> -->
+
+		<p>Get help directly from our team via our Slack channel. <br><a href="http://themekit-slack-invite.stamplayapp.com" target="_blank" class="sidebar-link">Request invite</a></p>
+
+	</div>
+	<!-- // END Sidebar -->
+
+	{% include 'layouts/_footer.html' %}
+
+</body>
+</html>

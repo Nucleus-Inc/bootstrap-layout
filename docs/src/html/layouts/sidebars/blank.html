@@ -1,0 +1,23 @@
+<!-- Sidebar -->
+<div class="sidebar sidebar-{{ position or 'left' }} sidebar-visible-{{ visible | join(' sidebar-visible-') or 'md-up' }} si-si-{{ size | join(' si-si-') or '3' }} {{ style or 'sidebar-light bg-white' }}{% if mini %} {{ mini }}{% endif %}" id="sidebar-blank-{{ id or '1' }}" data-scrollable data-position="{{ position or 'left' }}" data-size="{{ size | join(' ') or '3' }}" data-visible="{{ visible | join(' ') or 'md-up' }}">
+
+	<!-- Brand -->
+	<a href="#" class="sidebar-brand">Brand</a>
+
+	<div class="sidebar-heading">Heading</div>
+
+	<!-- Menu -->
+	<ul class="sidebar-menu sm-active-button-bg">
+		<li class="sidebar-menu-item">
+			<a class="sidebar-menu-button" href="#">Menu button</a>
+		</li>
+		<li class="sidebar-menu-item active">
+			<a class="sidebar-menu-button" href="#"><i class="sidebar-menu-icon material-icons">menu</i> Menu icon</a>
+		</li>
+	</ul>
+	<!-- // END Menu -->
+
+	<p class="sidebar-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga est asperiores mollitia, ut, qui totam? Accusantium asperiores nostrum ut temporibus inventore error iste sequi, quam, veritatis minus quod cum, sint?</p>
+
+</div>
+<!-- // END Sidebar -->

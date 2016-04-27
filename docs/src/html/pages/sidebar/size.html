@@ -1,0 +1,179 @@
+---
+title: Sidebar size
+slug: sidebar/size
+path: ../
+---
+{% extends "layouts/default.html" %}
+
+{% block page %}
+<h1>{{ title }}</h1>
+
+{% markdown %}
+## Usage
+### Via data attributes
+> To change the sidebar size, add the `data-size` attribute with any of the following values. When using the `data-size` attribute, it's not required to add any extra CSS classes.
+{% endmarkdown %}
+
+<div class="table-responsive">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>Value</th>
+        <th>Description</th>
+        <th width="1">Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>1</code></td>
+        <td colspan="2">Makes the sidebar <code>56px</code> wide</td>
+      </tr>
+      <tr>
+        <td><code>2</code></td>
+        <td colspan="2">Makes the sidebar <code>200px</code> wide</td>
+      </tr>
+      <tr>
+        <td><code>3</code></td>
+        <td>Makes the sidebar <code>250px</code> wide</td>
+        <td class="text-xs-center"><i class="material-icons text-success">check_circle</i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card card-block">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <span class="nav-link active">Code</span>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Demos</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" target="_blank" href="../demo/sidebar-size-2.html">Sidebar size 2</a>
+        <a class="dropdown-item" target="_blank" href="../demo/sidebar-size-3.html">Sidebar size 3</a>
+      </div>
+    </li>
+  </ul>
+  {% include 'code/data-attributes/sidebar-size.html' %}
+</div>
+
+{% markdown %}
+## CSS reference
+### Regular sizes
+> To change the sidebar size without JavaScript, you can add the following CSS classes manually to the `.sidebar` element.
+{% endmarkdown %}
+
+<div class="table-responsive">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th width="220">CSS Class</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>.si-si-2</code></td>
+        <td>Makes the sidebar <code>200px</code> wide</td>
+      </tr>
+      <tr>
+        <td><code>.si-si-3</code></td>
+        <td>Makes the sidebar <code>250px</code> wide</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<hr>
+
+<h2>Sidebar mini</h2>
+<blockquote>
+  When using the <code>56px</code> wide sidebar size, you'll most likely have to adjust the sidebar content such as text and menus to fit properly.
+</blockquote>
+<div class="table-responsive">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th width="220">CSS Class</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>.si-si-1</code></td>
+        <td>Makes the sidebar <code>56px</code> wide</td>
+      </tr>
+      <tr>
+        <td><code>.sidebar-mini</code></td>
+        <td>
+          The <code>.sidebar-mini</code> class must be used together with the <code>.si-si-1</code> class or with the <code>data-size="1"</code> data attribute.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card card-block">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <span class="nav-link active">Code</span>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link" target="_blank" href="../demo/sidebar-mini.html">Demo</a>
+    </li>
+  </ul>
+  {% include 'code/sidebar-mini.html' %}
+</div>
+
+<h2>Sidebar reveal</h2>
+<blockquote>
+  Make a regular sidebar element occupy just <code>56px</code> from the layout.
+</blockquote>
+<div class="table-responsive">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th width="220">CSS Class</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>.sidebar-reveal</code></td>
+        <td>
+          Reveals the sidebar on mouse over and retracts the sidebar to it's original placement on mouse out. <br>
+          The <code>.sidebar-reveal</code> class must be used together with the <code>.si-si-1</code> class or with the <code>data-size="1"</code> data attribute.
+        </td>
+      </tr>
+      <tr>
+        <td><code>.sidebar-reveal-size-2</code></td>
+        <td>
+          Makes a <code>.sidebar-reveal</code> element <code>200px</code> wide.
+        </td>
+      </tr>
+      <tr>
+        <td><code>.sidebar-reveal-size-3</code></td>
+        <td>
+          Makes a <code>.sidebar-reveal</code> element <code>250px</code> wide.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card card-block">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <span class="nav-link active">Code</span>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Demos</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" target="_blank" href="../demo/sidebar-reveal-2.html">Sidebar reveal size 2</a>
+        <a class="dropdown-item" target="_blank" href="../demo/sidebar-reveal-3.html">Sidebar reveal size 3</a>
+      </div>
+    </li>
+  </ul>
+  {% include 'code/sidebar-reveal.html' %}
+</div>
+
+{% endblock %}
