@@ -1,5 +1,5 @@
 ---
-title: Sidebar position left demo
+title: Sidebar text demo
 path: ../
 ---
 {% extends "layouts/demo.html" %}
@@ -14,10 +14,10 @@ path: ../
 					<hr>
 				</div>
 				<h1 class="h3">{{ title }}</h1>
-				<p>A basic layout with a left sidebar.</p>
+				<p>Sidebar text and sidebar link examples.</p>
 			</div>
 		</div>
-		{% include 'layouts/sidebars/blank.html' { sm_basic_mixed: true } %}
+		{% include 'layouts/sidebars/blank.html' { sm_brand: false, sm_heading: false, sm_text: false, s_text_2: true } %}
 	</div>
 
 {% endblock %}

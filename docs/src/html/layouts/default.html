@@ -25,10 +25,9 @@
 	<div class="sidebar sidebar-left sidebar-visible-md-up si-si-3 sidebar-dark bg-primary" id="sidebar" data-scrollable>
 
 		<!-- Brand -->
-		<a href="{{ path or '' }}index.html" class="sidebar-brand">Bootstrap Layout</a>
+		<a href="{{ path or '' }}index.html" class="sidebar-brand sidebar-brand-bg sidebar-brand-border">Bootstrap Layout</a>
 
 		<div class="sidebar-heading">Getting started</div>
-
 		<ul class="sidebar-menu sm-active-button-bg sm-condensed">
 			<li class="sidebar-menu-item{% if slug === 'home' %} active{% endif %}">
 				<a class="sidebar-menu-button" href="{{ path or '' }}index.html">Installation</a>
@@ -54,16 +53,29 @@
 			</li>
 			<!-- <li class="sidebar-menu-item{% if slug === 'sidebar/transitions' %} active{% endif %}">
 				<a href="{{ path or '' }}sidebar/transitions.html" class="sidebar-menu-button">Sidebar transitions</a>
-			</li>
+			</li> -->
 			<li class="sidebar-menu-item{% if slug === 'sidebar/skins' %} active{% endif %}">
 				<a href="{{ path or '' }}sidebar/skins.html" class="sidebar-menu-button">Sidebar skins</a>
 			</li>
+			<li class="sidebar-menu-item{% if slug === 'sidebar/javascript' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/javascript.html" class="sidebar-menu-button">JavaScript</a>
+			</li>
+		</ul>
+
+		<div class="sidebar-heading">Sidebar elements</div>
+		<ul class="sidebar-menu sm-active-button-bg sm-condensed">
 			<li class="sidebar-menu-item{% if slug === 'sidebar/menus' %} active{% endif %}">
 				<a href="{{ path or '' }}sidebar/menus.html" class="sidebar-menu-button">Sidebar menus</a>
 			</li>
-			<li class="sidebar-menu-item{% if slug === 'sidebar/elements' %} active{% endif %}">
-				<a href="{{ path or '' }}sidebar/elements.html" class="sidebar-menu-button">Sidebar elements</a>
-			</li> -->
+			<li class="sidebar-menu-item{% if slug === 'sidebar/brand' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/brand.html" class="sidebar-menu-button">Sidebar brand</a>
+			</li>
+			<li class="sidebar-menu-item{% if slug === 'sidebar/text' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/text.html" class="sidebar-menu-button">Sidebar text</a>
+			</li>
+			<li class="sidebar-menu-item{% if slug === 'sidebar/utilities' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/utilities.html" class="sidebar-menu-button">Sidebar utilities</a>
+			</li>
 		</ul>
 
 		<div class="sidebar-heading">Layout</div>
@@ -91,6 +103,14 @@
 
 		<p>Get help directly from our team via our Slack channel. <br><a href="http://themekit-slack-invite.stamplayapp.com" target="_blank" class="sidebar-link">Request invite</a></p>
 
+		<div class="sidebar-b-y sidebar-p-y">
+			<a target="_blank" href="https://github.com/themekit/bootstrap-layout" class="btn btn-block bg-white">Source on Github</a>
+		</div>
+
+		<div class="sidebar-p-b">
+			{% markdown %}[![npm version](https://badge.fury.io/js/bootstrap-layout.svg)](https://badge.fury.io/js/bootstrap-layout){% endmarkdown %}
+		</div>
+		
 	</div>
 	<!-- // END Sidebar -->
 

@@ -9,9 +9,6 @@ pre {
 blockquote {
 	color: #888;
 }
-h1 {
-	margin-bottom: $grid-gutter-width;
-}
 h2 {
 	margin-top: 30px;
 }
@@ -20,15 +17,14 @@ h3 {
 	font-weight: normal;
 	font-size: 1.5rem;
 }
+.card + h3 {
+	margin-top: 30px;
+}
 h4 {
 	font-size: 1.2rem;
 }
 img {
 	max-width: 100%;
-}
-.card-block {
-	position: relative;
-	overflow: hidden;
 }
 hr {
 	margin: $grid-gutter-width * 1.5 0;
@@ -47,4 +43,8 @@ hr + * {
 }
 .hljs-selector-tag {
 	color: $body-color;
+}
+.table th, 
+.table td {
+	vertical-align: middle;
 }

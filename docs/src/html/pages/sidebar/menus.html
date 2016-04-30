@@ -1,0 +1,141 @@
+---
+title: Sidebar menus
+slug: sidebar/menus
+path: ../
+---
+{% extends "layouts/default.html" %}
+
+{% block page %}
+<h1>{{ title }}</h1>
+
+{% markdown %}
+## Basic sidebar menu
+> To create a basic sidebar menu, the following is required:
+- unordered list wrapper with the `.sidebar-menu` class
+- menu items use the `.sidebar-menu-item` class
+- menu links use the `.sidebar-menu-button` class
+{% endmarkdown %}
+
+<div class="card card-block">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <span class="nav-link active">Code</span>
+    </li>
+    <li class="nav-item">
+      <a href="../demo/sidebar-menu-basic.html" target="_blank" class="nav-link">Demo</a>
+    </li>
+  </ul>
+  {% include 'code/sidebar-menu/basic.html' %}
+</div>
+
+{% markdown %}
+## Sidebar menu icons
+### Dependencies
+> The following examples are using [Material icons](https://design.google.com/icons/), so make sure to load the icons library into the `<head>` section of your page before using the examples.
+
+```html
+<!-- Material Design Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+```
+
+### Usage
+> To add an icon to the sidebar menu button, add an element using the `.sidebar-menu-icon` base icon class within the `.sidebar-menu-button` element. Also, to use the [Material icons](https://design.google.com/icons/) add the `.material-icons` class to the `.sidebar-menu-icon` element.
+{% endmarkdown %}
+
+<div class="card card-block">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <span class="nav-link active">Code</span>
+    </li>
+    <li class="nav-item">
+      <a href="../demo/sidebar-menu-icons.html" target="_blank" class="nav-link">Demo</a>
+    </li>
+  </ul>
+  {% include 'code/sidebar-menu/icons.html' %}
+</div>
+
+<h2>CSS reference</h2>
+<h3>Basics</h3>
+<div class="table-responsive">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>CSS Class</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>.sidebar-menu</code></td>
+        <td>The sidebar menu wrapper (unordered list)</td>
+      </tr>
+      <tr>
+        <td><code>.sidebar-menu-item</code></td>
+        <td>The sidebar menu item (unordered list item)</td>
+      </tr>
+      <tr>
+        <td><code>.sidebar-menu-button</code></td>
+        <td>The sidebar menu link</td>
+      </tr>
+      <tr>
+        <td><code>.sidebar-menu-icon</code></td>
+        <td>The sidebar menu icon</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>Style modifiers</h3>
+<blockquote>
+  All the following classes should be applied on <code>.sidebar-menu</code> elements.
+</blockquote>
+<div class="table-responsive">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>CSS Class</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>.sm-condensed</code></td>
+        <td>Applies a smaller spacing to sidebar menu buttons</td>
+      </tr>
+      <tr>
+        <td><code>.sm-bordered</code></td>
+        <td>Applies a border to sidebar menu items</td>
+      </tr>
+      <tr>
+        <td><code>.sm-active-button-bg</code></td>
+        <td>Applies a background color to active sidebar menu items</td>
+      </tr>
+      <tr>
+        <td><code>.sm-icons-right</code></td>
+        <td>Aligns the sidebar menu icons to the right</td>
+      </tr>
+      <tr>
+        <td><code>.sm-icons-block</code></td>
+        <td>Makes the sidebar menu icons appear wrapped into a square block</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card card-block">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <span class="nav-link active">Code</span>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Demos</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" target="_blank" href="../demo/sidebar-menu-style-light.html">Sidebar light</a>
+        <a class="dropdown-item" target="_blank" href="../demo/sidebar-menu-style-dark.html">Sidebar dark</a>
+      </div>
+    </li>
+  </ul>
+  {% include 'code/sidebar-menu/style.html' %}
+</div>
+
+{% endblock %}
