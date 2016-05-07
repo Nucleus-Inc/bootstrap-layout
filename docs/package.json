@@ -4,7 +4,8 @@
   "description": "bootstrap-layout demo using advanced gulp workflow",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "surge --project ./dist"
+    "deploy": "surge --project ./dist",
+    "serve": "http-server ./dist -o -s"
   },
   "author": "Laza Bogdan <laza.bogdan@macro-net.ro>",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "highlight.js": "^9.3.0",
     "jquery": "^2.2.0",
     "sass-md-colors": "^1.0.0",
+    "simplebar": "github:grsmto/simplebar",
     "tether": "^1.2.0"
   },
   "devDependencies": {

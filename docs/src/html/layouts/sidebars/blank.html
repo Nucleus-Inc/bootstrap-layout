@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<div class="sidebar sidebar-{{ position or 'left' }} sidebar-visible-{{ visible | join(' sidebar-visible-') or 'md-up' }} si-si-{{ size | join(' si-si-') or '3' }} {{ style or 'sidebar-light bg-white' }}{% if extras %} {{ extras }}{% endif %}" id="sidebar-blank-{{ id or '1' }}" data-scrollable data-position="{{ position or 'left' }}" data-size="{{ size | join(' ') or '3' }}" data-visible="{{ visible | join(' ') or 'md-up' }}">
+<div class="sidebar sidebar-{{ position or 'left' }}{% if !visible || visible !== 'none' %} sidebar-visible-{{ visible | join(' sidebar-visible-') or 'md-up' }}{% endif %} sidebar-size-{{ size or '3' }}{% if size_xs %} sidebar-size-{{ size_xs }}-xs{% endif %}{% if size_xs_up %} sidebar-size-{{ size_xs_up }}-xs-up{% endif %}{% if size_sm %} sidebar-size-{{ size_sm }}-sm{% endif %}{% if size_sm_up %} sidebar-size-{{ size_sm_up }}-sm-up{% endif %}{% if size_md %} sidebar-size-{{ size_md }}-md{% endif %}{% if size_md_up %} sidebar-size-{{ size_md_up }}-md-up{% endif %}{% if size_lg %} sidebar-size-{{ size_lg }}-lg{% endif %}{% if size_lg_up %} sidebar-size-{{ size_lg_up }}-lg-up{% endif %}{% if size_xl %} sidebar-size-{{ size_xl }}-xl{% endif %}{% if size_xl_up %} sidebar-size-{{ size_xl_up }}-xl-up{% endif %} {{ style or 'sidebar-light bg-white' }}{% if extras %} {{ extras }}{% endif %}" id="sidebar-blank-{{ id or '1' }}" data-scrollable data-position="{{ position or 'left' }}" data-size="{{ size or '3' }}"{% if size_xs %} data-size-xs="{{ size_xs }}"{% endif %}{% if size_xs_up %} data-size-xs-up="{{ size_xs_up }}"{% endif %}{% if size_sm %} data-size-sm="{{ size_sm }}"{% endif %}{% if size_sm_up %} data-size-sm-up="{{ size_sm_up }}"{% endif %}{% if size_md %} data-size-md="{{ size_md }}"{% endif %}{% if size_md_up %} data-size-md-up="{{ size_md_up }}"{% endif %}{% if size_lg %} data-size-lg="{{ size_lg }}"{% endif %}{% if size_lg_up %} data-size-lg-up="{{ size_lg_up }}"{% endif %}{% if size_xl %} data-size-xl="{{ size_xl }}"{% endif %}{% if size_xl_up %} data-size-xl-up="{{ size_xl_up }}"{% endif %}{% if visible %} data-visible="{{ visible | join(' ') }}"{% endif %}{% if layout %} data-layout="{{ layout | join(' ') }}"{% endif %}>
 
 	{% if sm_brand !== false %}
 	<!-- Brand -->
@@ -71,7 +71,7 @@
 	{% endif %}
 
 	{% if sm_style %}
-	<div class="sidebar-heading">Menu border</div>
+	<div class="sidebar-heading sidebar-p-t">Menu border</div>
 	<p>Apply a border bottom to the menu.</p>
 
 	<ul class="sidebar-menu sm-bordered">
@@ -80,6 +80,21 @@
 		</li>
 		<li class="sidebar-menu-item active">
 			<a class="sidebar-menu-button" href="#"><i class="sidebar-menu-icon material-icons">menu</i> Menu button</a>
+		</li>
+	</ul>
+
+	<div class="sidebar-heading">Menu item border</div>
+	<p>Apply a border bottom to menu items.</p>
+
+	<ul class="sidebar-menu sm-item-bordered">
+		<li class="sidebar-menu-item active">
+			<a class="sidebar-menu-button" href="#">Menu button</a>
+		</li>
+		<li class="sidebar-menu-item">
+			<a class="sidebar-menu-button" href="#">Menu button</a>
+		</li>
+		<li class="sidebar-menu-item">
+			<a class="sidebar-menu-button" href="#">Menu button</a>
 		</li>
 	</ul>
 

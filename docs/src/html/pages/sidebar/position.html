@@ -8,39 +8,13 @@ path: ../
 {% block page %}
 <h1>{{ title }}</h1>
 
-{% markdown %}
-## Usage
-### Via data attributes
-> To change the sidebar position, add the `data-position` attribute with any of the following values. When using the `data-position` attribute it's not required to add any extra CSS classes.
-{% endmarkdown %}
-
-<div class="table-responsive">
-  <table class="table table-sm">
-    <thead>
-      <tr>
-        <th>Value</th>
-        <th>Description</th>
-        <th width="1">Default</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>left</code></td>
-        <td>Positions the sidebar to the left</td>
-        <td class="text-xs-center"><i class="material-icons text-success">check_circle</i></td>
-      </tr>
-      <tr>
-        <td><code>right</code></td>
-        <td colspan="2">Positions the sidebar to the right</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
 <div class="card card-block">
   <ul class="nav nav-pills">
     <li class="nav-item">
-      <span class="nav-link active">Code</span>
+      <a href="#usage-data-attributes" data-toggle="pill" class="nav-link active">Data attributes</a>
+    </li>
+    <li class="nav-item">
+      <a href="#usage-css" data-toggle="pill" class="nav-link">CSS</a>
     </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Demos</a>
@@ -50,33 +24,64 @@ path: ../
       </div>
     </li>
   </ul>
-  {% include 'code/data-attributes/sidebar-position.html' %}
-</div>
+  <div class="tab-content">
+    <div class="tab-pane active" id="usage-data-attributes">
 
-{% markdown %}
-## CSS reference
-> To change the sidebar position without JavaScript, you can add the following CSS classes manually to the `.sidebar` element.
-{% endmarkdown %}
+      <blockquote>
+        To change the sidebar position, add the <code>data-position</code> attribute with any of the following values. When using the <code>data-position</code> attribute it's not required to add any extra CSS classes.
+      </blockquote>
 
-<div class="table-responsive">
-  <table class="table table-sm">
-    <thead>
-      <tr>
-        <th>CSS Class</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>.sidebar-left</code></td>
-        <td>Positions the sidebar to the left</td>
-      </tr>
-      <tr>
-        <td><code>.sidebar-right</code></td>
-        <td>Positions the sidebar to the right</td>
-      </tr>
-    </tbody>
-  </table>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>Value</th>
+              <th>Description</th>
+              <th width="1">Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>left</code></td>
+              <td>Positions the sidebar to the left</td>
+              <td class="text-xs-center"><i class="material-icons text-success">check_circle</i></td>
+            </tr>
+            <tr>
+              <td><code>right</code></td>
+              <td colspan="2">Positions the sidebar to the right</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {% include 'code/data-attributes/sidebar-position.html' %}
+    </div>
+    <div class="tab-pane" id="usage-css">
+      <blockquote>
+        To change the sidebar position without JavaScript, you can add the following CSS classes manually to the <code>.sidebar</code> element.
+      </blockquote>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>CSS Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.sidebar-left</code></td>
+              <td>Positions the sidebar to the left</td>
+            </tr>
+            <tr>
+              <td><code>.sidebar-right</code></td>
+              <td>Positions the sidebar to the right</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

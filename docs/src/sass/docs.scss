@@ -33,13 +33,18 @@ hr + * {
 	margin-top: 0;
 }
 .nav-pills {
-	margin-bottom: $grid-gutter-width/2;
+	margin-bottom: $grid-gutter-width;
 }
-.card-block *:last-child {
-	margin-bottom: 0;
-}
-.card-block hr {
-	margin: $grid-gutter-width/2 0;
+.card-block {
+	.table-responsive {
+		margin-bottom: $grid-gutter-width;
+	}
+	*:last-child {
+		margin-bottom: 0;
+	}
+	hr {
+		margin: $grid-gutter-width 0;
+	}
 }
 .hljs-selector-tag {
 	color: $body-color;
@@ -47,4 +52,9 @@ hr + * {
 .table th, 
 .table td {
 	vertical-align: middle;
+}
+h1, h2, h3 {
+	& + .card {
+		margin-top: $grid-gutter-width;
+	}
 }

@@ -1,0 +1,51 @@
+<h2>Advanced gulp workflow</h2>
+<p>
+  Advanced gulp setup and boilerplate for Bootstrap Layout. <br>
+  <a target="_blank" href="https://github.com/themekit/bs-layout-boilerplate-gulp-advanced">boilerplate code</a>
+</p>
+<hr>
+<h3>Demo</h3>
+<blockquote>
+  You can <a target="_blank" href="http://bs-layout-boilerplate-gulp-advanced.themekit.io">see a working live demo</a> of this boilerplate.
+</blockquote>
+<h3>Features</h3>
+<ul>
+  <li>advanced <a target="_blank" href="https://github.com/gulpjs/gulp">gulp</a> workflow</li>
+  <li>compile Sass using <a target="_blank" href="https://github.com/dlmanning/gulp-sass">gulp-sass</a> (gulp wrapper for <a target="_blank" href="https://github.com/sass/node-sass">node-sass</a>)</li>
+  <li>import Sass files directly from node_modules using <a target="_blank" href="https://github.com/themekit/sass-importer-npm">sass-importer-npm</a></li>
+  <li>watch Sass files for changes and recompile</li>
+  <li>Minify CSS using <a target="_blank" href="https://github.com/scniro/gulp-clean-css">gulp-clean-css</a> (gulp wrapper for <a target="_blank" href="https://github.com/jakubpawlowicz/clean-css">clean-css</a>)</li>
+  <li>Automatically add CSS browser vendor prefixes to support the 2 most recent versions of all major browsers using <a target="_blank" href="https://github.com/postcss/postcss">PostCSS</a> and <a target="_blank" href="https://github.com/postcss/autoprefixer">autoprefixer</a></li>
+  <li>generate CSS sourcemaps to enhance log messages when debugging</li>
+  <li>leverage <a target="_blank" href="https://github.com/substack/node-browserify">browserify</a> module system to bundle external vendor scripts and app scripts into a single JavaScript file</li>
+  <li>watch JavaScript files for changes and recompile browserify bundles, using <a target="_blank" href="https://github.com/substack/watchify">watchify</a> for fast incremental rebuilds</li>
+  <li>generate sourcemaps for browserify bundles to enhance log messages when debugging</li>
+  <li>clean dist assets before (re)builds using <a target="_blank" href="https://github.com/sindresorhus/del">del</a></li>
+  <li>example of customizing Bootstrap Layout colors</li>
+</ul>
+<hr>
+{% markdown %}
+### Usage
+#### Clone the boilerplate repository
+```bash
+git clone https://github.com/themekit/bs-layout-boilerplate-gulp-advanced.git my-project
+```
+```bash
+cd my-project
+```
+
+#### Install dependencies
+```bash
+npm install
+```
+
+#### Build
+```bash
+gulp
+```
+
+#### Watch
+```bash
+gulp watch
+```
+{% endmarkdown %}

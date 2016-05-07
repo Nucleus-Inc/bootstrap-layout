@@ -8,57 +8,16 @@ path: ../
 {% block page %}
 <h1>{{ title }}</h1>
 
-{% markdown %}
-## Text
-> The sidebar text is styled by default by the `.sidebar-light` or `.sidebar-dark` skins and doesn't require any extra class, however for those occasions when you need to be explicit, add the `.sidebar-text` class to any element within the `.sidebar` container, to force the text style on the element.
-{% endmarkdown %}
-
-<div class="table-responsive">
-  <table class="table table-sm">
-    <thead>
-      <tr>
-        <th width="240">CSS Class</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>.sidebar-text</code></td>
-        <td>Applies the sidebar text style defined by the sidebar skin</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="table-responsive">
-  <table class="table table-sm">
-    <thead>
-      <tr>
-        <th width="240">Sass variable</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>$sidebar-font-size</code></td>
-        <td>Defines the base font size for the sidebar text in <code>px</code></td>
-      </tr>
-      <tr>
-        <td><code>$sidebar-dark-text-color</code></td>
-        <td>Defines the sidebar text color when using the <code>.sidebar-dark</code> skin</td>
-      </tr>
-      <tr>
-        <td><code>$sidebar-light-text-color</code></td>
-        <td>Defines the sidebar text color when using the <code>.sidebar-light</code> skin</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
 <div class="card card-block">
   <ul class="nav nav-pills">
     <li class="nav-item">
-      <span class="nav-link active">Code</span>
+      <a href="#text-usage" data-toggle="pill" class="nav-link active">Usage</a>
+    </li>
+    <li class="nav-item">
+      <a href="#text-css" data-toggle="pill" class="nav-link">CSS</a>
+    </li>
+    <li class="nav-item">
+      <a href="#text-sass" data-toggle="pill" class="nav-link">Sass</a>
     </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Demos</a>
@@ -68,56 +27,71 @@ path: ../
       </div>
     </li>
   </ul>
-  {% include 'code/sidebar-text.html' %}
+  <div class="tab-content">
+    <div class="tab-pane active" id="text-usage">
+      <blockquote>
+        The sidebar text is styled by default by the <code>.sidebar-light</code> or <code>.sidebar-dark</code> skins and doesn't require any extra class, however for those occasions when you need to be explicit, add the <code>.sidebar-text</code> class to any element within the <code>.sidebar</code> container, to force the text style on the element.
+      </blockquote>
+      {% include 'code/sidebar-text.html' %}
+    </div>
+    <div class="tab-pane" id="text-css">
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th width="240">CSS Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.sidebar-text</code></td>
+              <td>Applies the sidebar text style defined by the sidebar skin</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane" id="text-sass">
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th width="240">Sass variable</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>$sidebar-font-size</code></td>
+              <td>Defines the base font size for the sidebar text in <code>px</code></td>
+            </tr>
+            <tr>
+              <td><code>$sidebar-dark-text-color</code></td>
+              <td>Defines the sidebar text color when using the <code>.sidebar-dark</code> skin</td>
+            </tr>
+            <tr>
+              <td><code>$sidebar-light-text-color</code></td>
+              <td>Defines the sidebar text color when using the <code>.sidebar-light</code> skin</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
-{% markdown %}
-## Links
-> Add the `.sidebar-link` class to any element within the `.sidebar` container, to apply the sidebar link text style defined by the `.sidebar-light` or `.sidebar-dark` skins. 
-{% endmarkdown %}
-
-<div class="table-responsive">
-  <table class="table table-sm">
-    <thead>
-      <tr>
-        <th width="240">CSS Class</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>.sidebar-link</code></td>
-        <td>Applies the sidebar link style defined by the sidebar skin</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="table-responsive">
-  <table class="table table-sm">
-    <thead>
-      <tr>
-        <th width="240">Sass variable</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>$sidebar-dark-link-color</code></td>
-        <td>Defines the sidebar link color when using the <code>.sidebar-link</code> class and the <code>.sidebar-dark</code> skin</td>
-      </tr>
-      <tr>
-        <td><code>$sidebar-light-link-color</code></td>
-        <td>Defines the sidebar text color when using the <code>.sidebar-link</code> class and the <code>.sidebar-light</code> skin</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+<h2>Sidebar links</h2>
 <div class="card card-block">
   <ul class="nav nav-pills">
     <li class="nav-item">
-      <span class="nav-link active">Code</span>
+      <a href="#links-usage" data-toggle="pill" class="nav-link active">Usage</a>
+    </li>
+    <li class="nav-item">
+      <a href="#links-css" data-toggle="pill" class="nav-link">CSS</a>
+    </li>
+    <li class="nav-item">
+      <a href="#links-sass" data-toggle="pill" class="nav-link">Sass</a>
     </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Demos</a>
@@ -127,7 +101,54 @@ path: ../
       </div>
     </li>
   </ul>
-  {% include 'code/sidebar-link.html' %}
+  <div class="tab-content">
+    <div class="tab-pane active" id="links-usage">
+      <blockquote>
+        Add the <code>.sidebar-link</code> class to any element within the <code>.sidebar</code> container, to apply the sidebar link text style defined by the <code>.sidebar-light</code> or <code>.sidebar-dark</code> skins. 
+      </blockquote>
+      {% include 'code/sidebar-link.html' %}
+    </div>
+    <div class="tab-pane" id="links-css">
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th width="240">CSS Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.sidebar-link</code></td>
+              <td>Applies the sidebar link style defined by the sidebar skin</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane" id="links-sass">
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th width="240">Sass variable</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>$sidebar-dark-link-color</code></td>
+              <td>Defines the sidebar link color when using the <code>.sidebar-link</code> class and the <code>.sidebar-dark</code> skin</td>
+            </tr>
+            <tr>
+              <td><code>$sidebar-light-link-color</code></td>
+              <td>Defines the sidebar text color when using the <code>.sidebar-link</code> class and the <code>.sidebar-light</code> skin</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

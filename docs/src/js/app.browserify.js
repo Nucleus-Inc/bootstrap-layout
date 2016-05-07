@@ -8,11 +8,8 @@ window.Tether = require('tether');
 // Bootstrap 4
 require('bootstrap');
 
-// AdminPlus Lite
-var BootstrapLayout = require('bootstrap-layout');
+// Simplebar
+require('simplebar/dist/simplebar.min');
 
-// Initialize Sidebars
-BootstrapLayout.Sidebar.init();
-
-// Initialize Scrollbars
-BootstrapLayout.Scrollable();
+// Bootstrap Layout
+require('bootstrap-layout');

@@ -8,124 +8,123 @@ path: ../
 {% block page %}
 <h1>{{ title }}</h1>
 
-{% markdown %}
-## Basic sidebar menu
-> To create a basic sidebar menu, the following is required:
-- unordered list wrapper with the `.sidebar-menu` class
-- menu items use the `.sidebar-menu-item` class
-- menu links use the `.sidebar-menu-button` class
-{% endmarkdown %}
-
 <div class="card card-block">
   <ul class="nav nav-pills">
     <li class="nav-item">
-      <span class="nav-link active">Code</span>
+      <a href="#usage-basic" data-toggle="pill" class="nav-link active">Usage</a>
+    </li>
+    <li class="nav-item">
+      <a href="#usage-css" data-toggle="pill" class="nav-link">CSS</a>
     </li>
     <li class="nav-item">
       <a href="../demo/sidebar-menu-basic.html" target="_blank" class="nav-link">Demo</a>
     </li>
   </ul>
-  {% include 'code/sidebar-menu/basic.html' %}
+  <div class="tab-content">
+    <div class="tab-pane active" id="usage-basic">
+      <blockquote>
+        To create a basic sidebar menu, the following is required:
+      </blockquote>
+      <ul>
+        <li>unordered list wrapper with the <code>.sidebar-menu</code> class</li>
+        <li>menu items use the <code>.sidebar-menu-item</code> class</li>
+        <li>menu links use the <code>.sidebar-menu-button</code> class</li>
+      </ul>
+
+      {% include 'code/sidebar-menu/basic.html' %}
+    </div>
+    <div class="tab-pane" id="usage-css">
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>CSS Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.sidebar-menu</code></td>
+              <td>The sidebar menu wrapper (unordered list)</td>
+            </tr>
+            <tr>
+              <td><code>.sidebar-menu-item</code></td>
+              <td>The sidebar menu item (unordered list item)</td>
+            </tr>
+            <tr>
+              <td><code>.sidebar-menu-button</code></td>
+              <td>The sidebar menu link</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
-{% markdown %}
-## Sidebar menu icons
-### Dependencies
-> The following examples are using [Material icons](https://design.google.com/icons/), so make sure to load the icons library into the `<head>` section of your page before using the examples.
-
-```html
-<!-- Material Design Icons -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-```
-
-### Usage
-> To add an icon to the sidebar menu button, add an element using the `.sidebar-menu-icon` base icon class within the `.sidebar-menu-button` element. Also, to use the [Material icons](https://design.google.com/icons/) add the `.material-icons` class to the `.sidebar-menu-icon` element.
-{% endmarkdown %}
-
+<h2>Sidebar menu icons</h2>
 <div class="card card-block">
   <ul class="nav nav-pills">
     <li class="nav-item">
-      <span class="nav-link active">Code</span>
+      <a href="#icons-basic" data-toggle="pill" class="nav-link active">Usage</a>
+    </li>
+    <li class="nav-item">
+      <a href="#icons-css" data-toggle="pill" class="nav-link">CSS</a>
     </li>
     <li class="nav-item">
       <a href="../demo/sidebar-menu-icons.html" target="_blank" class="nav-link">Demo</a>
     </li>
   </ul>
-  {% include 'code/sidebar-menu/icons.html' %}
+  <div class="tab-content">
+    <div class="tab-pane active" id="icons-basic">
+      <h3>Dependencies</h3>
+      <blockquote>
+        The following examples are using <a href="https://design.google.com/icons/">Material icons</a>, so make sure to load the icons library into the <code>&lt;head&gt;</code> section of your page before using the examples.
+      </blockquote>
+
+{% markdown %}
+```html
+<!-- Material Design Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+```
+{% endmarkdown %}
+
+      <h3>Usage</h3>
+      <blockquote>
+        To add an icon to the sidebar menu button, add an element using the <code>.sidebar-menu-icon</code> base icon class within the <code>.sidebar-menu-button</code> element. Also, to use the <a href="https://design.google.com/icons/">Material icons</a> add the <code>.material-icons</code> class to the <code>.sidebar-menu-icon</code> element.
+      </blockquote>
+
+      {% include 'code/sidebar-menu/icons.html' %}
+    </div>
+    <div class="tab-pane" id="icons-css">
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>CSS Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.sidebar-menu-icon</code></td>
+              <td>The sidebar menu icon</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
-<h2>CSS reference</h2>
-<h3>Basics</h3>
-<div class="table-responsive">
-  <table class="table table-sm">
-    <thead>
-      <tr>
-        <th>CSS Class</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>.sidebar-menu</code></td>
-        <td>The sidebar menu wrapper (unordered list)</td>
-      </tr>
-      <tr>
-        <td><code>.sidebar-menu-item</code></td>
-        <td>The sidebar menu item (unordered list item)</td>
-      </tr>
-      <tr>
-        <td><code>.sidebar-menu-button</code></td>
-        <td>The sidebar menu link</td>
-      </tr>
-      <tr>
-        <td><code>.sidebar-menu-icon</code></td>
-        <td>The sidebar menu icon</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<h3>Style modifiers</h3>
-<blockquote>
-  All the following classes should be applied on <code>.sidebar-menu</code> elements.
-</blockquote>
-<div class="table-responsive">
-  <table class="table table-sm">
-    <thead>
-      <tr>
-        <th>CSS Class</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>.sm-condensed</code></td>
-        <td>Applies a smaller spacing to sidebar menu buttons</td>
-      </tr>
-      <tr>
-        <td><code>.sm-bordered</code></td>
-        <td>Applies a border to sidebar menu items</td>
-      </tr>
-      <tr>
-        <td><code>.sm-active-button-bg</code></td>
-        <td>Applies a background color to active sidebar menu items</td>
-      </tr>
-      <tr>
-        <td><code>.sm-icons-right</code></td>
-        <td>Aligns the sidebar menu icons to the right</td>
-      </tr>
-      <tr>
-        <td><code>.sm-icons-block</code></td>
-        <td>Makes the sidebar menu icons appear wrapped into a square block</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+<h2>Sidebar menu style</h2>
 <div class="card card-block">
   <ul class="nav nav-pills">
     <li class="nav-item">
-      <span class="nav-link active">Code</span>
+      <a href="#style" data-toggle="pill" class="nav-link active">Usage</a>
+    </li>
+    <li class="nav-item">
+      <a href="#style-css" data-toggle="pill" class="nav-link">CSS</a>
     </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Demos</a>
@@ -135,7 +134,48 @@ path: ../
       </div>
     </li>
   </ul>
-  {% include 'code/sidebar-menu/style.html' %}
+  <div class="tab-content">
+    <div class="tab-pane active" id="style">
+      {% include 'code/sidebar-menu/style.html' %}
+    </div>
+    <div class="tab-pane" id="style-css">
+      <blockquote>
+        All the following classes should be applied on <code>.sidebar-menu</code> elements.
+      </blockquote>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>CSS Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.sm-condensed</code></td>
+              <td>Applies a smaller spacing to sidebar menu buttons</td>
+            </tr>
+            <tr>
+              <td><code>.sm-bordered</code></td>
+              <td>Applies a border to sidebar menu items</td>
+            </tr>
+            <tr>
+              <td><code>.sm-active-button-bg</code></td>
+              <td>Applies a background color to active sidebar menu items</td>
+            </tr>
+            <tr>
+              <td><code>.sm-icons-right</code></td>
+              <td>Aligns the sidebar menu icons to the right</td>
+            </tr>
+            <tr>
+              <td><code>.sm-icons-block</code></td>
+              <td>Makes the sidebar menu icons appear wrapped into a square block</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

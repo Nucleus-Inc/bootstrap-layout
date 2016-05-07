@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="bootstrap-layout">
+<html>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
 	{% include 'layouts/_header.html' %}
 
 </head>
-<body class="layout-container ls-top si-l3-md-up">
+<body class="layout-container ls-top layout-sidebar-l3-md-up">
 
 	<div class="layout-content" data-scrollable>
 
@@ -22,7 +22,7 @@
 	</div>
 
 	<!-- Sidebar -->
-	<div class="sidebar sidebar-left sidebar-visible-md-up si-si-3 sidebar-dark bg-primary" id="sidebar" data-scrollable>
+	<div class="sidebar sidebar-left sidebar-visible-md-up sidebar-size-3 sidebar-dark bg-primary" id="sidebar" data-scrollable>
 
 		<!-- Brand -->
 		<a href="{{ path or '' }}index.html" class="sidebar-brand sidebar-brand-bg sidebar-brand-border">Bootstrap Layout</a>
@@ -32,16 +32,29 @@
 			<li class="sidebar-menu-item{% if slug === 'home' %} active{% endif %}">
 				<a class="sidebar-menu-button" href="{{ path or '' }}index.html">Installation</a>
 			</li>
-			<li class="sidebar-menu-item{% if slug === 'layout/index' %} active{% endif %}">
-				<a href="{{ path or '' }}layout/index.html" class="sidebar-menu-button">Layout</a>
+			<li class="sidebar-menu-item{% if slug === 'boilerplates' %} active{% endif %}">
+				<a class="sidebar-menu-button" href="{{ path or '' }}boilerplates.html">Boilerplates</a>
 			</li>
-			<li class="sidebar-menu-item{% if slug === 'sidebar/index' %} active{% endif %}">
-				<a href="{{ path or '' }}sidebar/index.html" class="sidebar-menu-button">Sidebar</a>
+		</ul>
+
+		<div class="sidebar-heading">Layout</div>
+		<ul class="sidebar-menu sm-active-button-bg sm-condensed">
+			<li class="sidebar-menu-item{% if slug === 'layout/index' %} active{% endif %}">
+				<a href="{{ path or '' }}layout/index.html" class="sidebar-menu-button">Basic usage</a>
+			</li>
+			<!-- <li class="sidebar-menu-item{% if slug === 'layout/spacings' %} active{% endif %}">
+				<a href="{{ path or '' }}layout/spacings.html" class="sidebar-menu-button">Layout spacings</a>
+			</li> -->
+			<li class="sidebar-menu-item{% if slug === 'layout/nested' %} active{% endif %}">
+				<a href="{{ path or '' }}layout/nested.html" class="sidebar-menu-button">Nested layouts</a>
 			</li>
 		</ul>
 
 		<div class="sidebar-heading">Sidebar</div>
 		<ul class="sidebar-menu sm-active-button-bg sm-condensed">
+			<li class="sidebar-menu-item{% if slug === 'sidebar/index' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/index.html" class="sidebar-menu-button">Basic usage</a>
+			</li>
 			<li class="sidebar-menu-item{% if slug === 'sidebar/position' %} active{% endif %}">
 				<a href="{{ path or '' }}sidebar/position.html" class="sidebar-menu-button">Sidebar position</a>
 			</li>
@@ -75,16 +88,6 @@
 			</li>
 			<li class="sidebar-menu-item{% if slug === 'sidebar/utilities' %} active{% endif %}">
 				<a href="{{ path or '' }}sidebar/utilities.html" class="sidebar-menu-button">Sidebar utilities</a>
-			</li>
-		</ul>
-
-		<div class="sidebar-heading">Layout</div>
-		<ul class="sidebar-menu sm-active-button-bg sm-condensed">
-			<!-- <li class="sidebar-menu-item{% if slug === 'layout/spacings' %} active{% endif %}">
-				<a href="{{ path or '' }}layout/spacings.html" class="sidebar-menu-button">Layout spacings</a>
-			</li> -->
-			<li class="sidebar-menu-item{% if slug === 'layout/nested' %} active{% endif %}">
-				<a href="{{ path or '' }}layout/nested.html" class="sidebar-menu-button">Nested layouts</a>
 			</li>
 		</ul>
 
