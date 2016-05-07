@@ -5,12 +5,5 @@
 	text-transform: $sidebar-heading-text-transform;
 	letter-spacing: $sidebar-heading-letter-spacing;
 	line-height: $sidebar-heading-line-height;
-	padding: $sidebar-heading-spacing-y $sidebar-heading-spacing-x;
-	margin: 0;
-}
-.sidebar, 
-.simplebar-scroll-content {
-	> .sidebar-heading:first-child {
-		padding-top: $sidebar-spacing-horizontal;
-	}
+	margin-bottom: $sidebar-spacing-y;
 }

@@ -5,9 +5,6 @@
 	padding: 0;
 	list-style: none;
 }
-.sidebar-menu + .sidebar-heading {
-	padding-top: 0;
-}
 .sidebar-menu-item {
 	position: relative;
 	overflow: hidden;
@@ -26,7 +23,7 @@
 	font-family: $sm-toggle-family;
 	content: $sm-toggle-icon;
 	position: absolute;
-	right: $sidebar-spacing-horizontal - $sm-spacing-horizontal;
+	right: $sidebar-spacing-x - $sm-spacing-horizontal;
 	display: block;
 }
 .open > .sidebar-menu-button:not(:only-child):before {
@@ -45,13 +42,13 @@
 }
 .sidebar-menu-label {
 	position: absolute;
-	right: $sidebar-spacing-horizontal - $sm-spacing-horizontal;
+	right: $sidebar-spacing-x - $sm-spacing-horizontal;
 	margin-top: floor(($sm-button-height - $sm-label-height) / 2);
 	padding: $sm-label-spacing-vertical $sm-label-spacing-horizontal;
 	font-size: $sm-label-font-size;
 }
 .sidebar-menu-button:not(:only-child) .sidebar-menu-label {
-	right: ($sidebar-spacing-horizontal - $sm-spacing-horizontal) + $sm-icon-font-size;
+	right: ($sidebar-spacing-x - $sm-spacing-horizontal) + $sm-icon-font-size;
 }
 
 // submenus

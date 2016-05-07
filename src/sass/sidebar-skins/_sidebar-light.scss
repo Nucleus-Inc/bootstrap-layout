@@ -21,8 +21,8 @@
 		color: $sidebar-light-link-color;
 	}
 
-	// block
-	.sidebar-block {
+	// borders
+	[class*="sidebar-b-"] {
 		border-color: $sidebar-light-border-color;
 	}
 
@@ -45,9 +45,13 @@
 
 	// brand
 	.sidebar-brand {
-		background: $sidebar-light-brand-bg;
 		color:  $sidebar-light-brand-color;
-		border-bottom: 1px solid $sidebar-light-brand-border-color;
+	}
+	.sidebar-brand-bg {
+		background: $sidebar-light-brand-bg;
+	}
+	.sidebar-brand-border {
+		border-color: $sidebar-light-brand-border-color;
 	}
 	
 	//////////

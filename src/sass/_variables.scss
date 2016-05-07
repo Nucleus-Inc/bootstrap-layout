@@ -16,7 +16,7 @@ $navbar-box-shadow:                 none !default;
 
 // GRID
 
-$grid-gutter-width: 				1.25rem !default;
+$grid-gutter-width:                 1.25rem !default;
 
 ///////////////
 // Bootstrap //
@@ -37,45 +37,47 @@ $grid-gutter-width: 				1.25rem !default;
 
 $footer-height: 45px !default;
 
-///////////////////
-// SIDEBAR SIZES //
-///////////////////
+///////////////////////////////
+// FIXED WIDTH SIDEBAR SIZES //
+///////////////////////////////
+
+$sidebar-size-1:                    56px !default;
+$sidebar-size-2:                    200px !default;
+$sidebar-size-3:                    250px !default;
 
 $sidebar-sizes: (
-    1: 56px,
-    2: 200px,
-    3: 250px
+    1: $sidebar-size-1,
+    2: $sidebar-size-2,
+    3: $sidebar-size-3
 ) !default;
 
-// mini
-$sidebar-mini-width:                56px;
+// SIDEBAR MINI
+$sidebar-mini-width:                $sidebar-size-1 !default;
 
 //////////////////////////////
 // SIDEBAR PERCENTAGE SIZES //
 //////////////////////////////
 
 $sidebar-percent-step:              5 !default;
-$sidebar-percent-from:              ceil(20 / $sidebar-percent-step) !default;
-$sidebar-percent-through:           ceil(100 / $sidebar-percent-step) !default;
+$sidebar-percent-from:              20 !default;
+$sidebar-percent-through:           100 !default;
 
 /////////////////////
 // SIDEBAR GENERAL //
 /////////////////////
 
 $zindex-sidebar:                    999 !default;
-$sidebar-width:                     250px !default;
 $sidebar-font-size:                 15px !default;
 
 // general spacing
 $sidebar-spacing:                   $sidebar-font-size * 1.25 !default;
-$sidebar-spacing-horizontal:        $sidebar-spacing !default;
-$sidebar-spacing-vertical:          $sidebar-spacing !default;
+$sidebar-spacing-x:                 $sidebar-spacing !default;
+$sidebar-spacing-y:                 $sidebar-spacing !default;
 
 // brand
-$sidebar-brand-height:              $navbar-height !default;
 $sidebar-brand-size:                1.3rem !default;
 $sidebar-brand-weight:              500 !default;
-$sidebar-brand-padding:             0 $sidebar-spacing-horizontal !default;
+$sidebar-brand-height:              $navbar-height !default;
 
 // Heading
 $sidebar-heading-font-size:         .9rem !default;
@@ -84,14 +86,12 @@ $sidebar-heading-font-family:       $font-family-base !default;
 $sidebar-heading-text-transform:    uppercase !default;
 $sidebar-heading-letter-spacing:    normal !default;
 $sidebar-heading-line-height:       normal !default;
-$sidebar-heading-spacing-x:			$sidebar-spacing-horizontal !default;
-$sidebar-heading-spacing-y:			$sidebar-spacing-vertical !default;
 
 // menu spacing
 $sm-spacing-horizontal:             0 !default;
-$sm-spacing-vertical:               $sidebar-spacing-vertical !default;
-$sm-button-spacing:                 $sidebar-spacing-horizontal !default;
-$ssm-ssm-spacing-horizontal:        $sidebar-spacing-horizontal !default;
+$sm-spacing-vertical:               $sidebar-spacing-y !default;
+$sm-button-spacing:                 $sidebar-spacing-x !default;
+$ssm-ssm-spacing-horizontal:        $sidebar-spacing-x !default;
 
 // menu buttons
 $sm-button-font-size:               $sidebar-font-size !default;
@@ -103,7 +103,7 @@ $sm-condensed-button-height:        $sm-button-height - ($sm-button-height/4) !d
 
 // menu icons
 $sm-icon-font-size:                 24px !default;
-$sm-icon-margin:                    $sidebar-spacing-horizontal * 0.4 !default;
+$sm-icon-margin:                    $sidebar-spacing-x * 0.4 !default;
 $sm-icon-width:                     $sm-icon-font-size + $sm-icon-margin !default;
 
 // active buttons
@@ -131,11 +131,11 @@ $sm-open-toggle-icon:               "\e5d8" !default;
 
 // label
 $sm-label-margin-top:               13px !default;
-$sm-label-spacing-horizontal: 		.3rem !default;
-$sm-label-spacing-vertical:			.2rem !default;
-$sm-label-font-size:				.75rem !default;
-$sm-label-width: 					strip-unit($sm-label-font-size) * $sidebar-font-size + strip-unit($sm-label-spacing-horizontal) * $sidebar-font-size;
-$sm-label-height: 					strip-unit($sm-label-font-size) * $sidebar-font-size + strip-unit($sm-label-spacing-vertical) * $sidebar-font-size;
+$sm-label-spacing-horizontal:       .3rem !default;
+$sm-label-spacing-vertical:         .2rem !default;
+$sm-label-font-size:                .75rem !default;
+$sm-label-width:                    strip-unit($sm-label-font-size) * $sidebar-font-size + strip-unit($sm-label-spacing-horizontal) * $sidebar-font-size;
+$sm-label-height:                   strip-unit($sm-label-font-size) * $sidebar-font-size + strip-unit($sm-label-spacing-vertical) * $sidebar-font-size;
 
 // Toggle Bar
 $sidebar-toggle-bar-width:          10px !default;

@@ -1,42 +1,47 @@
-import 'simplebar/src/simplebar.js'
+import { 
+	SCROLLABLE_SELECTOR, 
+	SCROLLABLE_DATA_KEY, 
+	SCROLLABLE_DATA, 
+	SCROLLABLE_EVENTS 
+} from './config'
 
-export default function () {
+class Scrollable {
 
-	$.fn.blScrollable = function () {
+	constructor () {
+		jQuery(SCROLLABLE_SELECTOR).each(el => this.init(jQuery(el)))
+	}
 
-		if (!this.length) return
-		if (this.length > 1) {
-			this.each(function () {
-				$(this).blScrollable()
-			})
+	init (el) {
+
+		if (jQuery.fn.simplebar === undefined) {
+			return
+		}		
+		
+		if (el.data(SCROLLABLE_DATA_KEY)) {
 			return
 		}
 
-		var el = this
+		el.data(SCROLLABLE_DATA_KEY, true)
 		el.addClass('simplebar')
-
-		if (el.data('horizontal')) {
-			el.addClass('horizontal')
+		if (el.data('scrollable-direction') === 'horizontal') {
+			el.addClass('simplebar-horizontal')
 		}
-
-		if ($.fn.simplebar === undefined) {
-			el.css('overflow-y', 'scroll')
-			return
-		}
-
 		el.simplebar()
-		el.simplebar().on('scroll', function () {
-			var scrollable = $(this)
-			let scrollTop = scrollable.simplebar('getScrollElement').scrollTop()
-			$('body').trigger('scrolling.bl.scrollable', [scrollTop])
-			clearTimeout(this.scrollTimer)
-			this.scrollTimer = setTimeout(function () {
+
+		el.simplebar().on('scroll', (e) => {
+			const scrollable = jQuery(e.target)
+			const scrollTop = scrollable.simplebar('getScrollElement').scrollTop()
+			scrollable.trigger(SCROLLABLE_EVENTS.scroll, [scrollTop])
+
+			clearTimeout(scrollable.data(SCROLLABLE_DATA.scrollTimer))
+			scrollable.data(SCROLLABLE_DATA.scrollTimer, setTimeout(() => {
 				let scrollTop = scrollable.simplebar('getScrollElement').scrollTop()
-				$('body').trigger('end-scrolling.bl.scrollable', [scrollTop])
-			}, 100)
+				scrollable.trigger(SCROLLABLE_EVENTS.scrollEnd, [scrollTop])
+			}, 100))
 		})
-		el.on('scroll-to.bl.scrollable', (id) => {
-			let toElement = document.querySelector(id)
+		
+		el.on(SCROLLABLE_EVENTS.scrollTo, (id) => {
+			const toElement = document.querySelector(id)
 			if (toElement) {
 				el.simplebar('getScrollElement').animate({
 					scrollTop: toElement.offsetTop
@@ -44,8 +49,15 @@ export default function () {
 			}
 		})
 	}
-	
-	$('[data-scrollable]').blScrollable()
+
+	destroy (el) {
+		el.off([SCROLLABLE_EVENTS.scroll, SCROLLABLE_EVENTS.scrollTo, SCROLLABLE_EVENTS.scrollEnd].join(' '))
+		el.removeData([SCROLLABLE_DATA.scrollTimer, SCROLLABLE_DATA_KEY])
+	}
 }
 
-module.exports = exports.default
+// export instance
+export default new Scrollable()
+
+// export class
+export { Scrollable }

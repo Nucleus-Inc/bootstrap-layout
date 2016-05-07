@@ -4,7 +4,7 @@
 
 $sidebar-light-bg:                           #ffffff !default;
 $sidebar-light-text-color:                   rgba(0, 0, 0, .54) !default;
-$sidebar-light-link-color:                   $sidebar-light-text-color !default;
+$sidebar-light-link-color:                   $link-color !default;
 
 // borders
 $sidebar-light-container-border-color:       #e5e5e5 !default;
@@ -12,8 +12,8 @@ $sidebar-light-container-border-width:       1px !default;
 $sidebar-light-border-color:                 #e5e5e5 !default;
 
 // brand
-$sidebar-light-brand-bg:                     transparent !default;
 $sidebar-light-brand-color:                  $brand-primary !default;
+$sidebar-light-brand-bg:                     rgba(0, 0, 0, .07) !default;
 $sidebar-light-brand-border-color:           $sidebar-light-border-color !default;
 
 // label
@@ -28,7 +28,7 @@ $sidebar-light-list-group-menu-item-bg:     rgba(0, 0, 0, .08) !default;
 $sidebar-light-list-group-menu-item-border-color: rgba(0, 0, 0, .12) !default;
 
 // menu item
-$sm-light-item-border-color:                 rgba(0, 0, 0, .05) !default;
+$sm-light-item-border-color:                 $sidebar-light-border-color !default;
 
 // menu button
 $sm-light-button-color:                      $sidebar-light-link-color !default;

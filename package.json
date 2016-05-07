@@ -35,10 +35,9 @@
   },
   "dependencies": {
     "bootstrap": "4.0.0-alpha.2",
-    "breakpoints": "github:lazabogdan/breakpoints",
+    "breakpoints.js": "^1.0.0",
     "mout": "^0.11.1",
-    "sass-md-colors": "^1.0.0",
-    "simplebar": "github:grsmto/simplebar"
+    "sass-md-colors": "^1.0.0"
   },
   "keywords": [
     "bootstrap",

@@ -1,6 +1,28 @@
 import forOwn from 'mout/object/forOwn'
 import unique from 'mout/array/unique'
-import 'breakpoints'
+import Breakpoints from 'breakpoints/dist/breakpoints.js'
+import { 
+	LAYOUT_CONTAINER_SELECTOR,
+	LAYOUT_SIDEBAR_CLASS,
+	SIDEBAR_SELECTOR,
+	SIDEBAR_TOGGLE_SELECTOR,
+	SIDEBAR_VISIBLE_CLASS,
+	SIDEBAR_SIZE_CLASS,
+	SIDEBAR_DATA_KEY,
+	SIDEBAR_EVENTS
+} from './config'
+
+const BREAKPOINTS = {
+	320: ['xs', 'xs-up'],
+	480: ['xs', 'xs-up'],
+	544: ['sm', 'sm-up'],
+	768: ['md', 'md-up'],
+	992: ['lg', 'lg-up'],
+	1200: ['xl', 'xl-up'],
+	1600: ['xl', 'xl-up']
+}
+
+const UPDATE_SCREEN_DEBOUNCE = 30
 
 /**
  * Class Sidebar
@@ -15,29 +37,18 @@ class Sidebar {
 		// INTERNAL OPTIONS
 		this.SCREEN_SIZE = null
 		this.SCREEN_MD_UP = null
-		this.UPDATE_SCREEN_DEBOUNCE = 30
-		this.BREAKPOINTS = {
-			320: ['xs', 'xs-up'],
-			480: ['xs', 'xs-up'],
-			544: ['sm', 'sm-up'],
-			768: ['md', 'md-up'],
-			992: ['lg', 'lg-up'],
-			1200: ['xl', 'xl-up'],
-			1600: ['xl', 'xl-up']
-		}
-		this.VISIBLE_CLASS = 'sidebar-visible'
-
-		// DOM SELECTORS
-		this.EVENTS_CONTAINER = 'body'
-		this.LAYOUT_CONTAINER_SELECTOR = '.layout-container'
-		this.SELECTOR = '.sidebar'
-		this.TOGGLE_SELECTOR = '[data-toggle=sidebar]'
-		this.NAV_SELECTOR = '.sidebar-menu'
-		this.NAV_ITEM_SELECTOR = '.sidebar-menu-item'
-		this.NAV_BUTTON_SELECTOR = '.sidebar-menu-button'
-
+		
 		// INTERNAL TIMERS
 		this._updateScreenDebounce = null
+
+		// UPDATE THE INITIAL SCREEN SIZE
+		this._updateScreen()
+
+		// KEEP TRACK OF THE SCREEN SIZE
+		jQuery(window).resize(this._updateScreen.bind(this))
+
+		// Initialize sidebars
+		this._each(sidebar => this.init(sidebar))
 	}
 
 	/**
@@ -47,26 +58,70 @@ class Sidebar {
 	 */
 	_options (sidebar) {
 		sidebar = this._sidebar(sidebar)
+
 		const position = sidebar.data('position') || 'left'
-		const size = (sidebar.data('size') || 3) + ''
 		const direction = position.charAt(0)
-		const visible = sidebar.data('visible') || 'md-up'
 		const id = sidebar.attr('id')
+
+		let size = {
+			default: this._sizeValue(sidebar.data('size') || 3),
+			breakpoints: {}
+		}
+		this._breakpointValues().map(b => {
+			const bps = sidebar.data(`size-${ b }`)
+			size.breakpoints[b] = bps ? this._sizeValue(bps) : null
+		})
+
+		// visibility
+		let visible = (sidebar.data('visible') || 'md-up').split(' ')
+		if (visible.indexOf('none') !== -1) {
+			visible = []
+		}
+
+		// layout options
+		let layout = (sidebar.data('layout') || '').split(' ').filter(l => l.length)
+		if (!layout.length) {
+			layout = visible
+		}
+		if (layout.indexOf('none') !== -1) {
+			layout = []
+		}
+
 		return {
 			id,
 			position,
 			direction,
 			size,
-			visible
+			visible,
+			layout
 		}
 	}
 
 	/**
-	 * Get all breakpoint values
+	 * Size option value formatter
+	 * @param  {?} input
+	 * @return {String}
+	 */
+	_sizeValue (input) {
+		return (input + '').replace('%', 'pc')
+	}
+
+	/**
+	 * Get breakpoint values i.e. md-up
 	 * @return {Array}
 	 */
-	_breakpoints () {
-		return Object.keys(this.BREAKPOINTS).map((v) => parseInt(v, 10))
+	_breakpointValues () {
+		const aliases = []
+		forOwn(BREAKPOINTS, values => values.map(v => aliases.push(v)))
+		return unique(aliases)
+	}
+
+	/**
+	 * Get all breakpoint keys
+	 * @return {Array}
+	 */
+	_breakpointKeys () {
+		return Object.keys(BREAKPOINTS).map((v) => parseInt(v, 10))
 	}
 
 	/**
@@ -76,8 +131,8 @@ class Sidebar {
 	 */
 	_visibleBreakpointsFor (sidebar) {
 		const breakpoints = []
-		this._visibleOptions(sidebar).map((v) => {
-			forOwn(this.BREAKPOINTS, (values, key) => {
+		this._options(sidebar).visible.map((v) => {
+			forOwn(BREAKPOINTS, (values, key) => {
 				if (values.indexOf(v) !== -1) {
 					breakpoints.push(parseInt(key, 10))
 				}
@@ -88,12 +143,20 @@ class Sidebar {
 
 	/**
 	 * Initialize breakpoint
+	 * @param  {jQuery|String} 	sidebar 	A sidebar jQuery element or DOM selector String
 	 * @param  {Boolean}   	off        	Remove the breakpoint
 	 * @param  {Number}   	breakpoint 	The breakpoint size
 	 * @param  {Function} 	cb         	The callback
 	 */
-	_setBreakpoint (off, breakpoint, cb) {
-		$(window)[off ? 'off' : 'on'](`enterBreakpoint${ breakpoint }`, cb.bind(this))
+	_setBreakpointFor (sidebar, off, breakpoint, cb) {
+		const layout = this._layout(sidebar)
+		if (!off && !layout.data('breakpoints')) {
+			/* eslint no-new: 0 */
+			new Breakpoints(layout, { 
+				breakpoints: this._breakpointKeys() 
+			})
+		}
+		layout[off ? 'off' : 'on'](`enterBreakpoint${ breakpoint }`, cb.bind(this))
 	}
 
 	/**
@@ -104,11 +167,11 @@ class Sidebar {
 	_setBreakpointsFor (sidebar, off) {
 		sidebar = this._sidebar(sidebar)
 
-		const breakpoints = this._breakpoints()
+		const breakpoints = this._breakpointKeys()
 		const visibleBreakpoints = this._visibleBreakpointsFor(sidebar)
 
-		forOwn(this.BREAKPOINTS, (values, key, object) => {
-			this._visibleOptions(sidebar).forEach((visible) => {
+		forOwn(BREAKPOINTS, (values, key, object) => {
+			this._options(sidebar).visible.forEach((visible) => {
 				if (values.indexOf(visible) !== -1) {
 
 					let isUp = visible.indexOf('up') !== -1
@@ -118,32 +181,32 @@ class Sidebar {
 					if (keyInt === Math.max.apply(null, visibleBreakpoints)) {
 						let down = breakpoints.filter((v) => v < key)
 						down.filter((d) => {
-							// exclude visibile breakpoints
+							// exclude visible breakpoints
 							return visibleBreakpoints.indexOf(d) === -1
 						})
 						.forEach((breakpoint) => {
-							this._setBreakpoint(off, breakpoint, () => this.hide(sidebar))
+							this._setBreakpointFor(sidebar, off, breakpoint, () => this.hide(sidebar))
 						})
 					}
 
 					if (isUp) {
 						up.unshift(key)
 						up.filter((u) => {
-							// exclude visibile breakpoints
+							// exclude visible breakpoints
 							return visibleBreakpoints.indexOf(u) === -1
 						})
 						.forEach((breakpoint) => {
-							this._setBreakpoint(off, breakpoint, () => this.show(sidebar, false))
+							this._setBreakpointFor(sidebar, off, breakpoint, () => this.show(sidebar, false))
 						})
 					}
 					else {
-						this._setBreakpoint(off, key, () => this.show(sidebar, false))
+						this._setBreakpointFor(sidebar, off, key, () => this.show(sidebar, false))
 						up.filter((u) => {
-							// exclude visibile breakpoints
+							// exclude visible breakpoints
 							return visibleBreakpoints.indexOf(u) === -1
 						})
 						.forEach((breakpoint) => {
-							this._setBreakpoint(off, breakpoint, () => this.hide(sidebar))
+							this._setBreakpointFor(sidebar, off, breakpoint, () => this.hide(sidebar))
 						})
 					}
 				}
@@ -158,13 +221,14 @@ class Sidebar {
 	 */
 	_triggerBreakpointsFor (sidebar) {
 		sidebar = this._sidebar(sidebar)
+		const layout = this._layout(sidebar)
 		return new Promise((resolve) => {
 			this._updateScreen(() => {
 				const breakpoints = this._visibleBreakpointsFor(sidebar).sort((a, b) => b - a)
 				for (var i = 0; i < breakpoints.length; i++) {
 					const b = breakpoints[i]
 					if (this.SCREEN_SIZE >= b) {
-						$(window).trigger(`enterBreakpoint${ b }`)
+						layout.trigger(`enterBreakpoint${ b }`)
 						resolve()
 						break
 					}
@@ -172,18 +236,6 @@ class Sidebar {
 			})
 		})
 	} 
-
-	/**
-	 * Initialize breakpoints for all sidebars
-	 * @param  {Boolean} off 	Remove the breakpoints
-	 */
-	_initBreakpoints (off) {
-		if (typeof $.fn.setBreakpoints !== 'undefined' && !off) {
-			$(window).setBreakpoints({ breakpoints: this._breakpoints() })
-		}
-
-		this._each((sidebar) => this._setBreakpointsFor(sidebar, off))
-	}
 
 	/**
 	 * Join a classes Array into a String
@@ -203,35 +255,29 @@ class Sidebar {
 		const options = this._options(sidebar)
 		let classes = []
 
-		let breakpoints = []
-		this._sizeOptions(sidebar).map((s) => {
-			let breakpoint = s.match(/([a-zA-Z-]+)/ig)
-			if (breakpoint) {
-				breakpoint = breakpoint.pop().replace(/^\-/, '')
-				breakpoints.push(breakpoint)
+		options.layout.map((v) => {
+			let size = options.size.default
+			if (options.size.breakpoints[v]) {
+				size = options.size.breakpoints[v]
 			}
-		})
-
-		this._visibleOptions(sidebar).map((v) => {
-			this._sizeOptions(sidebar).map((s) => {
-				let className = `si-${ options.direction }${ s }`
-				let breakpoint = s.match(/([a-zA-Z-]+)/ig)
-				if (breakpoint) {
-					breakpoint = breakpoint.pop().replace(/^\-/, '')
-				}
-				if (s.indexOf(v) === -1 && !breakpoint) {
-					className = `${ className }-${ v }`
-				}
-				if (breakpoints.indexOf(v) !== -1) {
-					className = null
-				}
-				if (className) {
-					classes.push(className)
-				}
-			})
+			classes.push(`${ LAYOUT_SIDEBAR_CLASS }-${ options.direction }${ size }-${ v }`)
 		})
 
 		return unique(classes)
+	}
+
+	/**
+	 * Compute a sidebar size class name
+	 * @param  {Number} size       A sidebar size value
+	 * @param  {String} breakpoint A breakpoint value (optional)
+	 * @return {String}
+	 */
+	_sizeClassName (size, breakpoint) {
+		let className = `${ SIDEBAR_SIZE_CLASS }-${ size }`
+		if (breakpoint) {
+			className = `${ className }-${ breakpoint }`
+		}
+		return className
 	}
 
 	/**
@@ -242,42 +288,26 @@ class Sidebar {
 	_sidebarClasses (sidebar) {
 		const options = this._options(sidebar)
 		const classes = [
-			`sidebar-${ options.position }`
+			`sidebar-${ options.position }`,
+			`${ SIDEBAR_SIZE_CLASS }-${ options.size.default }`
 		]
-		const sizeClasses = this._sizeOptions(sidebar).map((s) => `si-si-${ s }`)
-		return classes.concat(sizeClasses)
-	}
-
-	/**
-	 * Get a size options Array for a sidebar
-	 * @param  {String|jQuery} sidebar A sidebar jQuery element or String DOM selector
-	 * @return {Array}
-	 */
-	_sizeOptions (sidebar) {
-		const options = this._options(sidebar)
-		return options.size.split(' ')
-	}
-
-	/**
-	 * Get a visible options Array for a sidebar
-	 * @param  {String|jQuery} sidebar A sidebar jQuery element or String DOM selector
-	 * @return {Array}
-	 */
-	_visibleOptions (sidebar) {
-		const options = this._options(sidebar)
-		if (options.visible === 'none') {
-			return []
-		}
-		return options.visible.split(' ')
+		forOwn(options.size.breakpoints, (size, breakpoint) => {
+			if (size) {
+				classes.push(this._sizeClassName(size, breakpoint))
+			}
+		})
+		return classes
 	}
 
 	/**
 	 * Emit DOM events
 	 * @param  {String} eventName 	The event name
-	 * @param  {?} data      		The event data
+	 * @param  {?} data      		The sidebar
 	 */
-	_emit (eventName, data) {
-		$(this.EVENTS_CONTAINER).trigger(`${ eventName }.bl.sidebar`, [data])
+	_emit (eventName, sidebar) {
+		sidebar = this._sidebar(sidebar)
+		const options = this._options(sidebar)
+		sidebar.trigger(eventName, [options])
 	}
 
 	/**
@@ -287,7 +317,7 @@ class Sidebar {
 	 */
 	_layout (sidebar) {
 		sidebar = this._sidebar(sidebar)
-		return sidebar.closest(this.LAYOUT_CONTAINER_SELECTOR)
+		return sidebar.closest(LAYOUT_CONTAINER_SELECTOR)
 	}
 
 	/**
@@ -296,7 +326,7 @@ class Sidebar {
 	 */
 	toggle (sidebar) {
 		sidebar = this._sidebar(sidebar)
-		sidebar.hasClass(this.VISIBLE_CLASS) ? this.hide(sidebar) : this.show(sidebar)
+		sidebar.hasClass(SIDEBAR_VISIBLE_CLASS) ? this.hide(sidebar) : this.show(sidebar)
 	}
 
 	/**
@@ -306,32 +336,38 @@ class Sidebar {
 	 */
 	show (sidebar, transition = true) {
 		sidebar = this._sidebar(sidebar)
-		const visibleClass = this.VISIBLE_CLASS
-		const options = this._options(sidebar)
 
 		// show
-		this._emit('show', options)
+		this._emit(SIDEBAR_EVENTS.show, sidebar)
 
 		// layout classes
 		this._layout(sidebar).addClass(this._classString(this._layoutClasses(sidebar)))
 
-		if (!sidebar.hasClass(visibleClass)) {
+		if (!this.SCREEN_MD_UP) {
+			this._each((s) => {
+				if (!s.is(sidebar) && s.hasClass(SIDEBAR_VISIBLE_CLASS)) {
+					this.hide(s)
+				}
+			})
+		}
+
+		if (!sidebar.hasClass(SIDEBAR_VISIBLE_CLASS)) {
 
 			// USE TRANSITION
 			if (transition) {
 				sidebar.addClass('sidebar-transition')
 				return setTimeout(() => {
-					sidebar.addClass(visibleClass)
+					sidebar.addClass(SIDEBAR_VISIBLE_CLASS)
 					// shown
-					this._emit('shown', options)
+					this._emit(SIDEBAR_EVENTS.shown, sidebar)
 				}, 10)
 			}
 
 			// WITHOUT TRANSITION
-			sidebar.addClass(visibleClass)
+			sidebar.addClass(SIDEBAR_VISIBLE_CLASS)
 
 			// shown
-			this._emit('shown', options)
+			this._emit(SIDEBAR_EVENTS.shown, sidebar)
 		}
 	}
 
@@ -341,17 +377,15 @@ class Sidebar {
 	 */
 	hide (sidebar) {
 		sidebar = this._sidebar(sidebar)
-		const visibleClass = this.VISIBLE_CLASS
-		const visibleClasses = sidebar.attr('class').match(new RegExp(`${ visibleClass }([a-z-]+)?`, 'ig'))
-		const options = this._options(sidebar)
+		const visibleClasses = sidebar.attr('class').match(new RegExp(`${ SIDEBAR_VISIBLE_CLASS }([a-z-]+)?`, 'ig'))
 
 		// layout classes
 		this._layout(sidebar).removeClass(this._classString(this._layoutClasses(sidebar)))
 
-		if (sidebar.hasClass(visibleClass)) {
+		if (visibleClasses) {
 
 			// hide
-			this._emit('hide', options)
+			this._emit(SIDEBAR_EVENTS.hide, sidebar)
 
 			// sidebar visibility
 			sidebar.removeClass(this._classString(visibleClasses))
@@ -361,12 +395,12 @@ class Sidebar {
 				setTimeout(() => {
 					sidebar.removeClass('sidebar-transition')
 					// hidden
-					this._emit('hidden', options)
+					this._emit(SIDEBAR_EVENTS.hidden, sidebar)
 				}, 450)	
 			}
 			else {
 				// hidden
-				this._emit('hidden', options)
+				this._emit(SIDEBAR_EVENTS.hidden, sidebar)
 			}
 		}
 	}
@@ -380,7 +414,7 @@ class Sidebar {
 		if (sidebar instanceof jQuery === true) {
 			return sidebar
 		}
-		return $(sidebar)
+		return jQuery(sidebar)
 	}
 
 	/**
@@ -388,98 +422,100 @@ class Sidebar {
 	 * @param  {Function} callback The callback
 	 */
 	_each (callback) {
-		$(this.SELECTOR).each((k, sidebar) => callback.call(this, $(sidebar)))
+		jQuery(SIDEBAR_SELECTOR).each((k, sidebar) => callback.call(this, jQuery(sidebar)))
 	}
 
 	/**
-	 * Internal method to keep track of the screen size
+	 * Update screen size handler
 	 */
 	_updateScreen (cb) {
 		clearTimeout(this._updateScreenDebounce)
 		this._updateScreenDebounce = setTimeout(() => {
-			this.SCREEN_SIZE = $(window).width()
-			this.SCREEN_MD_UP = $(window).width() >= 768
+			const width = jQuery(window).width()
+			this.SCREEN_SIZE = width
+			this.SCREEN_MD_UP = width >= 768
 			if (typeof cb === 'function') {
 				cb()
 			}
-		}, this.UPDATE_SCREEN_DEBOUNCE)
+		}, UPDATE_SCREEN_DEBOUNCE)
 	}
 
 	/**
-	 * Initialize Sidebars
+	 * Close sidebar on body click/touch handler
+	 * @param  {MouseEvent} e       	The event
+	 * @param  {jQuery} 	sidebar 	A sidebar jQuery element
 	 */
-	init () {
-
-		this._initBreakpoints()
-
-		// active toggle button
-		$(this.EVENTS_CONTAINER).on('show.bl.sidebar', (e, options) => {
-			if (options) {
-				const button = $(this.TOGGLE_SELECTOR + '[data-target="#' + options.id + '"]')
-				button.addClass('active')
+	_onTouchBody (e, sidebar) {
+		if (sidebar.hasClass(SIDEBAR_VISIBLE_CLASS) && (!this.SCREEN_MD_UP || sidebar.hasClass('closable-desktop'))) {
+			// if the event target is NOT the sidebar container
+			// or a descendant of the sidebar container
+			// or a sidebar toggle button
+			if (!sidebar.is(e.target) && sidebar.has(e.target).length === 0 && !jQuery(e.target).is(SIDEBAR_TOGGLE_SELECTOR)) {
+				this.hide(sidebar)
 			}
-		})
-		.on('hide.bl.sidebar', (e, options) => {
-			if (options) {
-				const button = $(this.TOGGLE_SELECTOR + '[data-target="#' + options.id + '"]')
-				button.removeClass('active')
-			}
-		})
+		}
+	}
 
-		this._each((sidebar) => {
+	/**
+	 * Initialize a sidebar
+	 * @param  {jQuery|String} sidebar 	A sidebar jQuery element or String DOM selector
+	 */
+	init (sidebar) {
+		sidebar = this._sidebar(sidebar)
+
+		if (!sidebar.data(SIDEBAR_DATA_KEY)) {
+		
 			// sidebar classes
 			sidebar.addClass(this._classString(this._sidebarClasses(sidebar)))
-		})
 
-		// UPDATE THE INITIAL SCREEN SIZE
-		this._updateScreen()
+			this._setBreakpointsFor(sidebar)
 
-		// KEEP TRACK OF THE SCREEN SIZE
-		$(window).resize(this._updateScreen.bind(this))
+			// CLOSE SIDEBARS ON MOBILE WHEN THE PAGE BODY IS TOUCHED
+			jQuery('body').on('click touchstart', (e) => this._onTouchBody(e, sidebar))
 
-		// SIDEBAR COLLAPSE MENUS
-		$(this.NAV_BUTTON_SELECTOR).on('click', (e) => {
-			const button = $(e.currentTarget)
-			if (button.next('ul').html()) {
-				e.preventDefault()
-				const parent = button.parent()
-				// Toggle Open Classes
-				if (parent.hasClass('open')) {
-					parent.removeClass('open')
-				} 
-				else {
-					const nav = button.closest(this.NAV_SELECTOR)
-					const submenuOpen = nav.find(`${ this.NAV_ITEM_SELECTOR }.open`)
-					// Close Parent Open Submenus
-					submenuOpen.removeClass('open')
-					parent.addClass('open')
-				}
-			}
-		})
-
-		// TOGGLE SIDEBAR
-		$(this.TOGGLE_SELECTOR).on('click', (e) => {
-			e.stopPropagation()
-			const sidebar = $($(e.currentTarget).data('target'))
-			if (sidebar) {
-				this.toggle(sidebar)
-			}
-		})
-
-		// CLOSE SIDEBAR ON MOBILE OR FLOATING WHEN BODY IS CLICKED
-		$('body').on('click touchstart', (e) => {
-			this._each((sidebar) => {
-				if (sidebar.hasClass(this.VISIBLE_CLASS) && !this.SCREEN_MD_UP || sidebar.hasClass('closable-desktop')) {
-					// if the target of the click is NOT the sidebar container
-					// or a descendant of the sidebar container
-					if (!sidebar.is(e.target) && sidebar.has(e.target).length === 0) {
-						this.hide(sidebar)
-					}
+			// active toggle button
+			sidebar.on(SIDEBAR_EVENTS.show, (e, s) => {
+				s = this._sidebar(s)
+				if (s) {
+					const options = this._options(sidebar)
+					const button = jQuery(SIDEBAR_TOGGLE_SELECTOR + '[data-target="#' + options.id + '"]')
+					button.addClass('active')
 				}
 			})
-		})
+			.on(SIDEBAR_EVENTS.hide, (e, s) => {
+				s = this._sidebar(s)
+				if (s) {
+					const options = this._options(sidebar)
+					const button = jQuery(SIDEBAR_TOGGLE_SELECTOR + '[data-target="#' + options.id + '"]')
+					button.removeClass('active')
+				}
+			})
+
+			this._triggerBreakpointsFor(sidebar)
+
+			sidebar.data(SIDEBAR_DATA_KEY, true)
+		}
+	}
+
+	/**
+	 * Destroy a sidebar
+	 * @param  {jQuery|String} sidebar 	A sidebar jQuery element or String DOM selector
+	 */
+	destroy (sidebar) {
+		sidebar = this._sidebar(sidebar)
+
+		this._setBreakpointsFor(sidebar, true)
+
+		jQuery('body').off('click touchstart', (e) => this._onTouchBody(e, sidebar))
+
+		sidebar.off()
+
+		sidebar.removeData('sidebar')
 	}
 }
 
-export default Sidebar
-module.exports = exports.default
+// export instance
+export default new Sidebar()
+
+// export class
+export { Sidebar }

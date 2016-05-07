@@ -21,8 +21,8 @@
 		color: $sidebar-dark-link-color;
 	}
 
-	// block
-	.sidebar-block {
+	// borders
+	[class*="sidebar-b-"] {
 		border-color: $sidebar-dark-border-color;
 	}
 
@@ -45,9 +45,13 @@
 
 	// brand
 	.sidebar-brand {
-		background: $sidebar-dark-brand-bg;
 		color:  $sidebar-dark-brand-color;
-		border-bottom: 1px solid $sidebar-dark-brand-border-color;
+	}
+	.sidebar-brand-bg {
+		background: $sidebar-dark-brand-bg;
+	}
+	.sidebar-brand-border {
+		border-color: $sidebar-dark-brand-border-color;
 	}
 
 	// label

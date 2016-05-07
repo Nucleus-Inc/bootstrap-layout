@@ -1,8 +1,3 @@
-// Utils
-.bg-white {
-	background-color: #ffffff;
-}
-
 // Layout
 @import './layout/content';
 @import './layout/footer';
@@ -12,6 +7,8 @@
 // Sidebar
 @import './sidebar/layout';
 @import './sidebar/scrollable';
+@import './sidebar/toggle-bar';
+@import './sidebar/utils';
 
 // Sidebar menu
 @import './sidebar-menu/sidebar-menu';
@@ -19,7 +16,6 @@
 
 // Sidebar components
 @import './sidebar-components/badge';
-@import './sidebar-components/block';
 @import './sidebar-components/brand';
 @import './sidebar-components/heading';
 @import './sidebar-components/list-group';
@@ -44,3 +40,6 @@
 // Navbar skins
 @import './navbar-skins/navbar-light';
 @import './navbar-skins/navbar-dark';
+
+// Utils
+@import './utils';

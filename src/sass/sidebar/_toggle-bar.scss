@@ -30,17 +30,11 @@
 			text-align: center;
 		}
 	}
-	.sidebar {
-		&.left .sidebar-toggle-bar {
-			right: -$sidebar-toggle-bar-width;
+	@each $side, $direction in (right: left, left: right) {
+		.sidebar-#{$side} .sidebar-toggle-bar {
+			#{$direction}: -$sidebar-toggle-bar-width;
 			&:hover {
-				right: -$sidebar-toggle-bar-width*2;
-			}
-		}
-		&.right .sidebar-toggle-bar {
-			left: -$sidebar-toggle-bar-width;
-			&:hover {
-				left: -$sidebar-toggle-bar-width*2;
+				#{$direction}: -$sidebar-toggle-bar-width*2;
 			}
 		}
 	}

@@ -16,9 +16,10 @@
 	
 	&, 
 	.simplebar-scroll-content {
-		> .sidebar-text,
-		> p {
-			padding: $sidebar-spacing-vertical $sidebar-spacing-horizontal;
+		> * {
+			padding-left: $sidebar-spacing-x;
+			padding-right: $sidebar-spacing-x;
+			margin-bottom: $sidebar-spacing-y;
 		}
 	}
 	
@@ -31,21 +32,9 @@
 		display: block;
 		z-index: 1;
 	}
-}
 
-.sidebar-text,
-.sidebar-heading,
-.sidebar-block,
-.sidebar-menu,
-.list-group,
-.sidebar > p, 
-.simplebar-scroll-content > p {
-	& + .sidebar-text,
-	& + .sidebar-heading,
-	& + .sidebar-block,
-	& + .sidebar-menu,
-	& + p {
-		padding-top: 0;
+	*:last-child {
+		margin-bottom: 0;
 	}
 }
 
@@ -76,16 +65,19 @@
 
 // positions
 .sidebar {
-	@each $direction in (left, right) {
-		&.sidebar-#{$direction} {
-			// default
-			#{$direction}: 0;
-			// transition
-			&.sidebar-transition {
-				#{$direction}: -$sidebar-width;
-				transition-property: #{$direction};
-				&.sidebar-visible {
-					#{$direction}: 0;
+	@each $index in map-keys($sidebar-sizes) {
+		$size: map-get($sidebar-sizes, $index);
+		@each $direction in (left, right) {
+			&.sidebar-#{$direction} {
+				// default
+				#{$direction}: 0;
+				// transition
+				&.sidebar-size-#{$index}.sidebar-transition {
+					#{$direction}: -$size;
+					transition-property: #{$direction};
+					&.sidebar-visible {
+						#{$direction}: 0;
+					}
 				}
 			}
 		}
@@ -95,13 +87,9 @@
 // size
 @include sidebar-sizes();
 // layout
-@include sidebar-layout();
-// sum size
-@include sidebar-sum-sizes();
+@include layout-sidebar();
 // percentage
 @include sidebar-percent();
-// offset
-@include sidebar-offset();
 
 // BREAKPOINTS
 @each $breakpoint in map-keys($grid-breakpoints) {
@@ -110,7 +98,9 @@
 		// size
 		@include sidebar-sizes($breakpoint);
 		// layout
-		@include sidebar-layout($breakpoint);
+		@include layout-sidebar($breakpoint);
+		// percentage
+		@include sidebar-percent($breakpoint);
 	}
 	// larger
 	@include media-breakpoint-up($breakpoint) {
@@ -118,21 +108,23 @@
 		// size
 		@include sidebar-sizes($breakpoint);
 		// layout
-		@include sidebar-layout($breakpoint);
+		@include layout-sidebar($breakpoint);
+		// percentage
+		@include sidebar-percent($breakpoint);
 	}
 }
 
 // ONLY MOBILE
 @include media-breakpoint-only(xs) {
-	// reset .si-si-1
-	.si-si-1,
-	.si-si-xs-1 {
+	// reset .sidebar-size-1
+	.sidebar-size-1,
+	.sidebar-size-xs-1 {
 		width: 100%;
 	}
-	// reset content margins for .si-si-1
+	// reset content margins for .sidebar-size-1
 	// override .si-[l|r]1-xs
 	@each $d, $direction in (l: left, r: right) {
-		.si-#{$d}1-xs {
+		.layout-sidebar-#{$d}1-xs {
 			margin-#{$direction}: 0;
 		}
 	}
@@ -146,13 +138,13 @@
 			$size: map-get($sidebar-sizes, $index);
 			// specific
 			@include media-breakpoint-only($breakpoint) {
-				.si-#{$d}#{$index}-#{$breakpoint} .ls-#{$direction}-sidebar {
+				.layout-sidebar-#{$d}#{$index}-#{$breakpoint} .ls-#{$direction}-sidebar {
 					#{$direction}: $size !important;
 				}
 			}
 			// larger
 			@include media-breakpoint-up($breakpoint) {
-				.si-#{$d}#{$index}-#{$breakpoint}-up .ls-#{$direction}-sidebar {
+				.layout-sidebar-#{$d}#{$index}-#{$breakpoint}-up .ls-#{$direction}-sidebar {
 					#{$direction}: $size !important;
 				}
 			}

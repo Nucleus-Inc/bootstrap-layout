@@ -1,15 +1,7 @@
 @import "../mixins/sidebar-mini";
 
-// SMALL and LARGER
-@include media-breakpoint-up(sm) {
+@include media-breakpoint-up(md) {
 	.sidebar-mini {
-		@include sidebar-mini();
-	}
-}
-
-// ONLY SMALL to MEDIUM
-@include media-breakpoint-only(sm) {
-	.sidebar-mini-sm {
 		@include sidebar-mini();
 	}
 }
