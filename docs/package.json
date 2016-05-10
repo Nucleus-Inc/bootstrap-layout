@@ -10,6 +10,7 @@
   "author": "Laza Bogdan <laza.bogdan@macro-net.ro>",
   "license": "ISC",
   "dependencies": {
+    "anchor-js": "^3.1.1",
     "bootstrap": "4.0.0-alpha.2",
     "bootstrap-layout": "1.0.0-alpha.5",
     "highlight.js": "^9.3.0",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "autoprefixer": "^6.3.3",
     "browserify": "^13.0.0",
+    "browserify-shim": "^3.8.12",
     "del": "^2.2.0",
     "fs-resolver": "^1.0.0",
     "globby": "^4.0.0",
@@ -45,5 +47,16 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
+  },
+  "browser": {
+    "anchor-js": "./node_modules/anchor-js/anchor.js"
+  },
+  "browserify-shim": {
+    "anchor-js": "AnchorJS"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
   }
 }

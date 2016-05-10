@@ -3,13 +3,10 @@
 <!-- After jQuery, Before closing the <body> tag -->
 <script src="node_modules/bootstrap-layout/dist/bootstrap-layout.js"></script>
 
-<!-- Initialize -->
+<!-- Global namespace -->
+<!-- You have access to various classes and methods via the BootstrapLayout global namespace -->
 <script>
-  // Initialize all sidebars
-  BootstrapLayout.Sidebar.init()
-
-  // Initialize custom scrolling areas
-  BootstrapLayout.Scrollable()
+  BootstrapLayout.Sidebar.show('#my-sidebar')
 </script>
 ```
 {% endmarkdown %}

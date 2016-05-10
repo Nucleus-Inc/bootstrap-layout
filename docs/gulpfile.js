@@ -15,7 +15,8 @@ var __CLEAN = true;
 var __MINIFY = true;
 // copy vendor assets from node_modules/
 var __VENDOR_ASSETS = [
-	'highlight.js/styles/github-gist.css'
+	'highlight.js/styles/github-gist.css',
+	'simplebar/dist/simplebar.css'
 ];
 
 ///////////
