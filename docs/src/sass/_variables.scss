@@ -4,5 +4,8 @@
 // Customize any variables here, before loading the default variables
 $brand-primary: $indigo-400 !default;
 
-// Default style
+// BOOTSTRAP LAYOUT
 @import 'bootstrap-layout/src/sass/variables';
+
+// BOOTSTRAP LAYOUT SCROLLABLE
+@import 'bootstrap-layout-scrollable/src/sass/variables';

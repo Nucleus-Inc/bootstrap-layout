@@ -28,25 +28,33 @@ Bootstrap Layout integrates out of the box with [Simplebar.js](https://github.co
 
 {% markdown %}
 ```bash
-npm install github:grsmto/simplebar
+npm install github:grsmto/simplebar bootstrap-layout-scrollable
 ```
 {% endmarkdown %}
 
 <blockquote>
-  To enable the Simplebar.js integration, load the library into your HTML pages.
+  To enable the Simplebar.js integration, load the libraries into your HTML pages.
 </blockquote>
 
 {% markdown %}
+#### CSS assets
 ```html
 <!-- Simplebar.js CSS -->
 <link rel="stylesheet" href="node_modules/simplebar/dist/simplebar.css">
+
+<!-- Bootstrap Layout Scrollable CSS -->
+<link rel="stylesheet" href="node_modules/bootstrap-layout-scrollable/dist/bootstrap-layout-scrollable.css">
 ```
 
+#### JavaScript assets
 ```html
+<!-- Before closing the <body> tag -->
 <!-- Simplebar.js JavaScript -->
 <!-- After jQuery and before Bootstrap Layout -->
-<!-- Before closing the <body> tag -->
 <script src="node_modules/simplebar/dist/simplebar.min.js"></script>
+
+<!-- Bootstrap Layout Scrollable -->
+<script src="node_modules/bootstrap-layout-scrollable/dist/bootstrap-layout-scrollable.js"></script>
 ```
 {% endmarkdown %}
 

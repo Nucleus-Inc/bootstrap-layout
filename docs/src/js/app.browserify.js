@@ -14,6 +14,9 @@ require('simplebar/dist/simplebar.min');
 // Bootstrap Layout
 require('bootstrap-layout');
 
+// Bootstrap Layout Scrollable
+require('bootstrap-layout-scrollable')
+
 // Anchor.js
 var AnchorJS = require('anchor-js');
 

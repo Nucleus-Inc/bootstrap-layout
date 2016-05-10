@@ -1,8 +1,11 @@
-// Variables (default and custom)
+// VARIABLES
 @import './variables';
 
-// Bootstrap 4
+// BOOTSTRAP 4
 @import 'bootstrap/scss/bootstrap';
 
-// Bootstrap Layout
+// BOOTSTRAP LAYOUT
 @import 'bootstrap-layout/src/sass/style';
+
+// BOOTSTRAP LAYOUT SCROLLABLE
+@import 'bootstrap-layout-scrollable/src/sass/style';
