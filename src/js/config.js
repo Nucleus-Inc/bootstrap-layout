@@ -44,5 +44,6 @@ export const SIDEBAR_EVENTS = {
 export const SIDEBAR_MENU_SELECTORS = {
 	menu: '.sidebar-menu',
 	item: '.sidebar-menu-item',
-	button: '.sidebar-menu-button'
+	button: '.sidebar-menu-button',
+	collapse: '[data-toggle="sidebar-collapse"] .sidebar-menu-button'
 }

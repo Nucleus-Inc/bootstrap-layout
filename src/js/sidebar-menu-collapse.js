@@ -1,19 +1,29 @@
-import Sidebar from './sidebar'
 import { SIDEBAR_MENU_SELECTORS } from './config'
 
 class SidebarMenuCollapse {
 	
-	constructor (sidebar) {
-		this.sidebarInst = Sidebar
-		this.sidebar = this.sidebarInst._sidebar(sidebar)
-
-		// initialize
-		if (this.sidebar) {
-			this.sidebar.find(SIDEBAR_MENU_SELECTORS.button).on('click', this._onCollapse)
-		}
+	/**
+	 * SidebarMenuCollapse constructor
+	 * @return {[type]}         [description]
+	 */
+	constructor () {
+		jQuery(SIDEBAR_MENU_SELECTORS.collapse).each((index, el) => this.init(el))
 	}
 
-	_onCollapse (e) {
+	/**
+	 * Get a jQuery element
+	 * @param  {String|jQuery} elementOrSelector 	jQuery element or DOM selector
+	 * @return {jQuery}                   			A jQuery element
+	 */
+	_element (elementOrSelector) {
+		return elementOrSelector instanceof jQuery ? elementOrSelector : jQuery(elementOrSelector)
+	}
+
+	/**
+	 * Click event listener
+	 * @param  {MouseEvent} e Mouse Event
+	 */
+	_onClick (e) {
 		const button = jQuery(e.currentTarget)
 		if (button.next('ul').html()) {
 			e.preventDefault()
@@ -32,11 +42,17 @@ class SidebarMenuCollapse {
 		}
 	}
 
-	destroy () {
-		if (this.sidebar) {
-			this.sidebar.find(SIDEBAR_MENU_SELECTORS.button).off('click', this._onCollapse)
-		}
+	/**
+	 * Initialize a sidebar menu
+	 * @param  {String|jQuery} el jQuery element or DOM selector
+	 */
+	init (el) {
+		this._element(el).on('click', this._onClick)
 	}
 }
 
-export default SidebarMenuCollapse
+// EXPORT INSTANCE
+export default new SidebarMenuCollapse()
+
+// EXPORT CLASS
+export { SidebarMenuCollapse }
