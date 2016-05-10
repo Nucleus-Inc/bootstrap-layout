@@ -5,14 +5,12 @@ import './sass/style'
 import Sidebar from './js/sidebar'
 import SidebarToggle from './js/sidebar-toggle'
 import SidebarMenuCollapse from './js/sidebar-menu-collapse'
-import Scrollable from './js/scrollable'
 
 // LIBRARY
 const BootstrapLayout = {
 	Sidebar,
 	SidebarToggle,
-	SidebarMenuCollapse,
-	Scrollable
+	SidebarMenuCollapse
 }
 
 // EXPORT ES6
