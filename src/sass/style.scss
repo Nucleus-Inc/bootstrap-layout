@@ -1,45 +1,40 @@
+// Simplebar.js
+@import './simplebar';
+
 // Layout
 @import './layout/content';
 @import './layout/footer';
 @import './layout/navbar';
-@import './layout/scrollable';
 
 // Sidebar
-@import './sidebar/layout';
+@import './sidebar/core';
+@import './sidebar/util';
 @import './sidebar/scrollable';
-@import './sidebar/toggle-bar';
-@import './sidebar/utils';
+@import './sidebar/text';
+@import './sidebar/brand';
+@import './sidebar/heading';
+@import './sidebar/list-group';
+@import './sidebar/badge';
+@import './sidebar/sidebar-mini';
+@import './sidebar/sidebar-reveal';
 
 // Sidebar menu
 @import './sidebar-menu/sidebar-menu';
-@import './sidebar-menu/utils';
-
-// Sidebar components
-@import './sidebar-components/badge';
-@import './sidebar-components/brand';
-@import './sidebar-components/heading';
-@import './sidebar-components/list-group';
-@import './sidebar-components/media';
-@import './sidebar-components/progress';
-@import './sidebar-components/card';
-@import './sidebar-components/sidebar-mini';
-@import './sidebar-components/sidebar-reveal';
+@import './sidebar-menu/util';
 
 // Sidebar skins
 @import './sidebar-skins/sidebar-light';
 @import './sidebar-skins/sidebar-dark';
 
 // Navbar components
-@import './navbar-components/core';
-@import './navbar-components/toggler';
-@import './navbar-components/brand';
-@import './navbar-components/menu';
-@import './navbar-components/dropdown';
-@import './navbar-components/forms';
+@import './navbar/core';
+@import './navbar/toggler';
+@import './navbar/brand';
+@import './navbar/menu';
 
 // Navbar skins
 @import './navbar-skins/navbar-light';
 @import './navbar-skins/navbar-dark';
 
 // Utils
-@import './utils';
+@import './util';

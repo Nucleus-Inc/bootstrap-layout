@@ -8,6 +8,9 @@ body {
 	min-width: 320px;
 	z-index: $zindex-sidebar - 1;
 	padding-bottom: $grid-gutter-width;
+	> .simplebar-scroll-content {
+		bottom: $grid-gutter-width;
+	}
 }
 .layout-content:not(.simplebar) {
 	overflow: auto !important;
@@ -23,9 +26,11 @@ body {
 	padding-left: $grid-gutter-width;
 	padding-right: $grid-gutter-width;
 }
-.ls-top > .layout-content,
-.ls-top.layout-content {
+.ls-top > .layout-content {
 	padding-top: $font-size-root * strip-unit($grid-gutter-width);
+	> .simplebar-scroll-content {
+		top: $font-size-root * strip-unit($grid-gutter-width);
+	}
 }
 @media print {
 	.layout-print .layout-content {

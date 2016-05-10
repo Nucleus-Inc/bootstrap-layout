@@ -1,13 +1,12 @@
 .navbar-toggler {
 	outline: none;
 	line-height: $navbar-height;
-	padding: 0 $grid-gutter-width; 
+	padding: 0 $grid-gutter-width;
 	
 	.material-icons {
 		vertical-align: top;
 		line-height: $navbar-height - 2;
 	}
-
 	&:first-child {
 		margin-left: 0;
 	}

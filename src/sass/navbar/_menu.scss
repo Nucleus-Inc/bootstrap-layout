@@ -1,16 +1,8 @@
 .navbar-nav {
 	margin-right: $grid-gutter-width;
-	
 	.nav-link {
 		padding-top: 0;
 		padding-bottom: 0;
-	}
-
-	.dropdown-menu {
-		i.material-icons {
-			color: $gray-light;
-			margin-right: 3px;
-		}
 	}
 }
 

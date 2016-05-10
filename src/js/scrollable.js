@@ -7,52 +7,77 @@ import {
 
 class Scrollable {
 
+	/**
+	 * Scrollable constructor
+	 * @return {Scrollable} A Scrollable instance
+	 */
 	constructor () {
-		jQuery(SCROLLABLE_SELECTOR).each(el => this.init(jQuery(el)))
+		jQuery(SCROLLABLE_SELECTOR).each((index, el) => this.init(el))
 	}
 
+	/**
+	 * Get a jQuery element
+	 * @param  {String|jQuery} elementOrSelector 	jQuery element or DOM selector
+	 * @return {jQuery}                   			A jQuery element
+	 */
+	_element (elementOrSelector) {
+		return elementOrSelector instanceof jQuery ? elementOrSelector : jQuery(elementOrSelector)
+	}
+
+	/**
+	 * Get a scrollable element
+	 * @param  {String|jQuery} el 	jQuery element or DOM selector
+	 * @return {jQuery}    			jQuery element
+	 */
+	_scrollableElement (el) {
+		return this._element(el).simplebar('getScrollElement')
+	}
+
+	/**
+	 * Initialize a scrollable element
+	 * @param  {String|jQuery} el jQuery element or DOM selector
+	 */
 	init (el) {
+		el = this._element(el)
 
 		if (jQuery.fn.simplebar === undefined) {
 			return
 		}		
 		
-		if (el.data(SCROLLABLE_DATA_KEY)) {
-			return
-		}
+		if (!el.data(SCROLLABLE_DATA_KEY)) {
+			
+			// DATA
+			el.data(SCROLLABLE_DATA_KEY, true)
 
-		el.data(SCROLLABLE_DATA_KEY, true)
-		el.addClass('simplebar')
-		if (el.data('scrollable-direction') === 'horizontal') {
-			el.addClass('simplebar-horizontal')
-		}
-		el.simplebar()
-
-		el.simplebar().on('scroll', (e) => {
-			const scrollable = jQuery(e.target)
-			const scrollTop = scrollable.simplebar('getScrollElement').scrollTop()
-			scrollable.trigger(SCROLLABLE_EVENTS.scroll, [scrollTop])
-
-			clearTimeout(scrollable.data(SCROLLABLE_DATA.scrollTimer))
-			scrollable.data(SCROLLABLE_DATA.scrollTimer, setTimeout(() => {
-				let scrollTop = scrollable.simplebar('getScrollElement').scrollTop()
-				scrollable.trigger(SCROLLABLE_EVENTS.scrollEnd, [scrollTop])
-			}, 100))
-		})
-		
-		el.on(SCROLLABLE_EVENTS.scrollTo, (id) => {
-			const toElement = document.querySelector(id)
-			if (toElement) {
-				el.simplebar('getScrollElement').animate({
-					scrollTop: toElement.offsetTop
-				})
+			// CSS CLASSES
+			el.addClass('simplebar')
+			if (el.data('scrollable-direction') === 'horizontal') {
+				el.addClass('simplebar-horizontal')
 			}
-		})
-	}
 
-	destroy (el) {
-		el.off([SCROLLABLE_EVENTS.scroll, SCROLLABLE_EVENTS.scrollTo, SCROLLABLE_EVENTS.scrollEnd].join(' '))
-		el.removeData([SCROLLABLE_DATA.scrollTimer, SCROLLABLE_DATA_KEY])
+			// INITIALIZE
+			el.simplebar()
+
+			// EVENTS
+			el.simplebar().on('scroll', (e) => {
+				el.trigger(SCROLLABLE_EVENTS.scroll, [this._scrollableElement(el)])
+
+				clearTimeout(el.data(SCROLLABLE_DATA.scrollTimer))
+				el.data(SCROLLABLE_DATA.scrollTimer, setTimeout(() => {
+					el.trigger(SCROLLABLE_EVENTS.scrollEnd, [this._scrollableElement(el)])
+				}, 100))
+			})
+			
+			// LISTENERS
+			el.on(SCROLLABLE_EVENTS.scrollTo, (id) => {
+				const toElement = document.querySelector(id)
+				if (toElement) {
+					this._scrollableElement(el).animate({
+						scrollTop: toElement.offsetTop
+					})
+				}
+			})
+		}
 	}
 }
 

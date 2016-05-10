@@ -37,6 +37,13 @@ $grid-gutter-width:                 1.25rem !default;
 
 $footer-height: 45px !default;
 
+///////////////
+// SIMPLEBAR //
+///////////////
+
+$simplebar-width:                   5px !default;
+$simplebar-bg:                      #6c6e71 !default;
+
 ///////////////////////////////
 // FIXED WIDTH SIDEBAR SIZES //
 ///////////////////////////////
@@ -88,8 +95,8 @@ $sidebar-heading-letter-spacing:    normal !default;
 $sidebar-heading-line-height:       normal !default;
 
 // menu spacing
-$sm-spacing-horizontal:             0 !default;
-$sm-spacing-vertical:               $sidebar-spacing-y !default;
+$sm-spacing-x:                      0 !default;
+$sm-spacing-y:                      $sidebar-spacing-y !default;
 $sm-button-spacing:                 $sidebar-spacing-x !default;
 $ssm-ssm-spacing-horizontal:        $sidebar-spacing-x !default;
 

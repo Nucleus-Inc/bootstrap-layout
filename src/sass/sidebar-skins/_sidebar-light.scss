@@ -7,6 +7,11 @@
 	color: $sidebar-light-text-color;
 	background: $sidebar-light-bg;
 
+	// simplebar
+	.simplebar-track .simplebar-scrollbar {
+		background: $sidebar-light-simplebar-bg;
+	}
+
 	// borders
 	@each $direction, $border-direction in (left: right, right: left) {
 		&.sidebar-#{$direction} {

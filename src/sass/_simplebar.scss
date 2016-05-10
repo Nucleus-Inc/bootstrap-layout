@@ -1,0 +1,10 @@
+.simplebar-track {
+	width: $simplebar-width;
+	.simplebar-scrollbar {
+		background: $simplebar-bg;
+	}
+}
+
+.simplebar.horizontal .simplebar-track .simplebar-scrollbar {
+	height: $simplebar-width;
+}

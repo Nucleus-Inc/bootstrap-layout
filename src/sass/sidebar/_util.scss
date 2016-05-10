@@ -67,3 +67,10 @@
 .sidebar-b-b {
 	border-bottom: 1px solid transparent;
 }
+
+// Generic sidebar element
+.sidebar-block {
+	padding-left: $sidebar-spacing-x;
+	padding-right: $sidebar-spacing-x;
+	margin-bottom: $sidebar-spacing-y;
+}

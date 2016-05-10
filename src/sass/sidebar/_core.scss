@@ -14,15 +14,6 @@
 		-webkit-overflow-scrolling: touch;
 	}
 	
-	&, 
-	.simplebar-scroll-content {
-		> * {
-			padding-left: $sidebar-spacing-x;
-			padding-right: $sidebar-spacing-x;
-			margin-bottom: $sidebar-spacing-y;
-		}
-	}
-	
 	@include media-breakpoint-down(md) { 
 		z-index: $zindex-navbar-fixed + 1;
 	}
@@ -87,9 +78,11 @@
 // size
 @include sidebar-sizes();
 // layout
-@include layout-sidebar();
-// percentage
-@include sidebar-percent();
+@include sidebar-layout();
+// percentage sizes
+@include sidebar-sizes-percent();
+// percentage layout
+@include sidebar-layout-percent();
 
 // BREAKPOINTS
 @each $breakpoint in map-keys($grid-breakpoints) {
@@ -98,9 +91,11 @@
 		// size
 		@include sidebar-sizes($breakpoint);
 		// layout
-		@include layout-sidebar($breakpoint);
-		// percentage
-		@include sidebar-percent($breakpoint);
+		@include sidebar-layout($breakpoint);
+		// percentage sizes
+		@include sidebar-sizes-percent($breakpoint);
+		// percentage layout
+		@include sidebar-layout-percent($breakpoint);
 	}
 	// larger
 	@include media-breakpoint-up($breakpoint) {
@@ -108,9 +103,11 @@
 		// size
 		@include sidebar-sizes($breakpoint);
 		// layout
-		@include layout-sidebar($breakpoint);
-		// percentage
-		@include sidebar-percent($breakpoint);
+		@include sidebar-layout($breakpoint);
+		// percentage sizes
+		@include sidebar-sizes-percent($breakpoint);
+		// percentage layout
+		@include sidebar-layout-percent($breakpoint);
 	}
 }
 

@@ -30,7 +30,7 @@ const UPDATE_SCREEN_DEBOUNCE = 30
 class Sidebar {
 	
 	/**
-	 * Contruct Sidebar
+	 * Sidebar constructor
 	 * @return {Sidebar} The Sidebar instance
 	 */
 	constructor () {
@@ -321,6 +321,114 @@ class Sidebar {
 	}
 
 	/**
+	 * Internal helper that always returns a jQuery element
+	 * @param  {jQuery|String} sidebar 	A sidebar jQuery element or String DOM selector
+	 * @return {jQuery}         		A sidebar jQuery element
+	 */
+	_sidebar (sidebar) {
+		if (sidebar instanceof jQuery === true) {
+			return sidebar
+		}
+		return jQuery(sidebar)
+	}
+
+	/**
+	 * Run callback on each sidebar element
+	 * @param  {Function} callback The callback
+	 */
+	_each (callback) {
+		jQuery(SIDEBAR_SELECTOR).each((k, sidebar) => callback.call(this, jQuery(sidebar)))
+	}
+
+	/**
+	 * Update screen size handler
+	 */
+	_updateScreen (cb) {
+		clearTimeout(this._updateScreenDebounce)
+		this._updateScreenDebounce = setTimeout(() => {
+			const width = jQuery(window).width()
+			this.SCREEN_SIZE = width
+			this.SCREEN_MD_UP = width >= 768
+			if (typeof cb === 'function') {
+				cb()
+			}
+		}, UPDATE_SCREEN_DEBOUNCE)
+	}
+
+	/**
+	 * Close sidebar on body click/touch handler
+	 * @param  {MouseEvent} e       	The event
+	 * @param  {jQuery} 	sidebar 	A sidebar jQuery element
+	 */
+	_onTouchBody (e, sidebar) {
+		if (sidebar.hasClass(SIDEBAR_VISIBLE_CLASS) && (!this.SCREEN_MD_UP || sidebar.hasClass('closable-desktop'))) {
+			// if the event target is NOT the sidebar container
+			// or a descendant of the sidebar container
+			// or a sidebar toggle button
+			if (!sidebar.is(e.target) && sidebar.has(e.target).length === 0 && !jQuery(e.target).is(SIDEBAR_TOGGLE_SELECTOR)) {
+				this.hide(sidebar)
+			}
+		}
+	}
+
+	/**
+	 * Initialize a sidebar
+	 * @param  {jQuery|String} sidebar 	A sidebar jQuery element or String DOM selector
+	 */
+	init (sidebar) {
+		sidebar = this._sidebar(sidebar)
+
+		if (!sidebar.data(SIDEBAR_DATA_KEY)) {
+		
+			// sidebar classes
+			sidebar.addClass(this._classString(this._sidebarClasses(sidebar)))
+
+			this._setBreakpointsFor(sidebar)
+
+			// CLOSE SIDEBARS ON MOBILE WHEN THE PAGE BODY IS TOUCHED
+			jQuery('body').on('click touchstart', (e) => this._onTouchBody(e, sidebar))
+
+			// active toggle button
+			sidebar.on(SIDEBAR_EVENTS.show, (e, s) => {
+				s = this._sidebar(s)
+				if (s) {
+					const options = this._options(s)
+					const button = jQuery(SIDEBAR_TOGGLE_SELECTOR + '[data-target="#' + options.id + '"]')
+					button.addClass('active')
+				}
+			})
+			.on(SIDEBAR_EVENTS.hide, (e, s) => {
+				s = this._sidebar(s)
+				if (s) {
+					const options = this._options(s)
+					const button = jQuery(SIDEBAR_TOGGLE_SELECTOR + '[data-target="#' + options.id + '"]')
+					button.removeClass('active')
+				}
+			})
+
+			this._triggerBreakpointsFor(sidebar)
+
+			sidebar.data(SIDEBAR_DATA_KEY, true)
+		}
+	}
+
+	/**
+	 * Destroy a sidebar
+	 * @param  {jQuery|String} sidebar 	A sidebar jQuery element or String DOM selector
+	 */
+	destroy (sidebar) {
+		sidebar = this._sidebar(sidebar)
+
+		this._setBreakpointsFor(sidebar, true)
+
+		jQuery('body').off('click touchstart', (e) => this._onTouchBody(e, sidebar))
+
+		sidebar.off(SIDEBAR_DATA_KEY)
+
+		sidebar.removeData(SIDEBAR_DATA_KEY)
+	}
+
+	/**
 	 * Toggle a sidebar
 	 * @param  {String|jQuery} sidebar 	A sidebar jQuery element or String DOM selector
 	 */
@@ -403,114 +511,6 @@ class Sidebar {
 				this._emit(SIDEBAR_EVENTS.hidden, sidebar)
 			}
 		}
-	}
-
-	/**
-	 * Internal helper that always returns a jQuery element
-	 * @param  {jQuery|String} sidebar 	A sidebar jQuery element or String DOM selector
-	 * @return {jQuery}         		A sidebar jQuery element
-	 */
-	_sidebar (sidebar) {
-		if (sidebar instanceof jQuery === true) {
-			return sidebar
-		}
-		return jQuery(sidebar)
-	}
-
-	/**
-	 * Run callback on each sidebar element
-	 * @param  {Function} callback The callback
-	 */
-	_each (callback) {
-		jQuery(SIDEBAR_SELECTOR).each((k, sidebar) => callback.call(this, jQuery(sidebar)))
-	}
-
-	/**
-	 * Update screen size handler
-	 */
-	_updateScreen (cb) {
-		clearTimeout(this._updateScreenDebounce)
-		this._updateScreenDebounce = setTimeout(() => {
-			const width = jQuery(window).width()
-			this.SCREEN_SIZE = width
-			this.SCREEN_MD_UP = width >= 768
-			if (typeof cb === 'function') {
-				cb()
-			}
-		}, UPDATE_SCREEN_DEBOUNCE)
-	}
-
-	/**
-	 * Close sidebar on body click/touch handler
-	 * @param  {MouseEvent} e       	The event
-	 * @param  {jQuery} 	sidebar 	A sidebar jQuery element
-	 */
-	_onTouchBody (e, sidebar) {
-		if (sidebar.hasClass(SIDEBAR_VISIBLE_CLASS) && (!this.SCREEN_MD_UP || sidebar.hasClass('closable-desktop'))) {
-			// if the event target is NOT the sidebar container
-			// or a descendant of the sidebar container
-			// or a sidebar toggle button
-			if (!sidebar.is(e.target) && sidebar.has(e.target).length === 0 && !jQuery(e.target).is(SIDEBAR_TOGGLE_SELECTOR)) {
-				this.hide(sidebar)
-			}
-		}
-	}
-
-	/**
-	 * Initialize a sidebar
-	 * @param  {jQuery|String} sidebar 	A sidebar jQuery element or String DOM selector
-	 */
-	init (sidebar) {
-		sidebar = this._sidebar(sidebar)
-
-		if (!sidebar.data(SIDEBAR_DATA_KEY)) {
-		
-			// sidebar classes
-			sidebar.addClass(this._classString(this._sidebarClasses(sidebar)))
-
-			this._setBreakpointsFor(sidebar)
-
-			// CLOSE SIDEBARS ON MOBILE WHEN THE PAGE BODY IS TOUCHED
-			jQuery('body').on('click touchstart', (e) => this._onTouchBody(e, sidebar))
-
-			// active toggle button
-			sidebar.on(SIDEBAR_EVENTS.show, (e, s) => {
-				s = this._sidebar(s)
-				if (s) {
-					const options = this._options(sidebar)
-					const button = jQuery(SIDEBAR_TOGGLE_SELECTOR + '[data-target="#' + options.id + '"]')
-					button.addClass('active')
-				}
-			})
-			.on(SIDEBAR_EVENTS.hide, (e, s) => {
-				s = this._sidebar(s)
-				if (s) {
-					const options = this._options(sidebar)
-					const button = jQuery(SIDEBAR_TOGGLE_SELECTOR + '[data-target="#' + options.id + '"]')
-					button.removeClass('active')
-				}
-			})
-
-			this._triggerBreakpointsFor(sidebar)
-
-			sidebar.data(SIDEBAR_DATA_KEY, true)
-		}
-	}
-
-	/**
-	 * Destroy a sidebar
-	 * @param  {jQuery|String} sidebar 	A sidebar jQuery element or String DOM selector
-	 */
-	destroy (sidebar) {
-		sidebar = this._sidebar(sidebar)
-
-		this._setBreakpointsFor(sidebar, true)
-
-		jQuery('body').off('click touchstart', (e) => this._onTouchBody(e, sidebar))
-
-		sidebar.off()
-
-		sidebar.removeData('sidebar')
 	}
 }
 

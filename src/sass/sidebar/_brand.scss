@@ -12,11 +12,12 @@
 	}
 }
 .sidebar,
-.simplebar-scroll-content {
+.sidebar .simplebar-content {
 	> .sidebar-brand {
 		height: $sidebar-brand-height;
 		line-height: $sidebar-brand-height;
-		padding: 0 $sidebar-spacing-x;
+		padding-left: $sidebar-spacing-x;
+		padding-right: $sidebar-spacing-x;
 		margin-bottom: $sidebar-spacing-y;
 		display: block;
 		width: 100%;
