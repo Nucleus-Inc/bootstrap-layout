@@ -77,6 +77,9 @@
 			<li class="sidebar-menu-item{% if slug === 'sidebar/menus' %} active{% endif %}">
 				<a href="{{ path or '' }}sidebar/menus.html" class="sidebar-menu-button">Sidebar menus</a>
 			</li>
+			<li class="sidebar-menu-item{% if slug === 'sidebar/collapse' %} active{% endif %}">
+				<a href="{{ path or '' }}sidebar/collapse.html" class="sidebar-menu-button">Sidebar menu collapse</a>
+			</li>
 			<li class="sidebar-menu-item{% if slug === 'sidebar/brand' %} active{% endif %}">
 				<a href="{{ path or '' }}sidebar/brand.html" class="sidebar-menu-button">Sidebar brand</a>
 			</li>
@@ -122,6 +125,7 @@
 	<!-- // END Sidebar -->
 
 	{% include 'layouts/_footer.html' %}
+	{% block footer %}{% endblock %}
 
 </body>
 </html>

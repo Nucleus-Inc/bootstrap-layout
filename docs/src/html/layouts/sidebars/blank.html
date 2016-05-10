@@ -162,6 +162,65 @@
 	</ul>
 	{% endif %}
 	<!-- // END Menu -->
+
+	{% if sm_collapse %}
+	<!-- Sidebar menu -->
+	<ul class="sidebar-menu {{ sm_collapse_opt or 'sm-active-button-bg' }}" data-toggle="sidebar-collapse">
+
+		<!-- Menu item -->
+	  	<li class="sidebar-menu-item open">
+			<a href="#" class="sidebar-menu-button">
+				<i class="sidebar-menu-icon material-icons">home</i> Dashboard
+			</a>
+		
+			<!-- Submenu -->
+			<ul class="sidebar-submenu {{ ssm_collapse_opt }}">
+				<li class="sidebar-menu-item active">
+					<a href="#" class="sidebar-menu-button">Active menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+			</ul>
+	  	</li>
+
+	  	<!-- Menu item -->
+	  	<li class="sidebar-menu-item">
+			<a href="#" class="sidebar-menu-button">
+				<i class="sidebar-menu-icon material-icons">pie_chart</i> Reports
+			</a>
+
+			<!-- Submenu -->
+			<ul class="sidebar-submenu {{ ssm_collapse_opt }}">
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Another menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+			</ul>
+	  	</li>
+
+	</ul>
+	{% endif %}
 	
 	{% if sm_text !== false %}
 	<p class="sidebar-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga est asperiores mollitia, ut, qui totam? Accusantium asperiores nostrum ut temporibus inventore error iste sequi, quam, veritatis minus quod cum, sint?</p>

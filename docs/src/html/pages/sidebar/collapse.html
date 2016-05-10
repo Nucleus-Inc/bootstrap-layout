@@ -1,0 +1,70 @@
+---
+title: Sidebar menu collapse
+slug: sidebar/collapse
+path: ../
+---
+{% extends "layouts/default.html" %}
+
+{% block page %}
+<h1>{{ title }}</h1>
+
+<div class="card card-block">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a href="#usage-basic" data-toggle="pill" class="nav-link active">Usage</a>
+    </li>
+    <li class="nav-item">
+      <a href="#usage-css" data-toggle="pill" class="nav-link">CSS</a>
+    </li>
+    <li class="nav-item">
+      <a href="../demo/sidebar-menu-collapse.html" target="_blank" class="nav-link">Demo</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="usage-basic">
+      <blockquote>
+        To create a collapsible sidebar menu, add the <code>data-toggle="sidebar-collapse"</code> attribute to any <code>.sidebar-menu</code> container. To create a basic sidebar submenu:
+      </blockquote>
+      <ul>
+        <li>add an <code>ul.sidebar-submenu</code> within a top-level <code>li.sidebar-menu-item</code></li>
+        <li>submenu items use the <code>.sidebar-menu-item</code> class</li>
+        <li>submenu links use the <code>.sidebar-menu-button</code> class</li>
+        <li><em><strong>optional</strong></em> add the <code>.open</code> class to any top-level <code>.sidebar-menu-item</code></li>
+      </ul>
+
+      {% include 'code/sidebar-menu/collapse.html' %}
+    </div>
+    <div class="tab-pane" id="usage-css">
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>CSS Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.sidebar-menu</code></td>
+              <td>The sidebar menu wrapper (unordered list)</td>
+            </tr>
+            <tr>
+              <td><code>.sidebar-submenu</code></td>
+              <td>The sidebar submenu wrapper (unordered list placed within a top level <code>.sidebar-menu-item</code>)</td>
+            </tr>
+            <tr>
+              <td><code>.sidebar-menu-item</code></td>
+              <td>The sidebar menu item and sidebar submenu item (unordered list item)</td>
+            </tr>
+            <tr>
+              <td><code>.sidebar-menu-button</code></td>
+              <td>The sidebar menu link and sidebar submenu link</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

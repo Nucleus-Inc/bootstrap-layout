@@ -1,5 +1,5 @@
 ---
-title: Sidebar menu demo
+title: Sidebar menu collapse
 path: ../
 ---
 {% extends "layouts/demo.html" %}
@@ -14,10 +14,10 @@ path: ../
 					<hr>
 				</div>
 				<h1 class="h3">{{ title }}</h1>
-				<p>A basic sidebar menu.</p>
+				<p>Collapsible sidebar menus.</p>
 			</div>
 		</div>
-		{% include 'layouts/sidebars/blank.html' { sm_basic: true, sm_basic_opt: '', sm_brand: false, sm_heading: false, sm_text: false } %}
+		{% include 'layouts/sidebars/blank.html' { style: 'sidebar-dark bg-primary', sm_collapse: true, ssm_collapse_opt: 'sm-condensed', sm_brand: false, sm_heading: false, sm_text: false } %}
 	</div>
 
 {% endblock %}
