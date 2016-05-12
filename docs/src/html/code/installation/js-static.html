@@ -1,6 +1,11 @@
 {% markdown %}
+> Before closing the `<body>` tag:
+
 ```html
-<!-- After jQuery, Before closing the <body> tag -->
+<!-- jQuery -->
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+<!-- Bootstrap Layout -->
 <script src="node_modules/bootstrap-layout/dist/bootstrap-layout.js"></script>
 
 <!-- Global namespace -->
@@ -8,9 +13,7 @@
 <script>
   // Global namespace example
   // Show a sidebar programatically
-  setTimeout(function() {
-    BootstrapLayout.Sidebar.show('#my-sidebar')
-  }, 1000)
+  BootstrapLayout.sidebar.show('#my-sidebar')
 </script>
 ```
 {% endmarkdown %}
