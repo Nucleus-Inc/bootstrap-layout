@@ -1,6 +1,6 @@
 import { SIDEBAR_MENU_SELECTORS } from './config'
 
-class SidebarMenuCollapse {
+export class SidebarMenuCollapse {
 	
 	/**
 	 * SidebarMenuCollapse constructor
@@ -52,7 +52,4 @@ class SidebarMenuCollapse {
 }
 
 // EXPORT INSTANCE
-export default new SidebarMenuCollapse()
-
-// EXPORT CLASS
-export { SidebarMenuCollapse }
+export let sidebarMenuCollapse = new SidebarMenuCollapse()

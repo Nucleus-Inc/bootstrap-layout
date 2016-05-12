@@ -1,7 +1,7 @@
 import { Sidebar } from './sidebar'
 import { SIDEBAR_TOGGLE_SELECTOR } from './config'
 
-class SidebarToggle {
+export class SidebarToggle {
 	
 	/**
 	 * SidebarToggle constructor
@@ -41,7 +41,4 @@ class SidebarToggle {
 }
 
 // export instance
-export default new SidebarToggle()
-
-// export class
-export { SidebarToggle }
+export let sidebarToggle = new SidebarToggle()

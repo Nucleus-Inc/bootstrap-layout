@@ -2,18 +2,14 @@
 import './sass/style'
 
 // COMPONENTS
-import Sidebar from './js/sidebar'
-import SidebarToggle from './js/sidebar-toggle'
-import SidebarMenuCollapse from './js/sidebar-menu-collapse'
+import { sidebar } from './js/sidebar'
+import { sidebarToggle } from './js/sidebar-toggle'
+import { sidebarMenuCollapse } from './js/sidebar-menu-collapse'
 
-// LIBRARY
-const BootstrapLayout = {
-	Sidebar,
-	SidebarToggle,
-	SidebarMenuCollapse
-}
+// EXPORT LIBRARIES
+export { sidebar, Sidebar } from './js/sidebar'
+export { sidebarToggle, SidebarToggle } from './js/sidebar-toggle'
+export { sidebarMenuCollapse, SidebarMenuCollapse } from './js/sidebar-menu-collapse'
 
-// EXPORT ES6
-export default BootstrapLayout
-
-module.exports = exports.default
+// EXPORT DEFAULT
+export default { sidebar, sidebarToggle, sidebarMenuCollapse }

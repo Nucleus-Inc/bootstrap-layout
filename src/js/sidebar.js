@@ -27,7 +27,7 @@ const UPDATE_SCREEN_DEBOUNCE = 30
 /**
  * Class Sidebar
  */
-class Sidebar {
+export class Sidebar {
 	
 	/**
 	 * Sidebar constructor
@@ -515,7 +515,4 @@ class Sidebar {
 }
 
 // export instance
-export default new Sidebar()
-
-// export class
-export { Sidebar }
+export let sidebar = new Sidebar()
