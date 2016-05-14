@@ -25,6 +25,7 @@ See [bootstrap-layout.themekit.io](http://bootstrap-layout.themekit.io/index.htm
 - [bs-layout-boilerplate-laravel](https://github.com/themekit/bs-layout-boilerplate-laravel) - **Laravel** application setup (gulp, Laravel Elixir, Sass, browserify)
 - [bs-layout-boilerplate-rails](https://github.com/themekit/bs-layout-boilerplate-rails) - **Rails** application setup (Asset Pipeline)
 - [bs-layout-boilerplate-angular2](https://github.com/themekit/bs-layout-boilerplate-angular2) - **Angular 2** application setup (TypeScript, SystemJS)
+- [bs-layout-boilerplate-vue](https://github.com/themekit/bs-layout-boilerplate-vue) - **Vue.js** application setup (Webpack)
 
 ---
 
