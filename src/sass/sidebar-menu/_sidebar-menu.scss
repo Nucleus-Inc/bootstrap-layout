@@ -1,7 +1,7 @@
 .sidebar-menu {
 	margin-bottom: $sm-spacing-y;
-	padding-left: $sm-spacing-x;
-	padding-right: $sm-spacing-x;
+	padding-left: 0;
+	padding-right: 0;
 	list-style: none;
 }
 .sidebar-menu-item {
@@ -12,7 +12,7 @@
 	display: block;
 	font-weight: $sm-button-font-weight;
 	line-height: $sm-button-height;
-	padding-left: $sm-button-spacing - $sm-spacing-x;
+	padding-left: $sm-spacing-x;
 	font-size: $sm-button-font-size;
 	&, &:hover, &:focus {
 		text-decoration: none;
@@ -22,7 +22,7 @@
 	font-family: $sm-toggle-family;
 	content: $sm-toggle-icon;
 	position: absolute;
-	right: $sidebar-spacing-x - $sm-spacing-x;
+	right: $sm-spacing-x;
 	display: block;
 }
 .open > .sidebar-menu-button:not(:only-child):before {
@@ -41,13 +41,13 @@
 }
 .sidebar-menu-label {
 	position: absolute;
-	right: $sidebar-spacing-x - $sm-spacing-x;
+	right: $sm-spacing-x;
 	margin-top: floor(($sm-button-height - $sm-label-height) / 2);
 	padding: $sm-label-spacing-vertical $sm-label-spacing-horizontal;
 	font-size: $sm-label-font-size;
 }
 .sidebar-menu-button:not(:only-child) .sidebar-menu-label {
-	right: ($sidebar-spacing-x - $sm-spacing-x) + $sm-icon-font-size;
+	right: $sm-spacing-x + $sm-icon-font-size;
 }
 
 // submenus
@@ -62,7 +62,6 @@
 	}
 	.sidebar-menu-button {
 		line-height: $ssm-button-height;
-		padding-left: $sm-button-spacing - $sm-spacing-x;
 		font-size: $ssm-button-font-size;
 	}
 	.sidebar-menu-icon {
@@ -71,7 +70,4 @@
 		font-size: $ssm-icon-font-size;
 		width: $ssm-icon-font-size + ($ssm-icon-font-size / 2);
 	}
-	.sidebar-submenu {
-        padding-left: $ssm-ssm-spacing-horizontal;
-    }
 }

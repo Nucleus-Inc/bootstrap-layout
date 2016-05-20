@@ -88,9 +88,8 @@ $sidebar-heading-letter-spacing:    normal !default;
 $sidebar-heading-line-height:       normal !default;
 
 // menu spacing
-$sm-spacing-x:                      0 !default;
+$sm-spacing-x:                      $sidebar-spacing-x !default;
 $sm-spacing-y:                      $sidebar-spacing-y !default;
-$sm-button-spacing:                 $sidebar-spacing-x !default;
 $ssm-ssm-spacing-horizontal:        $sidebar-spacing-x !default;
 
 // menu buttons
@@ -125,6 +124,10 @@ $ssm-icon-font-size:                $sm-icon-font-size !default;
 // $sm-open-toggle-icon:               "\f068" !default; // minus
 // $sm-toggle-icon:                    "\f078" !default; // chevron-down
 // $sm-open-toggle-icon:               "\f077" !default; // chevron-up
+
+// See Material Icons:
+// - https://design.google.com/icons/
+// - https://github.com/google/material-design-icons/blob/master/iconfont/codepoints
 $sm-toggle-family:                  "Material Icons" !default;
 $sm-toggle-icon:                    "\e5db" !default;
 $sm-open-toggle-icon:               "\e5d8" !default;
@@ -137,8 +140,38 @@ $sm-label-font-size:                .75rem !default;
 $sm-label-width:                    strip-unit($sm-label-font-size) * $sidebar-font-size + strip-unit($sm-label-spacing-horizontal) * $sidebar-font-size;
 $sm-label-height:                   strip-unit($sm-label-font-size) * $sidebar-font-size + strip-unit($sm-label-spacing-vertical) * $sidebar-font-size;
 
-// Toggle Bar
-$sidebar-toggle-bar-width:          10px !default;
+// @TODO: replace in bootstrap v4.0.0-alpha.3
+// $sm-dropdown-padding-y:          $dropdown-padding-y !default;
+$sm-dropdown-padding-y:             5px !default;
+// @TODO: replace in bootstrap v4.0.0-alpha.3
+// $sm-dropdown-item-padding-x:        $dropdown-item-padding-x !default;
+$sm-dropdown-item-padding-x:        20px !default;
+$sm-dropdown-box-shadow:            0 2px 3px darken(#fff, 12%) !default;
+$sm-dropdown-border-width:          0 !default;
+$sm-dropdown-border-color:          $dropdown-border-color !default;
+$sm-dropdown-border-radius:         $border-radius !default;
+
+// open dropdown
+$sm-dropdown-open-color:            $dropdown-link-hover-color !default;
+$sm-dropdown-open-bg:               rgba(0, 0, 0, .05) !default;
+$sm-dropdown-hover-color:           $dropdown-link-hover-color !default;
+$sm-dropdown-hover-bg:              rgba(0, 0, 0, .05) !default;
+
+// dropdown toggle button indicator
+// See Material Icons:
+// - https://design.google.com/icons/
+// - https://github.com/google/material-design-icons/blob/master/iconfont/codepoints
+$sm-dropdown-toggle-family:         "Material Icons" !default;
+$sm-dropdown-toggle-icon:           "\e313" !default; // keyboard_arrow_down
+$sm-dropdown-open-toggle-icon:      "\e315" !default; // keyboard_arrow_right
+
+// collapse toggle button indicator
+// See Material Icons:
+// - https://design.google.com/icons/
+// - https://github.com/google/material-design-icons/blob/master/iconfont/codepoints
+$sm-collapse-toggle-family:         "Material Icons" !default;
+$sm-collapse-toggle-icon:           "\e313" !default; // keyboard_arrow_down
+$sm-collapse-open-toggle-icon:      "\e316" !default; // keyboard_arrow_up
 
 //////////////////
 // SIDEBAR DARK //

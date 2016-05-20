@@ -1,6 +1,6 @@
 import forOwn from 'mout/object/forOwn'
 import unique from 'mout/array/unique'
-import Breakpoints from 'breakpoints/dist/breakpoints.js'
+import Breakpoints from 'breakpoints.js/dist/breakpoints.js'
 import { 
 	LAYOUT_CONTAINER_SELECTOR,
 	LAYOUT_SIDEBAR_CLASS,

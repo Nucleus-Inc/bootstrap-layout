@@ -48,32 +48,32 @@
 	.sidebar-menu-icon {
 		text-align: right;
 		position: absolute;
-		right: $sidebar-spacing-x - $sm-spacing-x;
+		right: $sm-spacing-x;
 		top: ($sm-button-height - ($sm-icon-font-size)) / 2;
 		margin-right: 0;
 	}
 	.sidebar-menu-label {
-		right: ($sidebar-spacing-x - $sm-spacing-x) + ($sm-icon-font-size + 5px);
+		right: $sm-spacing-x + ($sm-icon-font-size + 5px);
 	}
 	.sidebar-submenu .sidebar-menu-icon {
-		right: ($sidebar-spacing-x - $sm-spacing-x) + ((($sm-icon-font-size + 10px) - ($ssm-icon-font-size + 6px)) / 2);
+		right: $sm-spacing-x + ((($sm-icon-font-size + 10px) - ($ssm-icon-font-size + 6px)) / 2);
 		top: ($ssm-button-height - $ssm-icon-font-size) / 2;
 	}
 	.sidebar-menu-button:not(:only-child):before {
-		right: ($sidebar-spacing-x - $sm-spacing-x) + ($sm-icon-font-size + 5px);
+		right: $sm-spacing-x + ($sm-icon-font-size + 5px);
 	}
 	.sidebar-menu-button:not(:only-child) .sidebar-menu-label {
-		right: ($sidebar-spacing-x - $sm-spacing-x) + ($sm-icon-font-size + 5px) + $sm-button-font-size + 5px;
+		right: $sm-spacing-x + ($sm-icon-font-size + 5px) + $sm-button-font-size + 5px;
 	}
 	&.sm-icons-block {
 		.sidebar-menu-label {
-			right: ($sidebar-spacing-x - $sm-spacing-x) + ($sm-icon-width + 5px);
+			right: $sm-spacing-x + ($sm-icon-width + 5px);
 		}
 		.sidebar-menu-button:not(:only-child):before {
-			right: ($sidebar-spacing-x - $sm-spacing-x) + ($sm-icon-width + 5px);
+			right: $sm-spacing-x + ($sm-icon-width + 5px);
 		}
 		.sidebar-menu-button:not(:only-child) .sidebar-menu-label {
-			right: ($sidebar-spacing-x - $sm-spacing-x) + ($sm-icon-width + 5px) + $sm-button-font-size + 5px;
+			right: $sm-spacing-x + ($sm-icon-width + 5px) + $sm-button-font-size + 5px;
 		}
 		.sidebar-menu-icon {
 			text-align: center;
@@ -105,4 +105,8 @@
 	.sidebar-submenu {
 		border-bottom: none;
 	}
+}
+
+.sm-indent > .sidebar-menu-item .sidebar-menu-button {
+	padding-left: $sm-spacing-x * 2;
 }
