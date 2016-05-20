@@ -1,5 +1,5 @@
 ---
-title: Sidebar menu demo
+title: Sidebar submenu
 path: ../
 ---
 {% extends "layouts/demo.html" %}
@@ -14,16 +14,10 @@ path: ../
 					<hr>
 				</div>
 				<h1 class="h3">{{ title }}</h1>
-				<p>A basic sidebar menu.</p>
+				<p>Basic sidebar submenus. To add behaviour, see <a href="sidebar-menu-collapse.html">sidebar collapse</a> and <a href="sidebar-menu-dropdown.html">sidebar dropdown</a>.</p>
 			</div>
 		</div>
-		{% include 'layouts/sidebars/blank.html' { 
-			sm_basic: true, 
-			sm_basic_opt: '', 
-			sm_brand: false, 
-			sm_heading: false, 
-			sm_text: false 
-		} %}
+		{% include 'layouts/sidebars/blank.html' { style: 'sidebar-dark bg-primary', sm_submenu: true, ssm_submenu_opt: 'sm-condensed', sm_brand: false, sm_heading: false, sm_text: false } %}
 	</div>
 
 {% endblock %}

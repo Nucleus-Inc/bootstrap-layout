@@ -1,12 +1,13 @@
 ---
-title: Sidebar menu collapse
-slug: sidebar/collapse
+title: Sidebar submenu
+slug: sidebar-menu/submenu
 path: ../
 ---
 {% extends "layouts/default.html" %}
 
 {% block page %}
 <h1>{{ title }}</h1>
+<p>Create basic sidebar submenus.</p>
 
 <div class="card card-block">
   <ul class="nav nav-pills">
@@ -17,29 +18,33 @@ path: ../
       <a href="#usage-css" data-toggle="pill" class="nav-link">CSS</a>
     </li>
     <li class="nav-item">
-      <a href="../demo/sidebar-menu-collapse.html" target="_blank" class="nav-link">Demo</a>
+      <a href="../demo/sidebar-submenu.html" target="_blank" class="nav-link">Demo</a>
     </li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="usage-basic">
+      <h3>Basic usage</h3>
       <blockquote>
-        To create a collapsible sidebar menu, add the <code>data-toggle="sidebar-collapse"</code> attribute to any <code>.sidebar-menu</code> container. To create a basic sidebar submenu:
+        To create a basic sidebar submenu:
       </blockquote>
       <ul>
         <li>add an <code>ul.sidebar-submenu</code> within a top-level <code>li.sidebar-menu-item</code></li>
         <li>submenu items use the <code>.sidebar-menu-item</code> class</li>
         <li>submenu links use the <code>.sidebar-menu-button</code> class</li>
-        <li><em><strong>optional</strong></em> add the <code>.open</code> class to any top-level <code>.sidebar-menu-item</code></li>
+        <li><em><strong>optional</strong></em> add the <code>.open</code> class to any top-level <code>.sidebar-menu-item</code> to display the submenu</li>
       </ul>
 
-      {% include 'code/sidebar-menu/collapse.html' %}
+      {% include 'code/sidebar-menu/submenu.html' %}
+
+      <h3>Behaviour</h3>
+      See <a href="collapse.html">sidebar collapse</a> and <a href="dropdown.html">sidebar dropdown</a>.
     </div>
     <div class="tab-pane" id="usage-css">
       <div class="table-responsive">
         <table class="table table-sm">
           <thead>
             <tr>
-              <th>CSS Class</th>
+              <th width="230">CSS Class</th>
               <th>Description</th>
             </tr>
           </thead>

@@ -1,5 +1,5 @@
 ---
-title: Sidebar menu demo
+title: Sidebar dropdown
 path: ../
 ---
 {% extends "layouts/demo.html" %}
@@ -14,15 +14,18 @@ path: ../
 					<hr>
 				</div>
 				<h1 class="h3">{{ title }}</h1>
-				<p>A basic sidebar menu.</p>
+				<p>Dropdown sidebar menus. On screens smaller than <code>768px</code> wide, the dropdown menus will automatically convert to <a href="sidebar-collapse.html">collapse menus</a>.</p>
 			</div>
 		</div>
 		{% include 'layouts/sidebars/blank.html' { 
-			sm_basic: true, 
-			sm_basic_opt: '', 
-			sm_brand: false, 
-			sm_heading: false, 
-			sm_text: false 
+			style: 'sidebar-dark bg-primary', 
+			sm_dropdown: true, 
+			ssm_dropdown_opt: 'sm-condensed',
+			ssm_ssm_dropdown_opt: 'sm-condensed', 
+			sm_brand: true, 
+			sm_brand_opt: 'm-b-0',
+			sm_heading: true, 
+			sm_text: true 
 		} %}
 	</div>
 

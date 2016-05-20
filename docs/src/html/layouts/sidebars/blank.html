@@ -3,7 +3,7 @@
 
 	{% if sm_brand !== false %}
 	<!-- Brand -->
-	<a href="#" class="sidebar-brand">Brand</a>
+	<a href="#" class="sidebar-brand {{ sm_brand_opt }}">Brand</a>
 	{% endif %}
 
 	{% if sm_brands %}
@@ -165,7 +165,177 @@
 
 	{% if sm_collapse %}
 	<!-- Sidebar menu -->
-	<ul class="sidebar-menu {{ sm_collapse_opt or 'sm-active-button-bg' }}" data-toggle="sidebar-collapse">
+	<ul class="sidebar-menu {{ sm_collapse_opt or 'sm-active-button-bg' }}">
+
+		<!-- Menu item -->
+	  	<li class="sidebar-menu-item open">
+			<a href="#" class="sidebar-menu-button" data-toggle="sidebar-collapse">
+				<i class="sidebar-menu-icon material-icons">home</i> Dashboard
+			</a>
+		
+			<!-- Submenu -->
+			<ul class="sidebar-submenu {{ ssm_collapse_opt }}">
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button" data-toggle="sidebar-collapse">Submenu item</a>
+
+					<!-- Submenu -->
+					<ul class="sidebar-submenu {{ ssm_ssm_collapse_opt }}">
+						<li class="sidebar-menu-item">
+							<a href="#" class="sidebar-menu-button" data-toggle="sidebar-collapse">Another submenu</a>
+
+							<!-- Submenu -->
+							<ul class="sidebar-submenu {{ ssm_ssm_collapse_opt }}">
+								<li class="sidebar-menu-item active">
+									<a href="#" class="sidebar-menu-button">Active menu item</a>
+								</li>
+								<li class="sidebar-menu-item">
+									<a href="#" class="sidebar-menu-button">Aliquam tincidunt</a>
+								</li>
+								<li class="sidebar-menu-item">
+									<a href="#" class="sidebar-menu-button">Vestibulum auctor</a>
+								</li>
+							</ul>
+						</li>
+						<li class="sidebar-menu-item">
+							<a href="#" class="sidebar-menu-button">Nunc dignissim</a>
+						</li>
+						<li class="sidebar-menu-item">
+							<a href="#" class="sidebar-menu-button">Vivamus vestibulum</a>
+						</li>
+					</ul>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Praesent placerat</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Fusce pellentesque</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Vestibulum commodo</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Vivamus molestie</a>
+				</li>
+			</ul>
+	  	</li>
+
+	  	<!-- Menu item -->
+	  	<li class="sidebar-menu-item">
+			<a href="#" class="sidebar-menu-button" data-toggle="sidebar-collapse">
+				<i class="sidebar-menu-icon material-icons">pie_chart</i> Reports
+			</a>
+
+			<!-- Submenu -->
+			<ul class="sidebar-submenu {{ ssm_collapse_opt }}">
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Another menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+			</ul>
+	  	</li>
+
+	</ul>
+	{% endif %}
+
+	{% if sm_dropdown %}
+	<!-- Sidebar menu -->
+	<ul class="sidebar-menu {{ sm_dropdown_opt or 'sm-active-button-bg' }}">
+
+		<!-- Menu item -->
+	  	<li class="sidebar-menu-item">
+			<a href="#" class="sidebar-menu-button" data-toggle="sidebar-dropdown">
+				<i class="sidebar-menu-icon material-icons">home</i> Dashboard
+			</a>
+		
+			<!-- Submenu -->
+			<ul class="sidebar-submenu {{ ssm_dropdown_opt }}">
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button" data-toggle="sidebar-collapse">Collapse submenu</a>
+
+					<!-- Submenu -->
+					<ul class="sidebar-submenu {{ ssm_ssm_dropdown_opt }}">
+						<li class="sidebar-menu-item">
+							<a href="#" class="sidebar-menu-button" data-toggle="sidebar-dropdown">Dropdown submenu</a>
+
+							<!-- Submenu -->
+							<ul class="sidebar-submenu {{ ssm_ssm_collapse_opt }}">
+								<li class="sidebar-menu-item active">
+									<a href="#" class="sidebar-menu-button">Active menu item</a>
+								</li>
+								<li class="sidebar-menu-item">
+									<a href="#" class="sidebar-menu-button">Aliquam tincidunt</a>
+								</li>
+								<li class="sidebar-menu-item">
+									<a href="#" class="sidebar-menu-button">Vestibulum auctor</a>
+								</li>
+							</ul>
+						</li>
+						<li class="sidebar-menu-item">
+							<a href="#" class="sidebar-menu-button">Nunc dignissim</a>
+						</li>
+						<li class="sidebar-menu-item">
+							<a href="#" class="sidebar-menu-button">Vivamus vestibulum</a>
+						</li>
+					</ul>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Praesent placerat</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Fusce pellentesque</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Vestibulum commodo</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Vivamus molestie</a>
+				</li>
+			</ul>
+	  	</li>
+
+	  	<!-- Menu item -->
+	  	<li class="sidebar-menu-item">
+			<a href="#" class="sidebar-menu-button" data-toggle="sidebar-dropdown">
+				<i class="sidebar-menu-icon material-icons">pie_chart</i> Reports
+			</a>
+
+			<!-- Submenu -->
+			<ul class="sidebar-submenu {{ ssm_dropdown_opt }}">
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Another menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+				<li class="sidebar-menu-item">
+					<a href="#" class="sidebar-menu-button">Regular menu item</a>
+				</li>
+			</ul>
+	  	</li>
+
+	</ul>
+	{% endif %}
+
+	{% if sm_submenu %}
+	<!-- Sidebar menu -->
+	<ul class="sidebar-menu {{ sm_submenu_opt or 'sm-active-button-bg' }}">
 
 		<!-- Menu item -->
 	  	<li class="sidebar-menu-item open">
@@ -174,7 +344,7 @@
 			</a>
 		
 			<!-- Submenu -->
-			<ul class="sidebar-submenu {{ ssm_collapse_opt }}">
+			<ul class="sidebar-submenu {{ ssm_submenu_opt }}">
 				<li class="sidebar-menu-item active">
 					<a href="#" class="sidebar-menu-button">Active menu item</a>
 				</li>
@@ -198,25 +368,6 @@
 			<a href="#" class="sidebar-menu-button">
 				<i class="sidebar-menu-icon material-icons">pie_chart</i> Reports
 			</a>
-
-			<!-- Submenu -->
-			<ul class="sidebar-submenu {{ ssm_collapse_opt }}">
-				<li class="sidebar-menu-item">
-					<a href="#" class="sidebar-menu-button">Another menu item</a>
-				</li>
-				<li class="sidebar-menu-item">
-					<a href="#" class="sidebar-menu-button">Regular menu item</a>
-				</li>
-				<li class="sidebar-menu-item">
-					<a href="#" class="sidebar-menu-button">Regular menu item</a>
-				</li>
-				<li class="sidebar-menu-item">
-					<a href="#" class="sidebar-menu-button">Regular menu item</a>
-				</li>
-				<li class="sidebar-menu-item">
-					<a href="#" class="sidebar-menu-button">Regular menu item</a>
-				</li>
-			</ul>
 	  	</li>
 
 	</ul>

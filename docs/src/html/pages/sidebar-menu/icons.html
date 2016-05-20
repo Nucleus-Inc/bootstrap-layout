@@ -1,0 +1,55 @@
+---
+title: Sidebar menu icons
+slug: sidebar-menu/icons
+path: ../
+---
+{% extends "layouts/default.html" %}
+
+{% block page %}
+<h1>{{ title }}</h1>
+
+<div class="card card-block">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a href="#icons-basic" data-toggle="pill" class="nav-link active">Usage</a>
+    </li>
+    <li class="nav-item">
+      <a href="#icons-css" data-toggle="pill" class="nav-link">CSS</a>
+    </li>
+    <li class="nav-item">
+      <a href="../demo/sidebar-menu-icons.html" target="_blank" class="nav-link">Demo</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="icons-basic">
+      {% include 'code/material-icons.html' %}
+
+      <h3>Usage</h3>
+      <blockquote>
+        To add an icon to the sidebar menu button, add an element using the <code>.sidebar-menu-icon</code> base icon class within the <code>.sidebar-menu-button</code> element. Also, to use the <a href="https://design.google.com/icons/">Material icons</a> add the <code>.material-icons</code> class to the <code>.sidebar-menu-icon</code> element.
+      </blockquote>
+
+      {% include 'code/sidebar-menu/icons.html' %}
+    </div>
+    <div class="tab-pane" id="icons-css">
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>CSS Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.sidebar-menu-icon</code></td>
+              <td>The sidebar menu icon</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

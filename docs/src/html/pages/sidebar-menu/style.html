@@ -1,0 +1,74 @@
+---
+title: Sidebar menu style
+slug: sidebar-menu/style
+path: ../
+---
+{% extends "layouts/default.html" %}
+
+{% block page %}
+<h1>{{ title }}</h1>
+
+<div class="card card-block">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a href="#style" data-toggle="pill" class="nav-link active">Usage</a>
+    </li>
+    <li class="nav-item">
+      <a href="#style-css" data-toggle="pill" class="nav-link">CSS</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Demos</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" target="_blank" href="../demo/sidebar-menu-style-light.html">Sidebar light</a>
+        <a class="dropdown-item" target="_blank" href="../demo/sidebar-menu-style-dark.html">Sidebar dark</a>
+      </div>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="style">
+      {% include 'code/material-icons.html' %}
+      
+      <h3>Usage</h3>
+      {% include 'code/sidebar-menu/style.html' %}
+    </div>
+    <div class="tab-pane" id="style-css">
+      <blockquote>
+        All the following classes should be applied on <code>.sidebar-menu</code> elements.
+      </blockquote>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>CSS Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.sm-condensed</code></td>
+              <td>Applies a smaller spacing to sidebar menu buttons</td>
+            </tr>
+            <tr>
+              <td><code>.sm-bordered</code></td>
+              <td>Applies a border to sidebar menu items</td>
+            </tr>
+            <tr>
+              <td><code>.sm-active-button-bg</code></td>
+              <td>Applies a background color to active sidebar menu items</td>
+            </tr>
+            <tr>
+              <td><code>.sm-icons-right</code></td>
+              <td>Aligns the sidebar menu icons to the right</td>
+            </tr>
+            <tr>
+              <td><code>.sm-icons-block</code></td>
+              <td>Makes the sidebar menu icons appear wrapped into a square block</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

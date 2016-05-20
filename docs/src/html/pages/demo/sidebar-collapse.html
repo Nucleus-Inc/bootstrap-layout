@@ -1,5 +1,5 @@
 ---
-title: Sidebar menu collapse
+title: Sidebar collapse
 path: ../
 ---
 {% extends "layouts/demo.html" %}
@@ -17,7 +17,15 @@ path: ../
 				<p>Collapsible sidebar menus.</p>
 			</div>
 		</div>
-		{% include 'layouts/sidebars/blank.html' { style: 'sidebar-dark bg-primary', sm_collapse: true, ssm_collapse_opt: 'sm-condensed', sm_brand: false, sm_heading: false, sm_text: false } %}
+		{% include 'layouts/sidebars/blank.html' { 
+			style: 'sidebar-dark bg-primary', 
+			sm_collapse: true, 
+			ssm_collapse_opt: 'sm-condensed',
+			ssm_ssm_collapse_opt: 'sm-condensed', 
+			sm_brand: false, 
+			sm_heading: false, 
+			sm_text: false 
+		} %}
 	</div>
 
 {% endblock %}

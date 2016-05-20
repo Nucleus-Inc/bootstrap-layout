@@ -1,0 +1,65 @@
+---
+title: Sidebar menus
+slug: sidebar-menu/index
+path: ../
+---
+{% extends "layouts/default.html" %}
+
+{% block page %}
+<h1>{{ title }}</h1>
+
+<div class="card card-block">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a href="#usage-basic" data-toggle="pill" class="nav-link active">Usage</a>
+    </li>
+    <li class="nav-item">
+      <a href="#usage-css" data-toggle="pill" class="nav-link">CSS</a>
+    </li>
+    <li class="nav-item">
+      <a href="../demo/sidebar-menu-basic.html" target="_blank" class="nav-link">Demo</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="usage-basic">
+      <blockquote>
+        To create a basic sidebar menu, the following is required:
+      </blockquote>
+      <ul>
+        <li>unordered list wrapper with the <code>.sidebar-menu</code> class</li>
+        <li>menu items use the <code>.sidebar-menu-item</code> class</li>
+        <li>menu links use the <code>.sidebar-menu-button</code> class</li>
+      </ul>
+
+      {% include 'code/sidebar-menu/basic.html' %}
+    </div>
+    <div class="tab-pane" id="usage-css">
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>CSS Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.sidebar-menu</code></td>
+              <td>The sidebar menu wrapper (unordered list)</td>
+            </tr>
+            <tr>
+              <td><code>.sidebar-menu-item</code></td>
+              <td>The sidebar menu item (unordered list item)</td>
+            </tr>
+            <tr>
+              <td><code>.sidebar-menu-button</code></td>
+              <td>The sidebar menu link</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
