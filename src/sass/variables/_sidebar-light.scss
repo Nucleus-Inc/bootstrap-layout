@@ -77,6 +77,11 @@ $sm-light-active-iconsblock-activebuttonbg-icon-bg: $sm-light-active-iconsblock-
 $sm-light-toggle-color:                      rgba(0, 0, 0, .24) !default;
 $sm-light-open-toggle-color:                 $sm-light-open-button-color !default;
 
-// submenu
+// submenu item
+$ssm-light-item-border-color:                $sm-light-item-border-color !default;
+
+// submenu button
 $ssm-light-button-color:                     $sidebar-light-text-color !default;
+
+// submenu icon
 $ssm-light-icon-color:                       $ssm-light-button-color !default;

@@ -90,7 +90,11 @@ $sidebar-heading-line-height:       normal !default;
 // menu spacing
 $sm-spacing-x:                      $sidebar-spacing-x !default;
 $sm-spacing-y:                      $sidebar-spacing-y !default;
-$ssm-ssm-spacing-horizontal:        $sidebar-spacing-x !default;
+
+// horizontal spacing between elements such as 
+// .sidebar-menu-label and .sidebar-menu-icon 
+// within a menu button
+$sm-element-spacing-x:               5px !default;
 
 // menu buttons
 $sm-button-font-size:               $sidebar-font-size !default;
@@ -102,8 +106,12 @@ $sm-condensed-button-height:        $sm-button-height - ($sm-button-height/4) !d
 
 // menu icons
 $sm-icon-font-size:                 24px !default;
-$sm-icon-margin:                    $sidebar-spacing-x * 0.4 !default;
+$sm-icon-margin:                    $sm-spacing-x * 0.4 !default;
 $sm-icon-width:                     $sm-icon-font-size + $sm-icon-margin !default;
+
+// menu icons using .sm-icons-block
+$sm-iconsblock-spacing:             $sm-icon-font-size * 0.25 !default;
+$sm-iconsblock-width:               $sm-icon-font-size + $sm-iconsblock-spacing !default;
 
 // active buttons
 $sm-active-button-font-weight:      $sm-button-font-weight !default;
@@ -118,7 +126,12 @@ $ssm-condensed-button-height:       $ssm-button-height - ($ssm-button-height/4) 
 // submenu icons
 $ssm-icon-font-size:                $sm-icon-font-size !default;
 
+// submenu icons using .sm-icons-block
+$ssm-iconsblock-spacing:            $ssm-icon-font-size * 0.25 !default;
+$ssm-iconsblock-width:              $ssm-icon-font-size + $ssm-iconsblock-spacing !default;
+
 // menu toggle button indicator
+$sm-toggle-font-size:               $sm-button-font-size !default;
 // $sm-toggle-family:                  "FontAwesome" !default;
 // $sm-toggle-icon:                    "\f067" !default; // plus
 // $sm-open-toggle-icon:               "\f068" !default; // minus
@@ -133,12 +146,11 @@ $sm-toggle-icon:                    "\e5db" !default;
 $sm-open-toggle-icon:               "\e5d8" !default;
 
 // label
-$sm-label-margin-top:               13px !default;
 $sm-label-spacing-horizontal:       .3rem !default;
 $sm-label-spacing-vertical:         .2rem !default;
 $sm-label-font-size:                .75rem !default;
-$sm-label-width:                    strip-unit($sm-label-font-size) * $sidebar-font-size + strip-unit($sm-label-spacing-horizontal) * $sidebar-font-size;
-$sm-label-height:                   strip-unit($sm-label-font-size) * $sidebar-font-size + strip-unit($sm-label-spacing-vertical) * $sidebar-font-size;
+$sm-label-width:                    (strip-unit($sm-label-font-size) * $sidebar-font-size) + (strip-unit($sm-label-spacing-horizontal) * $sidebar-font-size);
+$sm-label-height:                   (strip-unit($sm-label-font-size) * $sidebar-font-size) + (strip-unit($sm-label-spacing-vertical) * $sidebar-font-size);
 
 // @TODO: replace in bootstrap v4.0.0-alpha.3
 // $sm-dropdown-padding-y:          $dropdown-padding-y !default;

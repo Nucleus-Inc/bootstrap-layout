@@ -1,5 +1,6 @@
 import { Sidebar } from './sidebar'
-import { SIDEBAR_TOGGLE_SELECTOR } from './config'
+
+const SIDEBAR_TOGGLE_SELECTOR = '[data-toggle="sidebar"]'
 
 export class SidebarToggle {
 	

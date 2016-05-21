@@ -118,40 +118,38 @@
 	
 	// bordered menu
 	.sm-bordered {
-		border-bottom: 1px solid $sidebar-dark-border-color;
+		border-color: $sidebar-dark-border-color;
+	}
+	// bordered submenu
+	.sm-bordered.sidebar-submenu {
+		border-color: $sidebar-dark-border-color;
 	}
 	// bordered menu item
 	.sm-item-bordered > .sidebar-menu-item {
-		border-bottom: 1px solid $sm-dark-item-border-color;
+		border-color: $sm-dark-item-border-color;
 	}
-	// block icons
-	.sm-icons-block {
-		.sidebar-menu-icon {
+	// bordered submenu item
+	.sm-item-bordered.sidebar-submenu > .sidebar-menu-item {
+		border-color: $ssm-dark-item-border-color;
+	}
+	// icons block
+	.sm-icons-block > .sidebar-menu-item {
+		> .sidebar-menu-button .sidebar-menu-icon {
 			background: $sm-dark-icon-bg;
 			color: $sm-dark-iconsblock-icon-color;
 		}
-		.open > .sidebar-menu-button .sidebar-menu-icon {
+		&.open > .sidebar-menu-button .sidebar-menu-icon {
 			color: $sm-dark-open-icon-color;
 			background: $sm-dark-open-icon-bg;
 		}
-		.active > .sidebar-menu-button .sidebar-menu-icon {
+		&.active > .sidebar-menu-button .sidebar-menu-icon {
 			background: $sm-dark-active-iconsblock-icon-bg;
 			color: $sm-dark-activebuttonbg-icon-color;
 		}
-		&.sm-active-button-bg .active > .sidebar-menu-button .sidebar-menu-icon {
-			background: $sm-dark-active-iconsblock-activebuttonbg-icon-bg;
-		}
 	}
-	// bordered submenu
-	.ssm-bordered .sidebar-submenu {
-		border-bottom: 1px solid $sidebar-dark-border-color;
-	}
-	// bordered submenu item
-	.ssm-item-bordered .sidebar-submenu .sidebar-menu-item {
-		border-bottom: 1px solid $sidebar-dark-border-color;
-	}
+	
 	// active button background
-	.sm-active-button-bg .active > .sidebar-menu-button {
+	.sm-active-button-bg > .active > .sidebar-menu-button {
 		background: $sm-dark-active-button-bg;
 		color: $sm-dark-activebuttonbg-button-color;
 		.sidebar-menu-icon {
@@ -160,6 +158,10 @@
 		&:not(:only-child):before {
 			color: $sm-dark-activebuttonbg-icon-color;
 		}
+	}
+	// icons block + active button bg
+	.sm-icons-block.sm-active-button-bg > .active > .sidebar-menu-button .sidebar-menu-icon {
+		background: $sm-dark-active-iconsblock-activebuttonbg-icon-bg;
 	}
 
 	// list group menu

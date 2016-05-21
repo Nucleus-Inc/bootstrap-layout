@@ -1,17 +1,27 @@
 import forOwn from 'mout/object/forOwn'
 import unique from 'mout/array/unique'
 import Breakpoints from 'breakpoints.js/dist/breakpoints.js'
-import { 
-	LAYOUT_CONTAINER_SELECTOR,
-	LAYOUT_SIDEBAR_CLASS,
-	SIDEBAR_SELECTOR,
-	SIDEBAR_TOGGLE_SELECTOR,
-	SIDEBAR_VISIBLE_CLASS,
-	SIDEBAR_SIZE_CLASS,
-	SIDEBAR_DATA_KEY,
-	SIDEBAR_EVENTS
-} from './config'
 
+// Selectors
+const SIDEBAR_SELECTOR = '.sidebar'
+const SIDEBAR_VISIBLE_CLASS = 'sidebar-visible'
+const SIDEBAR_SIZE_CLASS = 'sidebar-size'
+const SIDEBAR_TOGGLE_SELECTOR = '[data-toggle="sidebar"]'
+const LAYOUT_CONTAINER_SELECTOR = '.layout-container'
+
+// Data API
+const SIDEBAR_DATA_KEY = 'bl.sidebar'
+
+// Events
+const SIDEBAR_EVENTS = {
+	show: `show.${ SIDEBAR_DATA_KEY }`,
+	shown: `shown.${ SIDEBAR_DATA_KEY }`,
+	hide: `hide.${ SIDEBAR_DATA_KEY }`,
+	hidden: `hidden.${ SIDEBAR_DATA_KEY }`
+}
+
+// Other
+const LAYOUT_SIDEBAR_CLASS = 'layout-sidebar'
 const BREAKPOINTS = {
 	320: ['xs', 'xs-up'],
 	480: ['xs', 'xs-up'],
@@ -21,7 +31,6 @@ const BREAKPOINTS = {
 	1200: ['xl', 'xl-up'],
 	1600: ['xl', 'xl-up']
 }
-
 const UPDATE_SCREEN_DEBOUNCE = 30
 
 /**

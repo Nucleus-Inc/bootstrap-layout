@@ -77,6 +77,11 @@ $sm-dark-active-iconsblock-activebuttonbg-icon-bg: $sm-dark-active-iconsblock-ic
 $sm-dark-toggle-color:                      $sm-dark-button-color !default;
 $sm-dark-open-toggle-color:                 $sm-dark-open-button-color !default;
 
-// submenu
+// submenu item
+$ssm-dark-item-border-color:                $sm-dark-item-border-color !default;
+
+// submenu button
 $ssm-dark-button-color:                     $sidebar-dark-text-color !default;
+
+// submenu icon
 $ssm-dark-icon-color:                       $ssm-dark-button-color !default;

@@ -18,12 +18,16 @@
 		text-decoration: none;
 	}
 }
+.active > .sidebar-menu-button {
+	font-weight: $sm-active-button-font-weight;
+}
 .sidebar-menu-button:not(:only-child):before {
 	font-family: $sm-toggle-family;
 	content: $sm-toggle-icon;
 	position: absolute;
 	right: $sm-spacing-x;
 	display: block;
+	font-size: $sm-toggle-font-size;
 }
 .open > .sidebar-menu-button:not(:only-child):before {
 	content: $sm-open-toggle-icon;

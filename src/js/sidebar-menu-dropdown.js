@@ -1,18 +1,23 @@
 import { Sidebar } from './sidebar'
 import { SidebarMenuCollapse } from './sidebar-menu-collapse'
-import { SIDEBAR_SELECTOR, SIDEBAR_MENU_SELECTORS } from './config'
+import { SIDEBAR_MENU_SELECTORS } from './config'
 
+// Selectors
 const DROPDOWN_SELECTOR = '[data-toggle="sidebar-dropdown"]'
 const CONTAINER_SELECTOR = '.sidebar-dropdown-menu'
+const SIDEBAR_SELECTOR = '.sidebar'
+const COLLAPSE_SELECTOR = '[data-toggle="sidebar-collapse"]'
+
+// Data API
 const DROPDOWN_DATA_KEY = 'bl.sidebar-dropdown'
 const DROPDOWN_DATA_INIT = `init.${ DROPDOWN_DATA_KEY }`
 const DROPDOWN_DATA_BUTTON = `button.${ DROPDOWN_DATA_KEY }`
+
+// Events
 const DROPDOWN_HIDE = `hide.${ DROPDOWN_DATA_KEY }`
 const DROPDOWN_SHOW = `show.${ DROPDOWN_DATA_KEY }`
 const DROPDOWN_MOUSEENTER = `mouseenter.${ DROPDOWN_DATA_KEY }`
 const DROPDOWN_MOUSELEAVE = `mouseleave.${ DROPDOWN_DATA_KEY }`
-
-const COLLAPSE_SELECTOR = '[data-toggle="sidebar-collapse"]'
 
 export class SidebarMenuDropdown {
 	
