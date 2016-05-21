@@ -36,7 +36,7 @@ var __SRC_HTML = __SRC + '/html/pages/**/*.html';
 // WATCH PATHS
 var __WATCH_SASS = [
 	__SRC + '/sass/**/**.scss', 
-	'./node_modules/bootstrap-layout/**/**.scss'
+	'./node_modules/bootstrap-layout/src/sass/**/**.scss'
 ];
 var __WATCH_BROWSERIFY = __SRC_BROWSERIFY;
 var __WATCH_HTML = __SRC + '/html/**/**';
@@ -120,9 +120,7 @@ gulp.task('sass', ['clean-css'], function () {
 
 // Watch Sass
 gulp.task('sass:watch', function () {
-	$.watch(__WATCH_SASS, $.batch(function (events, done) {
-		gulp.start('sass', done)
-	}))
+	gulp.watch(__WATCH_SASS, ['sass'])
 });
 
 ////////////////
@@ -242,9 +240,7 @@ gulp.task('browserify', ['clean-browserify'], function (callback) {
 
 // Watch Browserify Bundles
 gulp.task('browserify:watch', function () {
-	$.watch(__WATCH_BROWSERIFY, $.batch(function (events, done) {
-		gulp.start('browserify', done)
-	}))
+	gulp.watch(__WATCH_BROWSERIFY, ['browserify'])
 });
 
 //////////
@@ -298,9 +294,7 @@ gulp.task('html:prettify', ['html'], function () {
 
 // Watch HTML
 gulp.task('html:watch', ['watch:set'], function () {
-	$.watch(__WATCH_HTML, $.batch(function (events, done) {
-		gulp.start('html:prettify', done)
-	}))
+	gulp.watch(__WATCH_HTML, ['html:prettify'])
 });
 
 ////////////////////////

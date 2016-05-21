@@ -1,5 +1,5 @@
 ---
-title: Sidebar menu style
+title: Sidebar menu utilities
 path: ../
 ---
 {% extends "layouts/demo.html" %}
@@ -17,7 +17,7 @@ path: ../
 				<p>Various sidebar menu examples using style modifier classes to add extra styles such as borders, alignment and others.</p>
 			</div>
 		</div>
-		{% include 'layouts/sidebars/blank.html' { sm_style: true, sm_brand: false, sm_heading: false, sm_text: false } %}
+		{% include 'layouts/sidebars/blank.html' { style: 'sidebar-dark bg-primary', sm_style: true, sm_brand: false, sm_heading: false, sm_text: false } %}
 	</div>
 
 {% endblock %}

@@ -7,7 +7,7 @@ path: ../
 
 {% block page %}
 <h1>{{ title }}</h1>
-<p>You can alter the style of various sidebar elements by using the built-in CSS helper classes.</p>
+<p>You can modify the style of various sidebar elements by using the following sidebar CSS helper classes.</p>
 
 <h2>Sidebar spacing</h2>
 <div class="card card-block">
@@ -121,16 +121,24 @@ path: ../
             <tr>
               <th width="200">Sass variable</th>
               <th>Description</th>
+              <th class="text-xs-center" width="240">Default value</th>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <td><code>$sidebar-spacing</code></td>
+              <td>Defines the sidebar spacing</td>
+              <td class="text-xs-center"><code>$sidebar-font-size * 1.25</code></td>
+            </tr>
+            <tr>
               <td><code>$sidebar-spacing-x</code></td>
               <td>Defines the sidebar horizontal spacing</td>
+              <td class="text-xs-center"><code>$sidebar-spacing</code></td>
             </tr>
             <tr>
               <td><code>$sidebar-spacing-y</code></td>
               <td>Defines the sidebar vertical spacing</td>
+              <td class="text-xs-center"><code>$sidebar-spacing</code></td>
             </tr>
           </tbody>
         </table>
@@ -195,18 +203,21 @@ path: ../
         <table class="table table-sm">
           <thead>
             <tr>
-              <th width="280">Sass variable</th>
+              <th width="270">Sass variable</th>
               <th>Description</th>
+              <th class="text-xs-center" width="200">Default value</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><code>$sidebar-light-border-color</code></td>
-              <td>Defines the border color for generic sidebar elements when using the <code>.sidebar-light</code> skin</td>
+              <td><code>$sidebar-dark-border-color</code></td>
+              <td>Defines the default border color for sidebar elements when using the <code>.sidebar-dark</code> skin</td>
+              <td class="text-xs-center"><code>rgba(0, 0, 0, .15)</code></td>
             </tr>
             <tr>
-              <td><code>$sidebar-dark-border-color</code></td>
-              <td>Defines the border color for generic sidebar elements when using the <code>.sidebar-dark</code> skin</td>
+              <td><code>$sidebar-light-border-color</code></td>
+              <td>Defines the default border color for sidebar elements when using the <code>.sidebar-light</code> skin</td>
+              <td class="text-xs-center"><code>#e5e5e5</code></td>
             </tr>
           </tbody>
         </table>
