@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var runSequence = require('run-sequence');
 
 /////////////
 // OPTIONS //
@@ -93,7 +94,7 @@ gulp.task('clean-css', function (cb) {
 ////////////////
 
 // Compile Sass
-gulp.task('sass', ['clean-css'], function () {
+gulp.task('sass', function () {
 	return gulp.src(__SRC_SASS)
 		// (optional) sourcemaps
 		.pipe($.if(__SOURCEMAPS, $.sourcemaps.init()))
@@ -116,6 +117,11 @@ gulp.task('sass', ['clean-css'], function () {
 		.pipe($.if(__SOURCEMAPS, $.sourcemaps.write('./')))
 		// Write CSS file
 		.pipe(gulp.dest(__DIST_CSS))
+});
+
+// Clean CSS & Compile Sass
+gulp.task('sass:build', function (callback) {
+	runSequence('clean-css', 'sass', callback)
 });
 
 // Watch Sass
@@ -155,7 +161,7 @@ var bundleLogger = {
 }
 
 // Compile Browserify bundles
-gulp.task('browserify', ['clean-browserify'], function (callback) {
+gulp.task('browserify', function (callback) {
 
 	globby(__SRC_BROWSERIFY).then(function (bundles) {
 		
@@ -238,6 +244,11 @@ gulp.task('browserify', ['clean-browserify'], function (callback) {
 	});
 });
 
+// Clean & Compile bundles
+gulp.task('browserify:build', function (callback) {
+	runSequence('clean-browserify', 'browserify', callback)
+});
+
 // Watch Browserify Bundles
 gulp.task('browserify:watch', function () {
 	gulp.watch(__WATCH_BROWSERIFY, ['browserify'])
@@ -261,7 +272,7 @@ swigMarked.configure({
 });
 
 // Compile Swig
-gulp.task('html', ['html:clean'], function () {
+gulp.task('html', function () {
 	return gulp.src(__SRC_HTML)
 		.pipe($.frontMatter({ property: 'data' }))
 		.pipe($.swig({
@@ -275,12 +286,14 @@ gulp.task('html', ['html:clean'], function () {
 				swigMarked.useTag(swig, 'markdown');
 			}
 		}))
+		.pipe($.changed(__DIST, { hasChanged: $.changed.compareSha1Digest }))
 		.pipe(gulp.dest(__DIST));
 });
 
-// Prettify HTML
+// Compile Swig & Prettify HTML
 gulp.task('html:prettify', ['html'], function () {
 	return gulp.src(__DIST + '/**/*.html')
+		.pipe($.changed(__DIST, { hasChanged: $.changed.compareSha1Digest }))
 		.pipe($.prettify({
 			indent: 4,
 			indent_inner_html: false,
@@ -290,6 +303,11 @@ gulp.task('html:prettify', ['html'], function () {
 			unformatted: [ "a", "span", "i", "pre", "code" ]
 		}))
 		.pipe(gulp.dest(__DIST));
+});
+
+// Clean HTML, Compile Swig & Prettify HTML
+gulp.task('html:build', function (callback) {
+	runSequence('html:clean', 'html:prettify', callback)
 });
 
 // Watch HTML
@@ -326,4 +344,4 @@ gulp.task('watch:set', function (cb) {
 gulp.task('watch', ['sass:watch', 'browserify:watch', 'html:watch']);
 
 // Default
-gulp.task('default', ['copy:vendor', 'sass', 'browserify', 'html', 'html:prettify']);
+gulp.task('default', ['copy:vendor', 'sass:build', 'browserify:build', 'html:build']);
